@@ -13,22 +13,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Goodsbyus">
         <activity
+            android:name=".BottomNavi"
+            android:exported="false"
+            android:label="@string/title_activity_bottom_navi" />
+        <activity
             android:name=".SecondActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <!-- Redirect URI: "kakao${NATIVE_APP_KEY}://oauth" -->
-                <data android:host="oauth"
+                <data
+                    android:host="oauth"
                     android:scheme="kakao682513bdd453e2e92707d48a4c3f8c98" />
             </intent-filter>
         </activity>

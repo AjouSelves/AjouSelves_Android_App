@@ -14,6 +14,14 @@ class SecondActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
 
+        val kakao_start_button = findViewById<Button>(R.id.kakao_start_button)
+
+        kakao_start_button.setOnClickListener{
+            val intent = Intent(this, BottomNavi::class.java)
+            startActivity(intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP))
+            finish()
+        }
+
         val kakao_logout_button = findViewById<Button>(R.id.kakao_logout_button) //로그아웃 버튼
 
         kakao_logout_button.setOnClickListener {
