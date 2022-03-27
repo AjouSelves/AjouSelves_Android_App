@@ -1,13 +1,13 @@
-package com.goodsbyus.ui.dashboard
+package com.goodsbyus.ui.funding
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class DashboardViewModel : ViewModel() {
+class FundingViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
+        value = "This is funding Fragment"
     }
     val text: LiveData<String> = _text
 }

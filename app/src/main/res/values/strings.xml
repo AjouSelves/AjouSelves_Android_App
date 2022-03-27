@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">goodsbyus</string>
     <string name="title_activity_bottom_navi">BottomNavi</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_home">홈</string>
+    <string name="title_funding">펀딩</string>
+    <string name="title_mypage">마이페이지</string>
+    <string name="title_setting">설정</string>
 </resources>

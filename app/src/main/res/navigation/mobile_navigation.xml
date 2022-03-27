@@ -12,14 +12,22 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.goodsbyus.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_funding"
+        android:name="com.goodsbyus.ui.funding.FundingFragment"
+        android:label="@string/title_funding"
+        tools:layout="@layout/fragment_funding" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.goodsbyus.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_mypage"
+        android:name="com.goodsbyus.ui.mypage.MypageFragment"
+        android:label="@string/title_mypage"
+        tools:layout="@layout/fragment_mypage" />
+
+    <fragment
+        android:id="@+id/navigation_setting"
+        android:name="com.goodsbyus.ui.setting.SettingFragment"
+        android:label="@string/title_setting"
+        tools:layout="@layout/fragment_setting" />
+
+
 </navigation>
