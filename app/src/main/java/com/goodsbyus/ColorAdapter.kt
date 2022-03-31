@@ -12,10 +12,11 @@ class ColorAdapter(private val colorList: List<ColorModel>) : RecyclerView.Adapt
     inner class ColorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(color: ColorModel) {
             itemView.findViewById<ImageView>(R.id.iv_color).setColorFilter(color.color)
-            itemView.findViewById<TextView>(R.id.tv_color).text = color.colorText
+            itemView.findViewById<TextView>(R.id.product).text = color.productText
+            itemView.findViewById<TextView>(R.id.detail).text = color.detailText
 
             itemView.setOnClickListener {
-                Toast.makeText(itemView.context, "It's so ${color.colorText}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(itemView.context, "It's so ${color.productText}", Toast.LENGTH_SHORT).show()
             }
         }
     }
