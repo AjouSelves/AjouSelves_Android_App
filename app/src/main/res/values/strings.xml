@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">goodsbyus</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search">검색</string>
+    <string name="menu">메뉴</string>
+    <string name="notification">알림</string>
 </resources>
