@@ -1,16 +1,21 @@
 package com.goodsbyus
 
 import android.graphics.Color
+import com.google.gson.Gson
+import com.google.gson.annotations.SerializedName
 
-data class ColorModel (
-    val productText: String,
-    val colorString: String,
-    val detailText: String) {
+data class GoodsModel (
+    @SerializedName("id")
+    val id: String,
+    @SerializedName("title")
+    val title: String,
+    @SerializedName("url")
+    val url: String) {
     companion object {
-        val colorList = listOf(
-            ColorModel("red", "#FF0000","내가 진짜 좋아하는 Goods by Us"),
-            ColorModel("crimson", "#DC143C","내가 진짜 좋아하는 Goods by Us"),
-            ColorModel("firebrick", "#B22222","내가 진짜 좋아하는 Goods by Us"),
+        val goodsList = listOf(
+            GoodsModel("1", "Test title1","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6DPgjVCTfI-LzSOvolwHtX6gweIV8x-XeCw&usqp=CAU"),
+            GoodsModel("2", "Test title2","https://via.placeholder.com/600/771796"))
+            /*ColorModel("firebrick", "#B22222","내가 진짜 좋아하는 Goods by Us"),
             ColorModel("maroon", "#800000","내가 진짜 좋아하는 Goods by Us"),
             ColorModel("darkred", "#8B0000","내가 진짜 좋아하는 Goods by Us"),
             ColorModel("brown", "#A52A2A","내가 진짜 좋아하는 Goods by Us"),
@@ -38,9 +43,9 @@ data class ColorModel (
             ColorModel("wheat", "#F5DEB3","내가 진짜 좋아하는 Goods by Us"),
             ColorModel("burlywood", "#DEB887","내가 진짜 좋아하는 Goods by Us"),
             ColorModel("darkgoldenrod", "#B8860B","내가 진짜 좋아하는 Goods by Us")
-        )
+        )*/
     }
-    val color get() = Color.parseColor(colorString)
+    //val color get() = Color.parseColor(colorString)
 }
 
 

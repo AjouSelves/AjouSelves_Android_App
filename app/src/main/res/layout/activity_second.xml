@@ -45,7 +45,6 @@
 
         app:itemRippleColor="@android:color/transparent"
         app:itemIconSize="22dp"
-        app:labelVisibilityMode="unlabeled"
         app:itemIconTint="@drawable/item_selector"
         android:id="@+id/bottom_navigation"
         tools:ignore="MissingConstraints" />

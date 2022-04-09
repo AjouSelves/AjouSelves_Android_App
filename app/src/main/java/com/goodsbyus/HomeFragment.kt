@@ -1,23 +1,15 @@
 package com.goodsbyus
 
+import android.content.BroadcastReceiver
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.core.os.bundleOf
+import androidx.fragment.app.*
 import com.goodsbyus.databinding.FragmentHomeBinding
 
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomeFragment : Fragment() {
     // TODO: Rename and change types of parameters
 
@@ -25,6 +17,7 @@ class HomeFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,32 +31,62 @@ class HomeFragment : Fragment() {
         binding.myToolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_search -> {
-                    //search
+                    replaceFragment(NotificationFragment())
                     true
                 }
                 R.id.action_menu -> {
-                    // menu
+                    replaceFragment(NotificationFragment())
                     true
                 }
                 R.id.action_notification -> {
                     // notification
+                    replaceFragment(NotificationFragment())
                     true
                 }
                 else -> false
             }
         }
 
-        binding.rvColor.adapter = ColorAdapter(ColorModel.colorList)
+        /*val response=" {\"id\": 1,\"title\":\"accusamus beatae ad facilis cum similique qui sunt\"," +
+                "\"url\": \"https://via.placeholder.com/600/92c952\"}"
+
+        val gson= Gson()
+        val colorList=gson.fromJson(response,ColorModel::class.java)*/
+
+        binding.rvList.adapter = ListViewAdapter(GoodsModel.goodsList).apply{
+            setItemClickListener(
+                object : ListViewAdapter.ItemClickListener {
+                    override fun onClick(view: View, position: Int) {
+                        val id_str=goodsList[position].id
+                        val title_str=goodsList[position].title
+                        val url_str=goodsList[position].url
+                        setFragmentResult("requestKey", bundleOf("id" to id_str))
+                        setFragmentResult("requestKey", bundleOf("title" to title_str))
+                        setFragmentResult("requestKey", bundleOf("url" to url_str))
+
+
+                        replaceFragment(GoodsInfoFragment())
+                    }
+                })
+        }
 
 
         val view = binding.root
         return view
     }
 
+    fun replaceFragment(fragment: Fragment) {
+        parentFragmentManager.beginTransaction().replace(R.id.body_container, fragment)
+            .addToBackStack(null).commit()
+    }
+
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
+
 
     /*override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
