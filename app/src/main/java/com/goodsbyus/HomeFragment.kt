@@ -31,11 +31,11 @@ class HomeFragment : Fragment() {
         binding.myToolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_search -> {
-                    replaceFragment(NotificationFragment())
+                    replaceFragment(SearchFragment())
                     true
                 }
-                R.id.action_menu -> {
-                    replaceFragment(NotificationFragment())
+                R.id.action_plus -> {
+                    replaceFragment(PlusFragment())
                     true
                 }
                 R.id.action_notification -> {
