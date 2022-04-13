@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.kakao.sdk.user.UserApiClient
@@ -53,7 +54,7 @@ class SecondActivity : AppCompatActivity() {
             nickname.text = "닉네임: ${user?.kakaoAccount?.profile?.nickname}"
         }
     }*/
-    private val frame: RelativeLayout by lazy { // activity_main의 화면 부분
+    private val frame: ConstraintLayout by lazy { // activity_main의 화면 부분
         findViewById(R.id.body_container)
     }
     private val bottomNagivationView: BottomNavigationView by lazy { // 하단 네비게이션 바

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,17 +10,66 @@
     android:padding="20dp"
     tools:context=".PlusFragment">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/titleView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="제목"></TextView>
+
+            <EditText
+                android:id="@+id/et1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="제목을 입력해 주세요"
+                android:imeOptions="actionDone"
+                android:inputType="text" />
+
+            <TextView
+                android:id="@+id/explainedView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="상세 설명"></TextView>
+
+            <EditText
+                android:id="@+id/et2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="굿즈를 설명해 주세요"
+                android:imeOptions="actionDone"
+                android:inputType="textMultiLine"
+                android:scrollHorizontally="false" />
+
+            <Button
+                android:id="@+id/galleryButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="사진 가져오기" />
+
+            <ImageView
+                android:id="@+id/userImageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_launcher_foreground" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
     <Button
-        android:id="@+id/galleryButton"
+        android:id="@+id/saveButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="GALLERY" />
-
-    <ImageView
-        android:id="@+id/userImageView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/logo_image"/>
-
-
-</LinearLayout>
+        android:layout_marginBottom="35dp"
+        android:text="등록하기"
+        app:layout_constraintBottom_toBottomOf="parent"
+         />
+</androidx.constraintlayout.widget.ConstraintLayout>

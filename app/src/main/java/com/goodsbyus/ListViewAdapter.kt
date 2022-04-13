@@ -20,8 +20,8 @@ class ListViewAdapter(val goodsList: List<GoodsModel>) : RecyclerView.Adapter<Li
             val imageView: ImageView = itemView.findViewById<ImageView>(R.id.iv_image)
             Glide.with(itemView).load(_list.url).placeholder(R.drawable.ic_launcher_foreground).
             override(80,80).into(imageView)
-            itemView.findViewById<TextView>(R.id.product).text = _list.title
-            itemView.findViewById<TextView>(R.id.detail).text = _list.id
+            itemView.findViewById<TextView>(R.id.title).text = _list.title
+            itemView.findViewById<TextView>(R.id.nickname).text = _list.id
         }
     }
     override fun getItemCount(): Int = goodsList.size

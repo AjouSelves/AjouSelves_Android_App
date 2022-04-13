@@ -2,12 +2,19 @@ package com.goodsbyus
 
 import android.content.BroadcastReceiver
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.*
 import com.goodsbyus.databinding.FragmentHomeBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 
 class HomeFragment : Fragment() {
@@ -17,6 +24,7 @@ class HomeFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+    val api = APIS.create();
 
 
     override fun onCreateView(
@@ -52,6 +60,25 @@ class HomeFragment : Fragment() {
 
         val gson= Gson()
         val colorList=gson.fromJson(response,ColorModel::class.java)*/
+        RetrofitBuilder.api.getRequest().enqueue(object :
+            Callback<ITEM_GET_Model> {
+            override fun onResponse(
+                call: Call<ITEM_GET_Model>,
+                response: Response<ITEM_GET_Model>
+            ) {
+                if(response.isSuccessful) {
+                    Log.d("test", response.body().toString())
+                    var data = response.body() // GsonConverter를 사용해 데이터매핑
+                    Toast.makeText(getActivity(), "업로드 성공!", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<ITEM_GET_Model>, t: Throwable) {
+                Log.d("test", "실패$t")
+                Toast.makeText(getActivity(), "업로드 실패 ..", Toast.LENGTH_SHORT).show()
+            }
+
+        })
 
         binding.rvList.adapter = ListViewAdapter(GoodsModel.goodsList).apply{
             setItemClickListener(
@@ -84,6 +111,19 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    object RetrofitBuilder {
+        var api: API
+
+        init {
+            val retrofit = Retrofit.Builder()
+                .baseUrl("http://44.202.49.100:3000/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+            api = retrofit.create(API::class.java)
+        }
     }
 
 
@@ -121,3 +161,5 @@ class HomeFragment : Fragment() {
     }*/
 
 }
+
+
