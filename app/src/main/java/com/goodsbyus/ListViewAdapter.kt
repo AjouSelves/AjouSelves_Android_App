@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide
 
 class ListViewAdapter(val goodsList: List<GoodsModel>) : RecyclerView.Adapter<ListViewAdapter.ListViewHolder>() {
 
+
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(_list: GoodsModel) {
             val imageView: ImageView = itemView.findViewById<ImageView>(R.id.iv_image)
@@ -40,6 +41,11 @@ class ListViewAdapter(val goodsList: List<GoodsModel>) : RecyclerView.Adapter<Li
         holder.itemView.setOnClickListener{
             itemClickListner.onClick(it,position)
         }
+
+
+        /*val layoutParams = holder.itemView.layoutParams
+        layoutParams.height = 600
+        holder.itemView.requestLayout()*/
     }
 
     interface ItemClickListener{

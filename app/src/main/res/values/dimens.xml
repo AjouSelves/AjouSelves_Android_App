@@ -3,5 +3,5 @@
     <dimen name="pageMargin">20dp</dimen>
     <dimen name="pageMarginHalf">10dp</dimen>
     <dimen name="font_size">20</dimen>
-    <dimen name="imgSize">300</dimen>
+    <dimen name="imgSize">300dp</dimen>
 </resources>

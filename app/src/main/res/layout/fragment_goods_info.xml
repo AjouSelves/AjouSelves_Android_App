@@ -4,23 +4,54 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:gravity="center_vertical">
-    <TextView
-        android:id="@+id/idView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="@{id_str}" />
-
-    <ImageView
-        android:id="@+id/imageView"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:src="@color/black"/>
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/titleView"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="@{title_str}" />
+            android:orientation="vertical" >
+            <TextView
+                android:id="@+id/idView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="ID" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+
+                android:src="@color/black"/>
+
+            <TextView
+                android:id="@+id/titleView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Title" />
+
+            <TextView
+                android:id="@+id/numView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="굿즈 상세 설명" />
+            <TextView
+                android:id="@+id/expainView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="현재 모금 금액 : 0원/999,999원" />
+            <Button
+                android:id="@+id/fundingButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="펀딩하기" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

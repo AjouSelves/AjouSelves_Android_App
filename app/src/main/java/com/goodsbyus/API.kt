@@ -6,9 +6,15 @@ import retrofit2.http.*
 interface API {
     // x-www-urlencoded
     // Json
-    @POST("/post/add") // Call<InitializeResponse> 데이터를 받을 data class
+    @POST("/proj/add") // Call<InitializeResponse> 데이터를 받을 data class
     fun initRequest(@Body initializeRequest: Posts): Call<InitializeResponse> // InitializeRequest 요청을 보낼 Json Data Class
 
-    @GET("/post/all")
-    fun getRequest(): Call<ITEM_GET_Model>
+    @GET("/proj/{id}")
+    fun getRequest(
+        @Path("id") userid: Int
+    ): Call<ITEM_GET_Model>
+
+    @GET("/proj")
+    fun getList(
+    ): Call<ITEM_GET_Model>
 }

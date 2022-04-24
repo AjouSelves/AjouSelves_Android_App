@@ -13,39 +13,15 @@ data class GoodsModel (
     val url: String) {
     companion object {
         val goodsList = listOf(
-            GoodsModel("1", "Test title1","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6DPgjVCTfI-LzSOvolwHtX6gweIV8x-XeCw&usqp=CAU"),
-            GoodsModel("2", "Test title2","https://via.placeholder.com/600/771796"))
-            /*ColorModel("firebrick", "#B22222","내가 진짜 좋아하는 Goods by Us"),
-            ColorModel("maroon", "#800000","내가 진짜 좋아하는 Goods by Us"),
-            ColorModel("darkred", "#8B0000","내가 진짜 좋아하는 Goods by Us"),
-            ColorModel("brown", "#A52A2A","내가 진짜 좋아하는 Goods by Us"),
-            ColorModel("sienna", "#A0522D","내가 진짜 좋아하는 Goods by Us"),
-            ColorModel("saddlebrown", "#8B4513","내가 진짜 좋아하는 Goods by Us"),
-            ColorModel("indianred", "#CD5C5C","내가 진짜 좋아하는 Goods by Us"),
-            ColorModel("rosybrown", "#BC8F8F","내가 진짜 좋아하는 Goods by Us"),
-            ColorModel("lightcoral", "#F08080","내가 진짜 좋아하는 Goods by Us"),
-            ColorModel("salmon", "#FA8072","내가 진짜 좋아하는 Goods by Us"),
-            ColorModel("darksalmon", "#E9967A","내가 진짜 좋아하는 Goods by Us"),
-            ColorModel("coral", "#FF7F50","내가 진짜 좋아하는 Goods by Us"),
-            ColorModel("tomato", "#FF6347","내가 진짜 좋아하는 Goods by Us"),
-            ColorModel("sandybrown", "#F4A460","내가 진짜 좋아하는 Goods by Us"),
-            ColorModel("lightsalmon", "#FFA07A","내가 진짜 좋아하는 Goods by Us"),
-            ColorModel("peru", "#CD853F","내가 진짜 좋아하는 Goods by Us"),
-            ColorModel("chocolate", "#D2691E","내가 진짜 좋아하는 Goods by Us"),
-            ColorModel("orangered", "#FF4500","내가 진짜 좋아하는 Goods by Us"),
-            ColorModel("orange", "#FFA500","내가 진짜 좋아하는 Goods by Us"),
-            ColorModel("darkorange", "#FF8C00","내가 진짜 좋아하는 Goods by Us"),
-            ColorModel("tan", "#D2B48C","내가 진짜 좋아하는 Goods by Us"),
-            ColorModel("peachpuff", "#FFDAB9","내가 진짜 좋아하는 Goods by Us"),
-            ColorModel("bisque", "#FFE4C4","내가 진짜 좋아하는 Goods by Us"),
-            ColorModel("moccasin", "#FFE4B5","내가 진짜 좋아하는 Goods by Us"),
-            ColorModel("navajowhite", "#FFDEAD","내가 진짜 좋아하는 Goods by Us"),
-            ColorModel("wheat", "#F5DEB3","내가 진짜 좋아하는 Goods by Us"),
-            ColorModel("burlywood", "#DEB887","내가 진짜 좋아하는 Goods by Us"),
-            ColorModel("darkgoldenrod", "#B8860B","내가 진짜 좋아하는 Goods by Us")
-        )*/
+            GoodsModel("test_id1", "Test title1","https://s3.marpple.co/files/u_1150555/2021/12/original/31eca686f0dd678adbd12faf5b1d5f693fb405791.jpg"),
+            GoodsModel("test_id2", "Test title2","https://t1.daumcdn.net/cfile/tistory/9997C03E5C616C2720"),
+            GoodsModel("test_id3", "Test title3","https://static.wixstatic.com/media/20259e_6e1bc381681c4f21a2415ea4fc5c2e6e~mv2.png/v1/crop/x_0,y_62,w_3456,h_4608/fill/w_272,h_300,al_c,usm_0.66_1.00_0.01,enc_auto/KakaoTalk_Photo_2021-09-01-17-28-22.png"),
+            GoodsModel("test_id4", "Test title4","https://cdn.imweb.me/upload/S20200830244f269ed848e/656eb6ed91f12.jpg"),
+            GoodsModel("test_id5", "Test title5","https://file.mk.co.kr/meet/neds/2020/11/image_readtop_2020_1174561_16054915004432908.jpg"),
+            GoodsModel("test_id6", "Test title6","https://cdn.econovill.com/news/photo/202106/535189_445017_4134.jpg"),
+            GoodsModel("test_id7", "Test title7","https://cdnweb01.wikitree.co.kr/webdata/editor/202010/24/img_20201024183026_60837f89.webp"),
+            GoodsModel("test_id8", "Test title8","https://www.travelnbike.com/news/photo/202009/89970_176024_4744.jpg"))
     }
-    //val color get() = Color.parseColor(colorString)
 }
 
 

@@ -1,6 +1,7 @@
 package com.goodsbyus
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -33,15 +34,16 @@ class GoodsInfoFragment : Fragment() {
         _binding = FragmentGoodsInfoBinding.inflate(inflater, container, false)
 
         setFragmentResultListener("requestKey") { requestKey, bundle ->
-            val id_str = bundle.getString("id")
-            val url_str = bundle.getString("url")
-            val title_str = bundle.getString("title")
+            var id_str :String?= bundle.getString("id")
+            var url_str = bundle.getString("url")
+            var title_str :String?= bundle.getString("title")
 
-            binding.idView.text=id_str
+
+            binding.idView.text="id_"
             Glide.with(this)
                 .load(url_str)
                 .into(binding.imageView)
-            binding.titleView.text=title_str
+            binding.titleView.text="title_"
         }
 
         val view = binding.root

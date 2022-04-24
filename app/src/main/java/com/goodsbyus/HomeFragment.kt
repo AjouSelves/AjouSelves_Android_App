@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.*
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.goodsbyus.databinding.FragmentHomeBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -24,7 +26,6 @@ class HomeFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-    val api = APIS.create();
 
 
     override fun onCreateView(
@@ -60,13 +61,35 @@ class HomeFragment : Fragment() {
 
         val gson= Gson()
         val colorList=gson.fromJson(response,ColorModel::class.java)*/
-        RetrofitBuilder.api.getRequest().enqueue(object :
+        /*for(i in 1 until 14) {
+            RetrofitBuilder.api.getRequest(i).enqueue(object :
+                Callback<ITEM_GET_Model> {
+                override fun onResponse(
+                    call: Call<ITEM_GET_Model>,
+                    response: Response<ITEM_GET_Model>
+                ) {
+                    if (response.isSuccessful) {
+                        Log.d("test", response.body().toString())
+                        var data = response.body() // GsonConverter를 사용해 데이터매핑
+                        Toast.makeText(getActivity(), "업로드 성공!", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<ITEM_GET_Model>, t: Throwable) {
+                    Log.d("test", "실패$t")
+                    Toast.makeText(getActivity(), "업로드 실패 ..", Toast.LENGTH_SHORT).show()
+                }
+
+            })
+        }*/
+
+        /*RetrofitBuilder.api.getRequest(1).enqueue(object :
             Callback<ITEM_GET_Model> {
             override fun onResponse(
                 call: Call<ITEM_GET_Model>,
                 response: Response<ITEM_GET_Model>
             ) {
-                if(response.isSuccessful) {
+                if (response.isSuccessful) {
                     Log.d("test", response.body().toString())
                     var data = response.body() // GsonConverter를 사용해 데이터매핑
                     Toast.makeText(getActivity(), "업로드 성공!", Toast.LENGTH_SHORT).show()
@@ -78,7 +101,9 @@ class HomeFragment : Fragment() {
                 Toast.makeText(getActivity(), "업로드 실패 ..", Toast.LENGTH_SHORT).show()
             }
 
-        })
+        })*/
+
+        binding.rvList.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
 
         binding.rvList.adapter = ListViewAdapter(GoodsModel.goodsList).apply{
             setItemClickListener(
@@ -125,41 +150,6 @@ class HomeFragment : Fragment() {
             api = retrofit.create(API::class.java)
         }
     }
-
-
-
-    /*override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-        val viewBinding=
-        viewBinding.myToolbar.inflateMenu(R.menu.sample_menu)
-
-        viewBinding.myToolbar.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.action_search -> {
-                    // Navigate to settings screen
-                    true
-                }
-                R.id.action_menu -> {
-                    // Save profile changes
-                    true
-                }
-                R.id.action_notification -> {
-                    // Save profile changes
-                    true
-                }
-                else -> false
-            }
-        }
-    }*/
-
 }
 
 

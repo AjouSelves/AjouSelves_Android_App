@@ -34,6 +34,35 @@
                 android:inputType="text" />
 
             <TextView
+                android:id="@+id/categoryView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="카테고리"></TextView>
+
+            <EditText
+                android:id="@+id/et3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="ex) 의류"
+                android:imeOptions="actionDone"
+                android:inputType="text" />
+
+            <TextView
+                android:id="@+id/minnumView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="펀딩 최소 인원"></TextView>
+
+            <EditText
+                android:id="@+id/et4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="ex) 30"
+                android:imeOptions="actionDone"
+                android:inputType="textMultiLine"
+                android:scrollHorizontally="false" />
+
+            <TextView
                 android:id="@+id/explainedView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -47,6 +76,10 @@
                 android:imeOptions="actionDone"
                 android:inputType="textMultiLine"
                 android:scrollHorizontally="false" />
+
+
+
+
 
             <Button
                 android:id="@+id/galleryButton"
