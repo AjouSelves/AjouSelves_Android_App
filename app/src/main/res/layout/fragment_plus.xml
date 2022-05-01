@@ -12,11 +12,13 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="590dp"
             android:orientation="vertical">
 
             <TextView
@@ -78,9 +80,6 @@
                 android:scrollHorizontally="false" />
 
 
-
-
-
             <Button
                 android:id="@+id/galleryButton"
                 android:layout_width="match_parent"
@@ -93,16 +92,18 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_launcher_foreground" />
 
+            <Button
+                android:id="@+id/saveButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="35dp"
+                android:text="등록하기"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+
 
         </LinearLayout>
     </ScrollView>
 
-    <Button
-        android:id="@+id/saveButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="35dp"
-        android:text="등록하기"
-        app:layout_constraintBottom_toBottomOf="parent"
-         />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

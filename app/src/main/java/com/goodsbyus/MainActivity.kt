@@ -6,6 +6,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
 import com.kakao.sdk.auth.LoginClient
@@ -77,6 +78,12 @@ class MainActivity : AppCompatActivity() {
             }else{
                 LoginClient.instance.loginWithKakaoAccount(this, callback = callback)
             }
+        }
+
+        val login_button = findViewById<Button>(R.id.login_button) // 로그인 버튼
+        login_button.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
     }
 }
