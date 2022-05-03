@@ -16,5 +16,5 @@ interface API {
 
     @GET("/proj")
     fun getList(
-    ): Call<ItemGetResult>
+    ): Call<List<ItemGetModel>>
 }

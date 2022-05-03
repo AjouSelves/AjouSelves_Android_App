@@ -15,6 +15,7 @@ class ItemGetResult(
 
 @Parcelize
 data class ItemGetModel(
+    var projid: Int,
     var title: String,
     var state: Int,
     var category: String,
@@ -22,6 +23,7 @@ data class ItemGetModel(
     var cur_num: Int,
     var required: String,
     var explained: String,
+    var created_at: String,
     var nickname: String,
     var userid: String,
     var profilelink: String,

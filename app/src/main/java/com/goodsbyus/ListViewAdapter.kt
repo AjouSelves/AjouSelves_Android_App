@@ -1,28 +1,24 @@
 package com.goodsbyus
 
-import android.app.Activity
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 
-class ListViewAdapter(val goodsList: List<GoodsModel>) : RecyclerView.Adapter<ListViewAdapter.ListViewHolder>() {
+class ListViewAdapter(val goodsList: List<ItemGetModel>) : RecyclerView.Adapter<ListViewAdapter.ListViewHolder>() {
 
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(_list: GoodsModel) {
-            val imageView: ImageView = itemView.findViewById<ImageView>(R.id.iv_image)
-            Glide.with(itemView).load(_list.url).placeholder(R.drawable.ic_launcher_foreground).
-            override(80,80).into(imageView)
+        fun bind(_list: ItemGetModel) {
+            //val imageView: ImageView = itemView.findViewById<ImageView>(R.id.iv_image)
+            //Glide.with(itemView).load(_list.url).placeholder(R.drawable.ic_launcher_foreground).
+            //override(80,80).into(imageView)
             itemView.findViewById<TextView>(R.id.title).text = _list.title
-            itemView.findViewById<TextView>(R.id.nickname).text = _list.id
+            itemView.findViewById<TextView>(R.id.nickname).text = _list.nickname
         }
     }
     override fun getItemCount(): Int = goodsList.size
