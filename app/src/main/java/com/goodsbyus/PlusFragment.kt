@@ -30,7 +30,6 @@ import java.lang.Exception
 
 
 class PlusFragment : Fragment() {
-    // TODO: Rename and change types of parameters
 
     private var _binding: FragmentPlusBinding? = null
     // This property is only valid between onCreateView and

@@ -12,9 +12,9 @@ interface API {
     @GET("/proj/{id}")
     fun getRequest(
         @Path("id") userid: Int
-    ): Call<ITEM_GET_Model>
+    ): Call<List<ItemGetModel>>
 
     @GET("/proj")
     fun getList(
-    ): Call<ITEM_GET_Model>
+    ): Call<ItemGetResult>
 }

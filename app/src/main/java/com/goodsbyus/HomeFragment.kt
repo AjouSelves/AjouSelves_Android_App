@@ -12,11 +12,25 @@ import androidx.fragment.app.*
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.goodsbyus.databinding.FragmentHomeBinding
+import com.google.gson.Gson
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+
+class Response(json: String) : JSONObject(json) {
+    val type: String? = this.optString("type")
+    val data = this.optJSONArray("data")
+        ?.let { 0.until(it.length()).map { i -> it.optJSONObject(i) } } // returns an array of JSONObject
+        ?.map { Foo(it.toString()) } // transforms each JSONObject of the array into Foo
+}
+
+class Foo(json: String) : JSONObject(json) {
+    val id = this.optInt("id")
+    val title: String? = this.optString("title")
+}
 
 
 class HomeFragment : Fragment() {
@@ -83,25 +97,25 @@ class HomeFragment : Fragment() {
             })
         }*/
 
-        /*RetrofitBuilder.api.getRequest(1).enqueue(object :
-            Callback<ITEM_GET_Model> {
+        RetrofitBuilder.api.getRequest(2).enqueue(object :
+            Callback<List<ItemGetModel>> {
             override fun onResponse(
-                call: Call<ITEM_GET_Model>,
-                response: Response<ITEM_GET_Model>
+                call: Call<List<ItemGetModel>>,
+                response: Response<List<ItemGetModel>>
             ) {
                 if (response.isSuccessful) {
                     Log.d("test", response.body().toString())
-                    var data = response.body() // GsonConverter를 사용해 데이터매핑
+                    var data = response.body()!! // GsonConverter를 사용해 데이터매핑
                     Toast.makeText(getActivity(), "업로드 성공!", Toast.LENGTH_SHORT).show()
                 }
             }
 
-            override fun onFailure(call: Call<ITEM_GET_Model>, t: Throwable) {
+            override fun onFailure(call: Call<List<ItemGetModel>>, t: Throwable) {
                 Log.d("test", "실패$t")
                 Toast.makeText(getActivity(), "업로드 실패 ..", Toast.LENGTH_SHORT).show()
             }
 
-        })*/
+        })
 
         binding.rvList.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
 

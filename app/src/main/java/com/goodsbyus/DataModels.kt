@@ -1,33 +1,38 @@
 package com.goodsbyus
 
+import android.os.Parcelable
 import android.provider.ContactsContract
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 import java.util.*
 
-data class ITEM_GET_Model(
-    var projid: Int,
-    var userid: Int,
+
+@Parcelize
+class ItemGetResult(
+    val status: String,
+    val message: List<ItemGetModel>
+): Parcelable
+
+@Parcelize
+data class ItemGetModel(
     var title: String,
     var state: Int,
     var category: String,
     var min_num: Int,
+    var cur_num: Int,
     var required: String,
-    var explained: Int,
-    var paylink: String?,
-    var email: String,
-    var password: String,
-    var salt: String,
-    var phonenumber: String,
+    var explained: String,
     var nickname: String,
-    var status: String,
-    var socialtype: String,
-    var sex: Int,
-    var birth: String,
-    var address: String,
-    var account: String,
-    var create_at: String,
+    var userid: String,
     var profilelink: String,
-)
+    var photos: List<PhotoModel>?
+): Parcelable
+
+@Parcelize
+data class PhotoModel(
+    var photos: String
+): Parcelable
+
 
 data class Posts(
     val userid: Int,
@@ -36,6 +41,13 @@ data class Posts(
     val min_num: Int,
     val category: String,
     val required: String
+)
+
+
+data class PostList(
+    val id: Int,
+    val title: String,
+    val url: String
 )
 
 data class InitializeResponse(
