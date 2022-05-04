@@ -39,7 +39,7 @@ data class PhotoModel(
 data class Posts(
     val userid: Int,
     val title: String,
-    val explained: Int,
+    val explained: String,
     val min_num: Int,
     val category: String,
     val required: String

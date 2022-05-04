@@ -91,11 +91,13 @@ class PlusFragment : Fragment() {
 
         binding.saveButton.setOnClickListener{
             val inputTitle=binding.et1.text.toString()
-            val inputExplained=binding.et4.text.toString()
-            val inputCategory=binding.et2.text.toString()
-            val inputMinnum=binding.et3.text.toString()
+            val inputExplained=binding.et2.text.toString()
+            val inputCategory=binding.et3.text.toString()
+            val inputMinnum=binding.et4.text.toString()
 
-            val initializeRequest=Posts(1, title = inputTitle, explained = 11, min_num = 30, category = "의류", required="사이즈")
+            val initializeRequest=Posts(
+                1, title = inputTitle, explained = inputExplained, min_num = inputMinnum.toInt(),
+                category = inputCategory, required="사이즈")
 
             RetrofitBuilder.api.initRequest(initializeRequest).enqueue(object :
                 Callback<InitializeResponse> {
