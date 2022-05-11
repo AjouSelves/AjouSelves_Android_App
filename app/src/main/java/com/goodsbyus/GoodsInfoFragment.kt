@@ -33,10 +33,10 @@ class GoodsInfoFragment : Fragment() {
             var projid = bundle.getInt("projid")
 
             HomeFragment.RetrofitBuilder.api.getRequest(projid).enqueue(object :
-                Callback<List<ItemGetModel>> {
+                Callback<List<DetailModel>> {
                 override fun onResponse(
-                    call: Call<List<ItemGetModel>>,
-                    response: Response<List<ItemGetModel>>
+                    call: Call<List<DetailModel>>,
+                    response: Response<List<DetailModel>>
                 ) {
                     if (response.isSuccessful) {
                         Log.d("test", response.body().toString())
@@ -55,7 +55,7 @@ class GoodsInfoFragment : Fragment() {
                     }
                 }
 
-                override fun onFailure(call: Call<List<ItemGetModel>>, t: Throwable) {
+                override fun onFailure(call: Call<List<DetailModel>>, t: Throwable) {
                     Log.d("test", "실패$t")
                     Toast.makeText(getActivity(), "업로드 실패 ..", Toast.LENGTH_SHORT).show()
                 }

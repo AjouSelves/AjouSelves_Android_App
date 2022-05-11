@@ -20,7 +20,7 @@ interface API {
     @GET("/proj/{id}")
     fun getRequest(
         @Path("id") userid: Int
-    ): Call<List<ItemGetModel>>
+    ): Call<List<DetailModel>>
 
     @GET("/proj")
     fun getList(

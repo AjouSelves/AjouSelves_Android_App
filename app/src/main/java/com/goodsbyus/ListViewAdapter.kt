@@ -14,9 +14,12 @@ class ListViewAdapter(val goodsList: List<ItemGetModel>) : RecyclerView.Adapter<
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(_list: ItemGetModel) {
-            //val imageView: ImageView = itemView.findViewById<ImageView>(R.id.iv_image)
-            //Glide.with(itemView).load(_list.url).placeholder(R.drawable.ic_launcher_foreground).
-            //override(80,80).into(imageView)
+            val imageView: ImageView = itemView.findViewById<ImageView>(R.id.iv_image)
+            if(_list.url!=null) {
+                val newUrl = "http://44.202.49.100:3000" + _list.url
+                Glide.with(itemView).load(newUrl).placeholder(R.drawable.ic_launcher_foreground)
+                    .override(80, 80).into(imageView)
+            }
             itemView.findViewById<TextView>(R.id.title).text = _list.title
             itemView.findViewById<TextView>(R.id.nickname).text = _list.nickname
         }

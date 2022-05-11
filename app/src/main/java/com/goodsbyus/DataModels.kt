@@ -7,14 +7,15 @@ import kotlinx.android.parcel.Parcelize
 import java.util.*
 
 
+
 @Parcelize
-class ItemGetResult(
+class DetailResult(
     val status: String,
-    val message: List<ItemGetModel>
+    val message: List<DetailModel>
 ): Parcelable
 
 @Parcelize
-data class ItemGetModel(
+data class DetailModel(
     var projid: Int,
     var title: String,
     var state: Int,
@@ -33,6 +34,23 @@ data class ItemGetModel(
 @Parcelize
 data class PhotoModel(
     var photos: String
+): Parcelable
+
+@Parcelize
+data class ItemGetModel(
+    var projid: Int,
+    var title: String,
+    var state: Int,
+    var category: String,
+    var min_num: Int,
+    var cur_num: Int,
+    var required: String,
+    var explained: String,
+    var created_at: String,
+    var nickname: String,
+    var userid: String,
+    var profilelink: String,
+    var url: String
 ): Parcelable
 
 
