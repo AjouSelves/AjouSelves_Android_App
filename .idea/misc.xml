@@ -5,7 +5,11 @@
       <map>
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1205" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.136" />
+        <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.1865" />
+        <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/drawable/ic_baseline_notifications_24.xml" value="0.1865" />
+        <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/drawable/ic_baseline_people_24.xml" value="0.1865" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/drawable/ic_baseline_person_pin_24.xml" value="0.136" />
+        <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.1865" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.136" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.1205" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.1205" />
@@ -14,7 +18,7 @@
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/drawable/item_selector.xml" value="0.136" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/activity_bottom_navi.xml" value="0.264" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/activity_login.xml" value="0.33" />
-        <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/activity_main.xml" value="0.557542768273717" />
+        <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/activity_register.xml" value="0.33" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/activity_second.xml" value="0.33" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/file_paths.xml" value="0.15729166666666666" />

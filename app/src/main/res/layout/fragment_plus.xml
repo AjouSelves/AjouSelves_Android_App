@@ -9,6 +9,7 @@
     android:orientation="vertical"
     android:padding="20dp"
     android:background="@color/white"
+    android:id="@+id/plus_fragment"
     tools:context=".PlusFragment">
 
     <ScrollView

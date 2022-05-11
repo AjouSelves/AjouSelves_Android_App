@@ -8,6 +8,11 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.activity_login.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class LoginActivity : AppCompatActivity() {
     val TAG: String = "LoginActivity"
@@ -21,23 +26,41 @@ class LoginActivity : AppCompatActivity() {
         btn_login.setOnClickListener {
 
             //editText로부터 입력된 값을 받아온다
-            var id = edit_id.text.toString()
-            var pw = edit_pw.text.toString()
+            val id = edit_id.text.toString()
+            val pw = edit_pw.text.toString()
 
-            // 쉐어드로부터 저장된 id, pw 가져오기
-            val sharedPreference = getSharedPreferences("file name", Context.MODE_PRIVATE)
-            val savedId = sharedPreference.getString("id", "")
-            val savedPw = sharedPreference.getString("pw", "")
+            val initializeRequest=LoginInfo(
+                email=id, password=pw)
 
-            // 유저가 입력한 id, pw값과 쉐어드로 불러온 id, pw값 비교
-            if(id == savedId && pw == savedPw){
-                // 로그인 성공 다이얼로그 보여주기
-                dialog("success")
-            }
-            else{
-                // 로그인 실패 다이얼로그 보여주기
-                dialog("fail")
-            }
+            Register.RetrofitBuilder.api.loginRequest(initializeRequest).enqueue(object :
+                Callback<LoginResponse> {
+                override fun onResponse(
+                    call: Call<LoginResponse>,
+                    response: Response<LoginResponse>
+                ) {
+                    if(response.isSuccessful) {
+                        Log.d("test", response.body().toString())
+
+                        var data = response.body()!!
+
+                        val token=data.token
+
+                        GlobalApplication.prefs.setString("tokens",token)
+
+                        dialog("success")
+
+                        //Toast.makeText(context, "업로드 성공!", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                    Log.d("test", "실패$t")
+
+                    dialog("fail")
+                    //Toast.makeText(this, "업로드 실패 ..", Toast.LENGTH_SHORT).show()
+                }
+
+            })
         }
 
         // 회원가입 버튼
@@ -75,5 +98,18 @@ class LoginActivity : AppCompatActivity() {
 
         dialog.setPositiveButton("확인",dialog_listener)
         dialog.show()
+    }
+
+    object RetrofitBuilder {
+        var api: API
+
+        init {
+            val retrofit = Retrofit.Builder()
+                .baseUrl("http://44.202.49.100:3000/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+            api = retrofit.create(API::class.java)
+        }
     }
 }

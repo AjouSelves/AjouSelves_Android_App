@@ -55,3 +55,29 @@ data class PostList(
 data class InitializeResponse(
     var status: String
 )
+
+data class LoginResponse(
+    var code : Int,
+    var message : String,
+    var token : String
+)
+
+data class RegisterInfo(
+    val email : String,
+    val password : String,
+    val name : String,
+    val phonenumber : String,
+    val nickname : String,
+    val status : String,
+    val socialtype : String,
+    val sex : Int,
+    val birth : String,
+    val address : String,
+    val account : String,
+    val profilelink : String
+)
+
+data class LoginInfo(
+    val email : String,
+    val password : String
+)

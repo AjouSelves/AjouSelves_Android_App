@@ -1,8 +1,10 @@
 package com.goodsbyus
 
 import android.app.Application
+import android.content.Context
 import com.kakao.sdk.common.KakaoSdk
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -88,8 +90,29 @@ class MainActivity : AppCompatActivity() {
     }
 }
 class GlobalApplication : Application() {
+    companion object{
+        lateinit var prefs : PreferenceUtil
+    }
     override fun onCreate() {
+        prefs=PreferenceUtil(applicationContext)
         super.onCreate()
         KakaoSdk.init(this, "682513bdd453e2e92707d48a4c3f8c98")
     }
+}
+
+class PreferenceUtil(context: Context)
+{
+    private val prefs: SharedPreferences =
+        context.getSharedPreferences("tokens", Context.MODE_PRIVATE)
+
+    fun getString(key: String, defValue: String): String
+    {
+        return prefs.getString(key, defValue).toString()
+    }
+
+    fun setString(key: String, str: String)
+    {
+        prefs.edit().putString(key, str).apply()
+    }
+
 }

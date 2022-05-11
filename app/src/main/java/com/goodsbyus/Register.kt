@@ -8,7 +8,13 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.google.android.material.internal.ContextUtils.getActivity
 import kotlinx.android.synthetic.main.activity_register.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class Register : AppCompatActivity() {
 
@@ -20,15 +26,21 @@ class Register : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        btn_register.setOnClickListener {
+        button.setOnClickListener {
             Log.d(TAG, "회원가입 버튼 클릭")
 
-            val id = edit_id.text.toString()
-            val pw = edit_pw.text.toString()
-            val pw_re = edit_pw_re.text.toString()
+            val email = editTextTextEmailAddress.text.toString()
+            val pw = editTextTextPassword.text.toString()
+            val pw_re = editTextTextPasswordCheck.text.toString()
+            val name=editTextTextPersonName.text.toString()
+            val phone= editTextPhone.text.toString()
+            val nickname=editTextTextNickname.text.toString()
+            val birth=editTextDate.text.toString()
+            val address=editTextTextPostalAddress.text.toString()
+            val account=editTextNumber.text.toString()
 
             // 유저가 항목을 다 채우지 않았을 경우
-            if(id.isEmpty() || pw.isEmpty() || pw_re.isEmpty()){
+            if(email.isEmpty() || pw.isEmpty() || pw_re.isEmpty()){
                 isExistBlank = true
             }
             else{
@@ -43,11 +55,29 @@ class Register : AppCompatActivity() {
                 Toast.makeText(this, "회원가입 성공", Toast.LENGTH_SHORT).show()
 
                 // 유저가 입력한 id, pw를 쉐어드에 저장한다.
-                val sharedPreference = getSharedPreferences("file name", Context.MODE_PRIVATE)
-                val editor = sharedPreference.edit()
-                editor.putString("id", id)
-                editor.putString("pw", pw)
-                editor.apply()
+                val initializeRequest=RegisterInfo(
+                    email=email, password=pw, name=name, phonenumber = phone, nickname=nickname,
+                    status="재학생",socialtype="local",sex=0,birth=birth,address=address,account=account, profilelink = "kakao/balh")
+
+                RetrofitBuilder.api.registerRequest(initializeRequest).enqueue(object :
+                    Callback<InitializeResponse> {
+                    override fun onResponse(
+                        call: Call<InitializeResponse>,
+                        response: Response<InitializeResponse>
+                    ) {
+                        if(response.isSuccessful) {
+                            Log.d("test", response.body().toString())
+
+                            //Toast.makeText(context, "업로드 성공!", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
+                    override fun onFailure(call: Call<InitializeResponse>, t: Throwable) {
+                        Log.d("test", "실패$t")
+                        //Toast.makeText(this, "업로드 실패 ..", Toast.LENGTH_SHORT).show()
+                    }
+
+                })
 
                 // 로그인 화면으로 이동
                 val intent = Intent(this, MainActivity::class.java)
@@ -64,6 +94,10 @@ class Register : AppCompatActivity() {
                     dialog("not same")
                 }
             }
+
+
+
+
 
         }
     }
@@ -96,7 +130,17 @@ class Register : AppCompatActivity() {
         dialog.show()
     }
 
+    object RetrofitBuilder {
+        var api: API
 
+        init {
+            val retrofit = Retrofit.Builder()
+                .baseUrl("http://44.202.49.100:3000/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
 
-
+            api = retrofit.create(API::class.java)
+        }
+    }
 }
+

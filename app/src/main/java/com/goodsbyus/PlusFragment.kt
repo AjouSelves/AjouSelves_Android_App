@@ -21,6 +21,8 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import com.goodsbyus.databinding.FragmentPlusBinding
+import com.goodsbyus.retrofit2.AuthInterceptor
+import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -109,6 +111,8 @@ class PlusFragment : Fragment() {
                         Log.d("test", response.body().toString())
                         var data = response.body() // GsonConverter를 사용해 데이터매핑
                         Toast.makeText(getActivity(), "업로드 성공!", Toast.LENGTH_SHORT).show()
+
+                        //removeFragment()
                     }
                 }
 
@@ -161,14 +165,26 @@ class PlusFragment : Fragment() {
         return inSampleSize
     }
 
+    private fun removeFragment() { //fragment remover
+        val transaction = childFragmentManager.beginTransaction()
+        val frameLayout = childFragmentManager.findFragmentById(R.id.plus_fragment)
+        transaction.remove(frameLayout!!)
+        transaction.commit()
+    }
+
 }
 
 object RetrofitBuilder {
     var api: API
 
     init {
+        val client=OkHttpClient.Builder()
+            .addInterceptor(AuthInterceptor())
+            .build()
+
         val retrofit = Retrofit.Builder()
             .baseUrl("http://44.202.49.100:3000/")
+            .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
