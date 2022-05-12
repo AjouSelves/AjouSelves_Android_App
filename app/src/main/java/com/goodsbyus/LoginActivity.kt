@@ -43,11 +43,17 @@ class LoginActivity : AppCompatActivity() {
 
                         var data = response.body()!!
 
-                        val token=data.token
 
-                        GlobalApplication.prefs.setString("tokens",token)
 
-                        dialog("success")
+                        if(data.message=="토큰이 발급되었습니다."){
+                            val token=data.token
+
+                            GlobalApplication.prefs.setString("tokens",token)
+                            dialog("success")
+                        }
+                        else{
+                            dialog("fail")
+                        }
 
                         //Toast.makeText(context, "업로드 성공!", Toast.LENGTH_SHORT).show()
                     }

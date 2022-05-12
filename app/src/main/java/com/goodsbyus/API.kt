@@ -19,8 +19,13 @@ interface API {
 
     @GET("/proj/{id}")
     fun getRequest(
-        @Path("id") userid: Int
+        @Path("id") projid: Int
     ): Call<List<DetailModel>>
+
+    @GET("/proj/join/{id}")
+    fun getFunding(
+        @Path("id") projid: Int
+    ): Call<FundingResponse>
 
     @GET("/proj")
     fun getList(

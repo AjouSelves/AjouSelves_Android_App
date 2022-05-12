@@ -37,7 +37,7 @@ class ListViewAdapter(val goodsList: List<ItemGetModel>) : RecyclerView.Adapter<
             LayoutInflater.from(parent.context).inflate(R.layout.view_holder, parent, false)
         )
     }
-    private var activity: SecondActivity? = null
+
     // 반환된 ViewHolder에 데이터를 연결한다.
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         holder.bind(goodsList[position])

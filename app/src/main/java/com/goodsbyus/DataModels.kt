@@ -28,7 +28,7 @@ data class DetailModel(
     var nickname: String,
     var userid: String,
     var profilelink: String,
-    var photos: List<PhotoModel>?
+    var photos: List<String>?
 ): Parcelable
 
 @Parcelize
@@ -82,6 +82,11 @@ data class LoginResponse(
 
 data class MailCheck(
     val email: String
+)
+
+data class FundingResponse(
+    val status: String,
+    val text: String
 )
 
 data class RegisterInfo(
