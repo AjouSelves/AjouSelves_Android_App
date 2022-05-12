@@ -6,7 +6,9 @@ import android.os.Bundle
 
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
+import androidx.viewpager.widget.ViewPager
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
 
 class SecondActivity : AppCompatActivity() {
     private val frame: ConstraintLayout by lazy { // activity_main의 화면 부분
@@ -46,6 +48,7 @@ class SecondActivity : AppCompatActivity() {
                 else -> false
             }
         }
+
     }
 
     // 화면 전환 구현 메소드

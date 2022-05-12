@@ -8,8 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.setFragmentResultListener
+import androidx.viewpager2.widget.ViewPager2
+
 import com.bumptech.glide.Glide
+import com.goodsbyus.viewPager.ViewPagerAdapter
 import com.goodsbyus.databinding.FragmentGoodsInfoBinding
+
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -89,12 +93,20 @@ class GoodsInfoFragment : Fragment() {
                         binding.categoryView.text=category
                         binding.explainedView.text=explained
 
-                        for(i in data[0].photos!!){
+                        binding.viewPager.adapter =
+                            data[0].photos?.let { ViewPagerAdapter(it) } // 어댑터 생성
+                        binding.viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+
+
+                        /*for(i in data[0].photos!!){
                             val newUrl = "http://44.202.49.100:3000$i"
-                            Glide.with(GoodsInfoFragment())
-                                .load(newUrl).placeholder(R.drawable.ic_launcher_foreground).override(80, 80)
-                                .into(binding.imageView)
-                        }
+                            //Log.d("test", newUrl)
+                            getActivity()?.let {
+                                Glide.with(it)
+                                    .load(newUrl).placeholder(R.drawable.ic_launcher_foreground)
+                                    .into(binding.imageView)
+                            }
+                        }*/
 
                         Toast.makeText(getActivity(), "업로드 성공!", Toast.LENGTH_SHORT).show()
                     }

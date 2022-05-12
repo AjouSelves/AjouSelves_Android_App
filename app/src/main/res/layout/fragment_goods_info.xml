@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
+    android:id="@+id/goodsInfo"
     android:padding="20dp">
     <ScrollView
         android:layout_width="match_parent"
@@ -30,6 +31,12 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:text="title" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
 
             <ImageView
                 android:id="@+id/imageView"
