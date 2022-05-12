@@ -80,6 +80,10 @@ data class LoginResponse(
     var token : String
 )
 
+data class MailCheck(
+    val email: String
+)
+
 data class RegisterInfo(
     val email : String,
     val password : String,

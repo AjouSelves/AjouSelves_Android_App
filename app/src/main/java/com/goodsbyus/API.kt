@@ -25,4 +25,7 @@ interface API {
     @GET("/proj")
     fun getList(
     ): Call<List<ItemGetModel>>
+
+    @POST("/auth/verifyid")
+    fun checkRequest(@Body initializeRequest: MailCheck): Call<InitializeResponse>
 }

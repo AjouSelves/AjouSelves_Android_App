@@ -21,10 +21,48 @@ class Register : AppCompatActivity() {
     val TAG: String = "Register"
     var isExistBlank = false
     var isPWSame = false
+    var emailCheck=false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+
+
+
+        checkButton.setOnClickListener{
+            val email = editTextTextEmailAddress.text.toString()
+            val initializeRequest=MailCheck(
+                email=email)
+
+            RetrofitBuilder.api.checkRequest(initializeRequest).enqueue(object :
+                Callback<InitializeResponse> {
+                override fun onResponse(
+                    call: Call<InitializeResponse>,
+                    response: Response<InitializeResponse>
+                ) {
+                    if(response.isSuccessful) {
+                        Log.d("test", response.body().toString())
+
+                        if(response.body()?.status=="success") {
+                            emailCheck=true
+                            Toast.makeText(this@Register, "사용 가능한 email 입니다", Toast.LENGTH_SHORT).show()
+                        }
+                        else{
+                            emailCheck=false
+                            Toast.makeText(this@Register, "이미 등록된 email 입니다", Toast.LENGTH_SHORT).show()
+                        }
+
+                        //Toast.makeText(context, "업로드 성공!", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<InitializeResponse>, t: Throwable) {
+                    Log.d("test", "실패$t")
+                    //Toast.makeText(this, "업로드 실패 ..", Toast.LENGTH_SHORT).show()
+                }
+
+            })
+        }
 
         button.setOnClickListener {
             Log.d(TAG, "회원가입 버튼 클릭")
@@ -49,7 +87,7 @@ class Register : AppCompatActivity() {
                 }
             }
 
-            if(!isExistBlank && isPWSame){
+            if(!isExistBlank && isPWSame && emailCheck){
 
                 // 회원가입 성공 토스트 메세지 띄우기
                 Toast.makeText(this, "회원가입 성공", Toast.LENGTH_SHORT).show()
@@ -93,6 +131,9 @@ class Register : AppCompatActivity() {
                 else if(!isPWSame){ // 입력한 비밀번호가 다를 경우
                     dialog("not same")
                 }
+                else if(!emailCheck){
+                    dialog("not checked")
+                }
             }
 
 
@@ -115,6 +156,10 @@ class Register : AppCompatActivity() {
         else if(type.equals("not same")){
             dialog.setTitle("회원가입 실패")
             dialog.setMessage("비밀번호가 다릅니다")
+        }
+        else if(type.equals("not checked")){
+            dialog.setTitle("회원가입 실패")
+            dialog.setMessage("이메일 중복 확인을 해주세요")
         }
 
         val dialog_listener = object: DialogInterface.OnClickListener{
