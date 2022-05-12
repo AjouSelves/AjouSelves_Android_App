@@ -10,6 +10,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.*
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.goodsbyus.databinding.FragmentHomeBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -63,23 +64,6 @@ class HomeFragment : Fragment() {
 
         }
 
-        /*binding.rvList.adapter = ListViewAdapter(GoodsModel.goodsList).apply{
-            setItemClickListener(
-                object : ListViewAdapter.ItemClickListener {
-                    override fun onClick(view: View, position: Int) {
-                        val id_str=goodsList[position].id
-                        val title_str=goodsList[position].title
-                        val url_str=goodsList[position].url
-                        setFragmentResult("requestKey", bundleOf("id" to id_str))
-                        setFragmentResult("requestKey", bundleOf("title" to title_str))
-                        setFragmentResult("requestKey", bundleOf("url" to url_str))
-
-                        replaceFragment(GoodsInfoFragment())
-                    }
-                })
-        }*/
-
-
         val view = binding.root
         return view
     }
@@ -117,6 +101,8 @@ class HomeFragment : Fragment() {
                 if (response.isSuccessful) {
                     Log.d("test", response.body().toString())
                     var data = response.body()!! // GsonConverter를 사용해 데이터매핑
+
+
 
                     binding.rvList.adapter = ListViewAdapter(data).apply{
                         setItemClickListener(

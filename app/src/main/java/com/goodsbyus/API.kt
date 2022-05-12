@@ -26,6 +26,6 @@ interface API {
     fun getList(
     ): Call<List<ItemGetModel>>
 
-    @POST("/auth/verifyid")
+    @POST("/auth/email")
     fun checkRequest(@Body initializeRequest: MailCheck): Call<InitializeResponse>
 }

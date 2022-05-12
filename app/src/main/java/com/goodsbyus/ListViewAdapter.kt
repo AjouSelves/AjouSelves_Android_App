@@ -26,6 +26,10 @@ class ListViewAdapter(val goodsList: List<ItemGetModel>) : RecyclerView.Adapter<
     }
     override fun getItemCount(): Int = goodsList.size
 
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
+
     // ViewHolder를 생성해 반환한다.
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         return ListViewHolder(
