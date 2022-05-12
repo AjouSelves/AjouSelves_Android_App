@@ -37,16 +37,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-
-                android:src="@color/black"/>
-
             <TextView
                 android:id="@+id/nicknameView"
                 android:layout_width="match_parent"

@@ -1,5 +1,6 @@
 package com.goodsbyus.viewPager
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -25,10 +26,14 @@ class ViewPagerAdapter(imageList: List<String>) : RecyclerView.Adapter<ViewPager
 
         fun bind(_list: List<String>) {
             val imageView: ImageView = itemView.findViewById<ImageView>(R.id.imageView)
-                val newUrl = "http://44.202.49.100:3000$_list"
-                Glide.with(itemView).load(newUrl).placeholder(R.drawable.ic_launcher_foreground)
-                    .into(imageView)
-            }
+            val plus=_list[adapterPosition]
+            val newUrl = "http://44.202.49.100:3000$plus"
+
+            Log.d("test", newUrl)
+
+            Glide.with(itemView).load(newUrl).placeholder(R.drawable.ic_launcher_foreground)
+                .into(imageView)
+        }
 
     }
 }
