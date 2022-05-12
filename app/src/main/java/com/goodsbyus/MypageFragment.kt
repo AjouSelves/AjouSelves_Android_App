@@ -9,17 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.goodsbyus.databinding.FragmentMypageBinding
+import com.goodsbyus.mypage.ListAdapter
 import com.kakao.sdk.user.UserApiClient
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
-/**
- * A simple [Fragment] subclass.
- * Use the [MypageFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MypageFragment : Fragment() {
+    lateinit var listAdapter: ListAdapter
     private var _binding: FragmentMypageBinding? = null
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -45,6 +40,11 @@ class MypageFragment : Fragment() {
                 startActivity(intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP))
             }
         }
+
+        val arr = arrayOf("test1","test2")
+
+        listAdapter = ListAdapter(arr)
+        binding.listViewMy.adapter = listAdapter
 
         val view = binding.root
         return view

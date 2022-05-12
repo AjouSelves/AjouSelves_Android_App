@@ -31,11 +31,49 @@ class GoodsInfoFragment : Fragment() {
     ): View? {
         _binding = FragmentGoodsInfoBinding.inflate(inflater, container, false)
 
+        var projid: Int
 
-        binding.fundingButton.setOnClickListener{
-            setFragmentResultListener("requestKey") { requestKey, bundle ->
-                var projid = bundle.getInt("projid")
 
+        /*binding.fundingButton.setOnClickListener{
+                HomeFragment.RetrofitBuilder.api.getFunding(projid).enqueue(object :
+                    Callback<FundingResponse> {
+                    override fun onResponse(
+                        call: Call<FundingResponse>,
+                        response: Response<FundingResponse>
+                    ) {
+                        if (response.isSuccessful) {
+                            Log.d("test", response.body().toString())
+                            var data = response.body()!! // GsonConverter를 사용해 데이터매핑
+
+                            if (data.status == "fail") {
+                                if (data.text == "already joined") {
+                                    Toast.makeText(
+                                        getActivity(),
+                                        "이미 참여한 펀딩입니다",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            } else {
+                                Toast.makeText(getActivity(), "펀딩 성공!", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }
+
+                    override fun onFailure(call: Call<FundingResponse>, t: Throwable) {
+                        Log.d("test", "실패$t")
+                        Toast.makeText(getActivity(), "업로드 실패 ..", Toast.LENGTH_SHORT).show()
+                    }
+
+                })
+            }*/
+
+
+        setFragmentResultListener("requestKey") { requestKey, bundle ->
+            var projid = bundle.getInt("projid")
+
+            binding.fundingButton.setOnClickListener{
+                Log.d("test","버튼")
+                Log.d("test","$projid")
                 HomeFragment.RetrofitBuilder.api.getFunding(projid).enqueue(object :
                     Callback<FundingResponse> {
                     override fun onResponse(
@@ -67,12 +105,6 @@ class GoodsInfoFragment : Fragment() {
 
                 })
             }
-
-        }
-
-
-        setFragmentResultListener("requestKey") { requestKey, bundle ->
-            var projid = bundle.getInt("projid")
 
             HomeFragment.RetrofitBuilder.api.getRequest(projid).enqueue(object :
                 Callback<List<DetailModel>> {

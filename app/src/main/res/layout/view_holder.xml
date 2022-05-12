@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="top"
         android:layout_margin="10dp"
-        android:text="black" />
+        android:text="제목" />
 
     <TextView
         android:id="@+id/nickname"
@@ -29,6 +29,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="left|bottom"
         android:layout_margin="10dp"
-        android:text="블랙은 멋있어" />
+        android:text="내용" />
     </LinearLayout>
 </LinearLayout>
