@@ -6,15 +6,16 @@ import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.setFragmentResultListener
 import androidx.viewpager2.widget.ViewPager2
-import com.goodsbyus.DetailModel
-import com.goodsbyus.FundingResponse
-import com.goodsbyus.HomeFragment
-import com.goodsbyus.R
+import com.goodsbyus.*
 import com.goodsbyus.databinding.ActivityGoodsInfoBinding
+import com.goodsbyus.retrofit2.AuthInterceptor
 import com.goodsbyus.viewPager.ViewPagerAdapter
+import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class GoodsInfo : AppCompatActivity() {
     private var _binding: ActivityGoodsInfoBinding? = null
@@ -35,10 +36,45 @@ class GoodsInfo : AppCompatActivity() {
 
         val projid = intent.getIntExtra("projid", 0)
 
+        binding.removeButton.setOnClickListener{
+            RetrofitBuilder.api.deleteProject(projid).enqueue(object :
+                Callback<FundingResponse> {
+                override fun onResponse(
+                    call: Call<FundingResponse>,
+                    response: Response<FundingResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        Log.d("test", response.body().toString())
+                        var data = response.body()!! // GsonConverter를 사용해 데이터매핑
+
+                        if (data.status == "fail") {
+                            if (data.text =="글 작성자만 삭제가 가능합니다.") {
+                                Toast.makeText(
+                                    this@GoodsInfo,
+                                    data.text,
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        } else {
+                            Toast.makeText(this@GoodsInfo, "삭제 되었습니다.", Toast.LENGTH_SHORT).show()
+                            this@GoodsInfo.onBackPressed()
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<FundingResponse>, t: Throwable) {
+                    Log.d("test", "실패$t")
+                    Toast.makeText(this@GoodsInfo, "업로드 실패 ..", Toast.LENGTH_SHORT).show()
+                }
+
+            })
+
+        }
+
             binding.fundingButton.setOnClickListener {
                 Log.d("test", "버튼")
                 Log.d("test", "$projid")
-                HomeFragment.RetrofitBuilder.api.getFunding(projid).enqueue(object :
+                RetrofitBuilder.api.getFunding(projid).enqueue(object :
                     Callback<FundingResponse> {
                     override fun onResponse(
                         call: Call<FundingResponse>,
@@ -70,7 +106,7 @@ class GoodsInfo : AppCompatActivity() {
                 })
             }
 
-            HomeFragment.RetrofitBuilder.api.getRequest(projid).enqueue(object :
+            RetrofitBuilder.api.getRequest(projid).enqueue(object :
                 Callback<List<DetailModel>> {
                 override fun onResponse(
                     call: Call<List<DetailModel>>,
@@ -107,3 +143,23 @@ class GoodsInfo : AppCompatActivity() {
             })
         }
     }
+
+object RetrofitBuilder {
+    var api: API
+
+    init {
+        val client= OkHttpClient.Builder()
+            .addInterceptor(AuthInterceptor())
+            .build()
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl("http://44.202.49.100:3000/")
+            .client(client)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        api = retrofit.create(API::class.java)
+    }
+}
+
+

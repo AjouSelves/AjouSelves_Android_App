@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.goodsbyus.databinding.FragmentHomeBinding
+import com.goodsbyus.home.AddProject
 import com.goodsbyus.home.GoodsInfo
 import retrofit2.Call
 import retrofit2.Callback
@@ -44,7 +45,10 @@ class HomeFragment : Fragment() {
                     true
                 }
                 R.id.action_plus -> {
-                    replaceFragment(PlusFragment())
+                    //replaceFragment(PlusFragment())
+                    val intent = Intent(context,AddProject::class.java)
+
+                    startActivity(intent)
                     true
                 }
                 R.id.action_notification -> {
@@ -93,7 +97,7 @@ class HomeFragment : Fragment() {
             api = retrofit.create(API::class.java)
         }
     }
-    fun getData(){
+    private fun getData(){
         RetrofitBuilder.api.getList().enqueue(object :
             Callback<List<ItemGetModel>> {
             override fun onResponse(
@@ -103,6 +107,8 @@ class HomeFragment : Fragment() {
                 if (response.isSuccessful) {
                     Log.d("test", response.body().toString())
                     var data = response.body()!! // GsonConverter를 사용해 데이터매핑
+
+
 
 
 

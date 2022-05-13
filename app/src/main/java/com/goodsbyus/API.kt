@@ -33,4 +33,11 @@ interface API {
 
     @POST("/auth/email")
     fun checkRequest(@Body initializeRequest: MailCheck): Call<InitializeResponse>
+
+    @DELETE("/proj/delete/{id}")
+    fun deleteProject(
+        @Path("id") projid: Int
+    ): Call<FundingResponse>
+
+
 }
