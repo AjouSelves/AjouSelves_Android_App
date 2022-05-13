@@ -41,10 +41,10 @@ class MypageFragment : Fragment() {
             }
         }
 
-        val arr = arrayOf("test1","test2")
+        /*val arr = arrayOf("test1","test2")
 
         listAdapter = ListAdapter(arr)
-        binding.listViewMy.adapter = listAdapter
+        binding.listViewMy.adapter = listAdapter*/
 
         val view = binding.root
         return view

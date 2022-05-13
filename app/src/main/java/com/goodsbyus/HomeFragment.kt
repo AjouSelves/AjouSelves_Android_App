@@ -1,5 +1,6 @@
 package com.goodsbyus
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.goodsbyus.databinding.FragmentHomeBinding
+import com.goodsbyus.home.GoodsInfo
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -112,7 +114,14 @@ class HomeFragment : Fragment() {
 
                                     setFragmentResult("requestKey", bundleOf("projid" to projid))
 
-                                    replaceFragment(GoodsInfoFragment())
+                                    val intent = Intent(context,GoodsInfo::class.java)
+
+                                    intent.apply {
+                                        this.putExtra("projid",projid) // 데이터 넣기
+                                    }
+                                    startActivity(intent)
+
+                                    //replaceFragment(GoodsInfoFragment())
                                 }
                             })
                     }

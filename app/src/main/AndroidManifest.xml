@@ -17,6 +17,10 @@
         android:theme="@style/Theme.Goodsbyus"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".home.GoodsInfo"
+            android:theme="@style/AnimTheme"
+            android:exported="false" />
+        <activity
             android:name=".Register"
             android:exported="false" />
         <activity
