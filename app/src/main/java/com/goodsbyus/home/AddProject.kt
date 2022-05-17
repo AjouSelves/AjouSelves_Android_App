@@ -11,7 +11,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.goodsbyus.*
-import com.goodsbyus.RetrofitBuilder
+import com.goodsbyus.retrofit2.RetrofitBuilder
 import com.goodsbyus.databinding.ActivityAddProjectBinding
 import com.goodsbyus.retrofit2.AuthInterceptor
 import okhttp3.OkHttpClient
@@ -141,24 +141,6 @@ class AddProject : AppCompatActivity() {
             }
         }
         return inSampleSize
-    }
-
-    object RetrofitBuilder {
-        var api: API
-
-        init {
-            val client= OkHttpClient.Builder()
-                .addInterceptor(AuthInterceptor())
-                .build()
-
-            val retrofit = Retrofit.Builder()
-                .baseUrl("http://44.202.49.100:3000/")
-                .client(client)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-
-            api = retrofit.create(API::class.java)
-        }
     }
 }
 

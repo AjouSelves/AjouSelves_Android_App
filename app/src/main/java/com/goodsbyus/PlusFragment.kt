@@ -22,6 +22,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import com.goodsbyus.databinding.FragmentPlusBinding
 import com.goodsbyus.retrofit2.AuthInterceptor
+import com.goodsbyus.retrofit2.RetrofitBuilder
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -172,23 +173,5 @@ class PlusFragment : Fragment() {
         transaction.commit()
     }
 
-}
-
-object RetrofitBuilder {
-    var api: API
-
-    init {
-        val client=OkHttpClient.Builder()
-            .addInterceptor(AuthInterceptor())
-            .build()
-
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://44.202.49.100:3000/")
-            .client(client)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        api = retrofit.create(API::class.java)
-    }
 }
 

@@ -13,6 +13,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.goodsbyus.viewPager.ViewPagerAdapter
 import com.goodsbyus.databinding.FragmentGoodsInfoBinding
+import com.goodsbyus.retrofit2.RetrofitBuilder
 
 import retrofit2.Call
 import retrofit2.Callback
@@ -74,7 +75,7 @@ class GoodsInfoFragment : Fragment() {
             binding.fundingButton.setOnClickListener{
                 Log.d("test","버튼")
                 Log.d("test","$projid")
-                HomeFragment.RetrofitBuilder.api.getFunding(projid).enqueue(object :
+                RetrofitBuilder.api.getFunding(projid).enqueue(object :
                     Callback<FundingResponse> {
                     override fun onResponse(
                         call: Call<FundingResponse>,
@@ -106,7 +107,7 @@ class GoodsInfoFragment : Fragment() {
                 })
             }
 
-            HomeFragment.RetrofitBuilder.api.getRequest(projid).enqueue(object :
+            RetrofitBuilder.api.getRequest(projid).enqueue(object :
                 Callback<List<DetailModel>> {
                 override fun onResponse(
                     call: Call<List<DetailModel>>,

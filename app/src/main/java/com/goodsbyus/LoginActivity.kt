@@ -1,18 +1,18 @@
 package com.goodsbyus
 
-import android.content.Context
+
 import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
+import com.goodsbyus.retrofit2.RetrofitBuilder
 import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+
 
 class LoginActivity : AppCompatActivity() {
     val TAG: String = "LoginActivity"
@@ -32,7 +32,7 @@ class LoginActivity : AppCompatActivity() {
             val initializeRequest=LoginInfo(
                 email=id, password=pw)
 
-            Register.RetrofitBuilder.api.loginRequest(initializeRequest).enqueue(object :
+            RetrofitBuilder.api.loginRequest(initializeRequest).enqueue(object :
                 Callback<LoginResponse> {
                 override fun onResponse(
                     call: Call<LoginResponse>,
@@ -104,18 +104,5 @@ class LoginActivity : AppCompatActivity() {
 
         dialog.setPositiveButton("확인",dialog_listener)
         dialog.show()
-    }
-
-    object RetrofitBuilder {
-        var api: API
-
-        init {
-            val retrofit = Retrofit.Builder()
-                .baseUrl("http://44.202.49.100:3000/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-
-            api = retrofit.create(API::class.java)
-        }
     }
 }

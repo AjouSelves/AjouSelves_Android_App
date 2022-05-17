@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.goodsbyus.retrofit2.RetrofitBuilder
 import com.google.android.material.internal.ContextUtils.getActivity
 import kotlinx.android.synthetic.main.activity_register.*
 import retrofit2.Call
@@ -173,19 +174,6 @@ class Register : AppCompatActivity() {
 
         dialog.setPositiveButton("확인",dialog_listener)
         dialog.show()
-    }
-
-    object RetrofitBuilder {
-        var api: API
-
-        init {
-            val retrofit = Retrofit.Builder()
-                .baseUrl("http://44.202.49.100:3000/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-
-            api = retrofit.create(API::class.java)
-        }
     }
 }
 

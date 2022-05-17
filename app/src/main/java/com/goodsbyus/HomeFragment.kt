@@ -20,6 +20,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import com.goodsbyus.retrofit2.RetrofitBuilder
 
 class HomeFragment : Fragment() {
 
@@ -27,6 +28,8 @@ class HomeFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    private var getItemList = mutableListOf<ItemGetModel>()
 
 
     override fun onCreateView(
@@ -85,18 +88,6 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 
-    object RetrofitBuilder {
-        var api: API
-
-        init {
-            val retrofit = Retrofit.Builder()
-                .baseUrl("http://44.202.49.100:3000/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-
-            api = retrofit.create(API::class.java)
-        }
-    }
     private fun getData(){
         RetrofitBuilder.api.getList().enqueue(object :
             Callback<List<ItemGetModel>> {
@@ -105,11 +96,13 @@ class HomeFragment : Fragment() {
                 response: Response<List<ItemGetModel>>
             ) {
                 if (response.isSuccessful) {
+                    getItemList.clear()
                     Log.d("test", response.body().toString())
                     var data = response.body()!! // GsonConverter를 사용해 데이터매핑
 
-
-
+                    for (item in data){
+                        getItemList.add(item)
+                    }
 
 
                     binding.rvList.adapter = ListViewAdapter(data).apply{

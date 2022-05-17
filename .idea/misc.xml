@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1205" />
+        <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/drawable/button_shape.xml" value="0.193" />
+        <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.376" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.136" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.1865" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/drawable/ic_baseline_notifications_24.xml" value="0.1865" />
@@ -41,6 +43,7 @@
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/row_item.xml" value="0.1984375" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/view_holder.xml" value="0.5" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1984375" />
+        <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/menu/item_menu.xml" value="0.33" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/menu/menu_bottom_nav.xml" value="0.2" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/menu/sample_menu.xml" value="0.1984375" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.136" />

@@ -7,4 +7,5 @@
     <string name="notification">알림</string>
     <string name="ongoing">진행중</string>
     <string name="some_id">회원가입</string>
+    <string name="baseurl">http://52.206.105.200:3000</string>
 </resources>
