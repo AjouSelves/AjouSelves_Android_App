@@ -1,34 +1,44 @@
 package com.goodsbyus.home
 
+
+import android.Manifest
 import android.content.ContentResolver
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import com.goodsbyus.*
-import com.goodsbyus.retrofit2.RetrofitBuilder
 import com.goodsbyus.databinding.ActivityAddProjectBinding
 import com.goodsbyus.datas.InitializeResponse
 import com.goodsbyus.datas.Posts
-import com.goodsbyus.retrofit2.AuthInterceptor
-import okhttp3.OkHttpClient
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import java.lang.Exception
+import com.goodsbyus.retrofit2.RetrofitBuilder
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.*
+import java.io.*
+import java.util.*
 
 class AddProject : AppCompatActivity() {
     private var _binding: ActivityAddProjectBinding? = null
+
     // This property is only valid between onCreateView and
     // onDestroyView.
+
     private val binding get() = _binding!!
+
+    val STORAGE = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    val STORAGE_CODE = 99
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_project)
@@ -36,58 +46,99 @@ class AddProject : AppCompatActivity() {
         _binding = ActivityAddProjectBinding.inflate(layoutInflater)
 
         val view = binding.root
+        lateinit var filePath : String
         setContentView(view)
 
-        val requestGalleryLauncher=registerForActivityResult(
+         val requestGalleryLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
-        ){
-            try{
-                val calRatio=calculateInSampleSize(
+        ) {
+            try {
+                val calRatio = calculateInSampleSize(
                     it.data!!.data!!,
                     resources.getDimensionPixelSize(R.dimen.imgSize),
                     resources.getDimensionPixelSize(R.dimen.imgSize)
                 )
 
                 val resolver: ContentResolver
-                resolver=this.contentResolver
+                resolver = this.contentResolver
 
-                val option=BitmapFactory.Options()
-                option.inSampleSize=calRatio
+                val option = BitmapFactory.Options()
+                option.inSampleSize = calRatio
 
-                var inputStream=resolver.openInputStream(it.data!!.data!!)
-                val bitmap=BitmapFactory.decodeStream(inputStream,null,option)
+                var inputStream = resolver.openInputStream(it.data!!.data!!)
+                val bitmap = BitmapFactory.decodeStream(inputStream, null, option)
+
+                filePath=getRealPathFromURI(it.data!!.data!!)
+
+                Log.d("test",filePath)
 
                 inputStream!!.close()
-                inputStream=null
-                bitmap?.let{
+                inputStream = null
+                bitmap?.let {
                     binding.userImageView.setImageBitmap(bitmap)
-                } ?:let{
-                    Log.d("kkang","bitmap null")
+                } ?: let {
+                    Log.d("kkang", "bitmap null")
                 }
-            } catch(e: Exception){
+            } catch (e: Exception) {
                 e.printStackTrace()
             }
         }
 
-        binding.galleryButton.setOnClickListener{
-            val intent= Intent(
+        binding.galleryButton.setOnClickListener {
+            val intent = Intent(
                 Intent.ACTION_PICK,
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-            intent.type="image/*"
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+            )
+            intent.type = "image/*"
             requestGalleryLauncher.launch(intent)
         }
 
-        binding.saveButton.setOnClickListener{
-            val inputTitle=binding.et1.text.toString()
-            val inputExplained=binding.et2.text.toString()
-            val inputCategory=binding.et3.text.toString()
-            val inputMinnum=binding.et4.text.toString()
+        binding.saveButton.setOnClickListener {
+            val inputTitle = binding.et1.text.toString()
+            val inputExplained = binding.et2.text.toString()
+            val inputCategory = binding.et3.text.toString()
+            val inputMinnum = binding.et4.text.toString()
 
-            val initializeRequest= Posts(
+            val useridRequest = RequestBody.create(MediaType.parse("text/plain"), "1");
+            val titleRequest = RequestBody.create(MediaType.parse("text/plain"), inputTitle);
+            val explainedRequest =
+                RequestBody.create(MediaType.parse("text/plain"), inputExplained);
+            val categoryRequest = RequestBody.create(MediaType.parse("text/plain"), inputCategory);
+            val minRequest = RequestBody.create(MediaType.parse("text/plain"), inputMinnum);
+
+
+            /*val initializeRequest = Posts(
                 1, title = inputTitle, explained = inputExplained, min_num = inputMinnum.toInt(),
-                category = inputCategory, required="사이즈")
+                category = inputCategory, required = "사이즈"
+            )*/
 
-            RetrofitBuilder.api.initRequest(initializeRequest).enqueue(object :
+            var file = File(filePath)
+            var requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file)
+            var body = MultipartBody.Part.createFormData("photo", file.name, requestFile)
+
+            RetrofitBuilder.api.initPicRequest(
+                body, useridRequest, titleRequest, explainedRequest,
+                categoryRequest, minRequest
+            ).enqueue(object : Callback<InitializeResponse> {
+                override fun onResponse(
+                    call: Call<InitializeResponse>,
+                    response: Response<InitializeResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        Toast.makeText(this@AddProject, "등록되었습니다.", Toast.LENGTH_SHORT).show()
+                        finish()
+                    }
+                }
+
+                override fun onFailure(call: Call<InitializeResponse>, t: Throwable) {
+                    Toast.makeText(this@AddProject, "실패했습니다.", Toast.LENGTH_SHORT).show()
+                    Log.d("test", "실패$t")
+                    finish()
+                }
+            })
+
+
+            /*RetrofitBuilder.api.initRequest(initializeRequest).enqueue(object :
                 Callback<InitializeResponse> {
                 override fun onResponse(
                     call: Call<InitializeResponse>,
@@ -109,7 +160,7 @@ class AddProject : AppCompatActivity() {
                     Toast.makeText(this@AddProject, "업로드 실패 ..", Toast.LENGTH_SHORT).show()
                 }
 
-            })
+            })*/
 
         }
     }
@@ -117,32 +168,92 @@ class AddProject : AppCompatActivity() {
     fun calculateInSampleSize(fileUri: Uri, reqWidth: Int, reqHeight: Int): Int {
         // Raw height and width of image
         val resolver: ContentResolver
-        resolver=this.contentResolver
+        resolver = this.contentResolver
 
-        val options= BitmapFactory.Options()
-        options.inJustDecodeBounds=true
-        try{
-            var inputStream=resolver.openInputStream(fileUri)
+        val options = BitmapFactory.Options()
+        options.inJustDecodeBounds = true
+        try {
+            var inputStream = resolver.openInputStream(fileUri)
             BitmapFactory.decodeStream(inputStream, null, options)
             inputStream!!.close()
-            inputStream=null
-        } catch(e: Exception){
+            inputStream = null
+        } catch (e: Exception) {
             e.printStackTrace()
         }
 
-        val (height: Int, width: Int)=options.run{outHeight to outWidth}
-        var inSampleSize=1
+        val (height: Int, width: Int) = options.run { outHeight to outWidth }
+        var inSampleSize = 1
 
-        if(height>reqHeight || width>reqWidth){
-            val halfHeight: Int=height/2
-            val halfWidth: Int=width/2
+        if (height > reqHeight || width > reqWidth) {
+            val halfHeight: Int = height / 2
+            val halfWidth: Int = width / 2
 
-            while(halfHeight/inSampleSize >= reqHeight &&
-                halfWidth/inSampleSize >= reqWidth){
-                inSampleSize*=3
+            while (halfHeight / inSampleSize >= reqHeight &&
+                halfWidth / inSampleSize >= reqWidth
+            ) {
+                inSampleSize *= 3
             }
         }
         return inSampleSize
     }
+    private fun getRealPathFromURI(uri: Uri): String {
+        var buildName = Build.MANUFACTURER
+        if (buildName.equals("Xiaomi")) {
+            return uri.path!!
+        }
+        var columnIndex = 0
+        var proj = arrayOf(MediaStore.Images.Media.DATA)
+        var cursor = contentResolver.query(uri, proj, null, null, null)
+        if (cursor!!.moveToFirst()) {
+            columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+        }
+        return cursor.getString(columnIndex)
+    }
 }
 
+// fun absolutelyPath(path: Uri?, context : Context): String {
+// var proj: Array<String> = arrayOf(MediaStore.Images.Media.DATA)
+// var c: Cursor? = context.contentResolver.query(path!!, proj, null, null, null)
+// var index = c?.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+// c?.moveToFirst()
+// var result = c?.getString(index!!) return result!!
+// }
+//
+// var launcher = registerForActivityResult(StartActivityForResult()) { result ->
+// if (result.resultCode == RESULT_OK) {
+// val imagePath = result.data!!.data
+// val file = File(absolutelyPath(imagePath, this))
+// val requestFile = RequestBody.create(MediaType.parse("image/*"), file)
+// val body = MultipartBody.Part.createFormData("photo", file.name, requestFile)
+// Log.d(TAG,file.name) sendImage(body)
+// }
+// }
+// fun sendImage(userCd : String ,image : MultipartBody.Part) {
+// val service = RetrofitBuilder.api.createBaseService(AddProject::class.java)
+// //레트로핏 통신 설정
+// val call = service.profileSend(userCd, image)!! //통신 API 패스 설정
+// call.enqueue(object : Callback<String>{
+// override fun onResponse(call: Call<String>, response: Response<String>) {
+// if (response?.isSuccessful) {
+// Log.d("로그 ",""+response?.body().toString())
+// Toast.makeText(applicationContext,"통신성공",Toast.LENGTH_SHORT).show()
+// }
+// else {
+// Toast.makeText(applicationContext,"통신실패",Toast.LENGTH_SHORT).show()
+// }
+// }
+// override fun onFailure(call: Call<String>, t: Throwable) {
+// Log.d("로그 ",t.message.toString())
+// }
+// })
+// }
+//
+// fun getProFileImage(){
+// Log.d(TAG,"사진변경 호출")
+// val chooserIntent = Intent(Intent.ACTION_CHOOSER)
+// val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+// intent.type = "image/*"
+// chooserIntent.putExtra(Intent.EXTRA_INTENT, intent)
+// chooserIntent.putExtra(Intent.EXTRA_TITLE,"사용할 앱을 선택해주세요.")
+// launcher.launch(chooserIntent)
+// }

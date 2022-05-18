@@ -3,6 +3,9 @@ package com.goodsbyus.retrofit2
 import retrofit2.Call
 import retrofit2.http.*
 import com.goodsbyus.datas.*
+import okhttp3.MultipartBody
+import okhttp3.Request
+import okhttp3.RequestBody
 
 interface API {
     // x-www-urlencoded
@@ -11,6 +14,17 @@ interface API {
     fun initRequest(
         @Body initializeRequest: Posts
     ): Call<InitializeResponse> // InitializeRequest 요청을 보낼 Json Data Class
+
+    @Multipart
+    @POST("/proj/add/single") // Call<InitializeResponse> 데이터를 받을 data class
+    fun initPicRequest(
+        @Part photo : MultipartBody.Part?,
+        @Part ("userid") userid: RequestBody,
+        @Part ("title") title: RequestBody,
+        @Part ("explained") explained: RequestBody,
+        @Part ("category") category: RequestBody,
+        @Part ("min_num") minnum: RequestBody
+    ): Call<InitializeResponse>
 
     @POST("/auth/register") //회원가입
     fun registerRequest(@Body initializeRequest: RegisterInfo): Call<InitializeResponse>
