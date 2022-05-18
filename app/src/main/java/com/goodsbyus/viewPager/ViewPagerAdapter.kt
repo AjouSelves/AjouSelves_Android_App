@@ -27,7 +27,7 @@ class ViewPagerAdapter(imageList: List<String>) : RecyclerView.Adapter<ViewPager
         fun bind(_list: List<String>) {
             val imageView: ImageView = itemView.findViewById<ImageView>(R.id.imageView)
             val plus=_list[adapterPosition]
-            val newUrl = "http://44.202.49.100:3000$plus"
+            val newUrl = "http://52.206.105.200:3000$plus"
 
             Log.d("test", newUrl)
 
