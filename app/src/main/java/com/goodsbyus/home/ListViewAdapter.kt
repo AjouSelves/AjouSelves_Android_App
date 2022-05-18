@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 
 import com.goodsbyus.R
 import com.goodsbyus.datas.ItemGetModel
+import java.time.format.DateTimeFormatter
 
 
 class ListViewAdapter(val goodsList: List<ItemGetModel>) : RecyclerView.Adapter<ListViewAdapter.ListViewHolder>() {
@@ -21,10 +22,13 @@ class ListViewAdapter(val goodsList: List<ItemGetModel>) : RecyclerView.Adapter<
             if(_list.url!=null) {
                 val newUrl = "http://52.206.105.200:3000" + _list.url
                 Glide.with(itemView).load(newUrl).placeholder(R.drawable.ic_launcher_foreground)
-                    .override(80, 80).into(imageView)
+                    .override(150, 150).into(imageView)
             }
-            itemView.findViewById<TextView>(R.id.title).text = _list.title
-            itemView.findViewById<TextView>(R.id.nickname).text = _list.nickname
+            itemView.findViewById<TextView>(R.id.iv_title).text = _list.title
+            itemView.findViewById<TextView>(R.id.iv_category).text = _list.category
+            itemView.findViewById<TextView>(R.id.iv_explained).text = _list.explained
+            val ran=IntRange(0,9)
+            itemView.findViewById<TextView>(R.id.iv_created).text = _list.created_at.slice(ran)
         }
     }
     override fun getItemCount(): Int = goodsList.size
