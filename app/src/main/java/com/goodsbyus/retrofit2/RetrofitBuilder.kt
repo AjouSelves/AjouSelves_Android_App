@@ -1,6 +1,5 @@
 package com.goodsbyus.retrofit2
 
-import com.goodsbyus.API
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

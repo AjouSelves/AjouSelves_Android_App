@@ -11,6 +11,8 @@ import android.widget.Toast
 import androidx.viewpager2.widget.ViewPager2
 import com.goodsbyus.*
 import com.goodsbyus.databinding.ActivityGoodsInfoBinding
+import com.goodsbyus.datas.DetailModel
+import com.goodsbyus.datas.FundingResponse
 
 import com.goodsbyus.retrofit2.RetrofitBuilder
 import com.goodsbyus.viewPager.ViewPagerAdapter

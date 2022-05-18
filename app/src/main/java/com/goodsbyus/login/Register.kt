@@ -1,6 +1,5 @@
-package com.goodsbyus
+package com.goodsbyus.login
 
-import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -8,14 +7,15 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.goodsbyus.*
+import com.goodsbyus.datas.InitializeResponse
+import com.goodsbyus.datas.MailCheck
+import com.goodsbyus.datas.RegisterInfo
 import com.goodsbyus.retrofit2.RetrofitBuilder
-import com.google.android.material.internal.ContextUtils.getActivity
 import kotlinx.android.synthetic.main.activity_register.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class Register : AppCompatActivity() {
 
@@ -32,7 +32,7 @@ class Register : AppCompatActivity() {
 
         checkButton.setOnClickListener{
             val email = editTextTextEmailAddress.text.toString()
-            val initializeRequest=MailCheck(
+            val initializeRequest= MailCheck(
                 email=email)
 
             RetrofitBuilder.api.checkRequest(initializeRequest).enqueue(object :
@@ -94,7 +94,7 @@ class Register : AppCompatActivity() {
                 Toast.makeText(this, "회원가입 성공", Toast.LENGTH_SHORT).show()
 
                 // 유저가 입력한 id, pw를 쉐어드에 저장한다.
-                val initializeRequest=RegisterInfo(
+                val initializeRequest= RegisterInfo(
                     email=email, password=pw, name=name, phonenumber = phone, nickname=nickname,
                     status="재학생",socialtype="local",sex=0,birth=birth,address=address,account=account, profilelink = "kakao/balh")
 

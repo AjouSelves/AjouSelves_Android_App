@@ -24,10 +24,10 @@
             android:exported="false"
             android:theme="@style/AnimTheme" />
         <activity
-            android:name=".Register"
+            android:name=".login.Register"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".login.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".SecondActivity"

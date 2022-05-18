@@ -1,4 +1,4 @@
-package com.goodsbyus
+package com.goodsbyus.datas
 
 data class UserRegister(
     val email : String,

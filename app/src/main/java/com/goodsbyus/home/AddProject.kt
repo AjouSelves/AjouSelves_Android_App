@@ -13,6 +13,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import com.goodsbyus.*
 import com.goodsbyus.retrofit2.RetrofitBuilder
 import com.goodsbyus.databinding.ActivityAddProjectBinding
+import com.goodsbyus.datas.InitializeResponse
+import com.goodsbyus.datas.Posts
 import com.goodsbyus.retrofit2.AuthInterceptor
 import okhttp3.OkHttpClient
 import retrofit2.Call

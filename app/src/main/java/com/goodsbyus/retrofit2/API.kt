@@ -1,7 +1,8 @@
-package com.goodsbyus
+package com.goodsbyus.retrofit2
 
 import retrofit2.Call
 import retrofit2.http.*
+import com.goodsbyus.datas.*
 
 interface API {
     // x-www-urlencoded

@@ -10,7 +10,7 @@
     android:padding="20dp"
     android:background="@color/white"
     android:id="@+id/plus_fragment"
-    tools:context=".PlusFragment">
+    tools:context=".home.AddProject">
 
     <ScrollView
         android:layout_width="match_parent"

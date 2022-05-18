@@ -1,4 +1,4 @@
-package com.goodsbyus
+package com.goodsbyus.datas
 
 import android.os.Parcelable
 import android.provider.ContactsContract

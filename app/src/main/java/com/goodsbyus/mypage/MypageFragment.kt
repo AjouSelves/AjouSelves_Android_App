@@ -1,4 +1,4 @@
-package com.goodsbyus
+package com.goodsbyus.mypage
 
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
@@ -8,8 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.goodsbyus.MainActivity
 import com.goodsbyus.databinding.FragmentMypageBinding
-import com.goodsbyus.mypage.ListAdapter
 import com.kakao.sdk.user.UserApiClient
 
 

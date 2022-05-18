@@ -1,4 +1,4 @@
-package com.goodsbyus
+package com.goodsbyus.login
 
 
 import android.content.DialogInterface
@@ -7,6 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
+import com.goodsbyus.*
+import com.goodsbyus.datas.LoginInfo
+import com.goodsbyus.datas.LoginResponse
 import com.goodsbyus.retrofit2.RetrofitBuilder
 import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
@@ -29,7 +32,7 @@ class LoginActivity : AppCompatActivity() {
             val id = edit_id.text.toString()
             val pw = edit_pw.text.toString()
 
-            val initializeRequest=LoginInfo(
+            val initializeRequest= LoginInfo(
                 email=id, password=pw)
 
             RetrofitBuilder.api.loginRequest(initializeRequest).enqueue(object :

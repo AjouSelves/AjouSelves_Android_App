@@ -11,6 +11,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
+import com.goodsbyus.login.LoginActivity
 import com.kakao.sdk.auth.LoginClient
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.util.Utility
