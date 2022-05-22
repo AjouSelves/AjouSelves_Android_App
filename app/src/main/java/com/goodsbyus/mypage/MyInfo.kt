@@ -3,16 +3,17 @@ package com.goodsbyus.mypage
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
-import androidx.viewpager2.widget.ViewPager2
 import com.goodsbyus.R
 
 import com.goodsbyus.databinding.ActivityMyInfoBinding
-import com.goodsbyus.datas.DetailModel
+
 import com.goodsbyus.datas.UserInfo
 
 import com.goodsbyus.retrofit2.RetrofitBuilder
-import com.goodsbyus.viewPager.ViewPagerAdapter
+
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,11 +23,37 @@ class MyInfo : AppCompatActivity() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.my_menu, menu)
+        return true
+    }
+
+    //액션버튼 클릭 했을 때
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            R.id.action_rewrite -> {
+                //수정 버튼 눌렀을 때
+                Toast.makeText(this@MyInfo, "수정 이벤트 실행", Toast.LENGTH_LONG).show()
+                true
+            }
+            android.R.id.home -> {
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_goods_info)
+        setContentView(R.layout.activity_my_info)
 
         _binding = ActivityMyInfoBinding.inflate(layoutInflater)
+
+        setSupportActionBar(binding.myToolbar)
+
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)	//왼쪽 버튼 사용설정(기본은 뒤로가기)
 
         RetrofitBuilder.api.getUserInfo().enqueue(object :
             Callback<List<UserInfo>> {
