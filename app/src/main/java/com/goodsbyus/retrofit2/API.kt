@@ -46,6 +46,10 @@ interface API {
     fun getList(
     ): Call<List<ItemGetModel>>
 
+    @GET("/user")
+    fun getUserInfo(
+    ): Call<List<UserInfo>>
+
     @POST("/auth/email")
     fun checkRequest(@Body initializeRequest: MailCheck): Call<InitializeResponse>
 

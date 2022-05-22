@@ -32,7 +32,7 @@ class ViewPagerAdapter(imageList: List<String>) : RecyclerView.Adapter<ViewPager
             Log.d("test", newUrl)
 
             Glide.with(itemView).load(newUrl).placeholder(R.drawable.ic_launcher_foreground)
-                .into(imageView)
+                .override(200, 200).into(imageView)
         }
 
     }

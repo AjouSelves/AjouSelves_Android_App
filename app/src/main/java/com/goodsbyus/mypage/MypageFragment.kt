@@ -41,6 +41,11 @@ class MypageFragment : Fragment() {
             }
         }
 
+        binding.myInfoButton.setOnClickListener {
+            val intent = Intent(getActivity(), MyInfo::class.java)
+            startActivity(intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP))
+        }
+
         /*val arr = arrayOf("test1","test2")
 
         listAdapter = ListAdapter(arr)

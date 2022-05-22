@@ -50,6 +50,10 @@ class GoodsInfo : AppCompatActivity() {
                 Toast.makeText(this@GoodsInfo, "수정 이벤트 실행", Toast.LENGTH_LONG).show()
                 true
             }
+            android.R.id.home -> {
+                finish()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }

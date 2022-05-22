@@ -1,5 +1,8 @@
 package com.goodsbyus.datas
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
 data class UserRegister(
     val email : String,
     val password : String,
@@ -13,3 +16,16 @@ data class UserRegister(
     val account : String,
     val profilelink : String
 )
+
+@Parcelize
+data class UserInfo(
+    val email : String,
+    val name : String,
+    val phonenumber : String,
+    val nickname : String,
+    val status : String,
+    val birth : String,
+    val address : String,
+    val account : String,
+    val profilelink : String
+): Parcelable
