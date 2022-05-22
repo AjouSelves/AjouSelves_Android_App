@@ -23,7 +23,7 @@ class MyListAdapter(val goodsList: List<ItemGetModel>) : RecyclerView.Adapter<My
             }
             itemView.findViewById<TextView>(R.id.iv_title).text = _list.title
             itemView.findViewById<TextView>(R.id.iv_category).text = _list.category
-            itemView.findViewById<TextView>(R.id.iv_explained).text = _list.explained
+            //itemView.findViewById<TextView>(R.id.iv_explained).text = _list.explained
             val ran=IntRange(0,9)
             itemView.findViewById<TextView>(R.id.iv_created).text = _list.created_at.slice(ran)
         }

@@ -60,16 +60,6 @@
         app:layout_constraintTop_toTopOf="@+id/iv_image" />
 
     <TextView
-        android:id="@+id/iv_explained"
-        android:layout_width="238dp"
-        android:layout_height="68dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="45dp"
-        android:text="설명"
-        app:layout_constraintStart_toEndOf="@+id/iv_image"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/iv_created"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -87,6 +77,26 @@
         android:layout_marginEnd="9dp"
         android:text="카테고리"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/iv_progressView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="165dp"
+        android:layout_marginTop="66dp"
+        android:text="-% 달성!"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/priceView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="165dp"
+        android:layout_marginTop="96dp"
+        android:text="12,000 원"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 

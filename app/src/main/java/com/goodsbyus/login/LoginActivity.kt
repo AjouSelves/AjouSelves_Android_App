@@ -85,8 +85,6 @@ class LoginActivity : AppCompatActivity() {
         var dialog = AlertDialog.Builder(this)
 
         if(type.equals("success")){
-            dialog.setTitle("로그인 성공")
-            dialog.setMessage("로그인 성공!")
             val intent = Intent(this, SecondActivity::class.java)
             startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
             finish()
