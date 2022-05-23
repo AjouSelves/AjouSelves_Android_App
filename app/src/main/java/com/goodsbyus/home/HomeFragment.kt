@@ -86,7 +86,7 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 
-    private fun getData(){
+    fun getData(){
         RetrofitBuilder.api.getList().enqueue(object :
             Callback<List<ItemGetModel>> {
             override fun onResponse(
