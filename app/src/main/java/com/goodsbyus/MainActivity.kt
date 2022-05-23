@@ -11,16 +11,75 @@ import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
+import com.goodsbyus.datas.LoginInfo
+import com.goodsbyus.datas.LoginResponse
 import com.goodsbyus.login.LoginActivity
+import com.goodsbyus.retrofit2.RetrofitBuilder
 import com.kakao.sdk.auth.LoginClient
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.common.model.AuthErrorCause.*
 import com.kakao.sdk.user.UserApiClient
+import kotlinx.android.synthetic.main.activity_login.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var sharedPreferences : SharedPreferences
+    private lateinit var editor : SharedPreferences.Editor
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        sharedPreferences = getSharedPreferences("loginInfo", MODE_PRIVATE)
+        editor = sharedPreferences.edit()
+        //shared에 있는 'userEmail'이란 데이터를 불러온다는 뜻. 0 대신 MODE_PRIVATE라고 입력하셔도 됩니다.
+        val savedEmail =sharedPreferences.getString("email", "")
+        val savedPassword =sharedPreferences.getString("password","")
+
+        if(savedEmail!="" && savedPassword!=""){
+
+            val initializeRequest= LoginInfo(email = savedEmail!!, password = savedPassword!!)
+
+            if (initializeRequest != null) {
+                RetrofitBuilder.api.loginRequest(initializeRequest).enqueue(object :
+                    Callback<LoginResponse> {
+                    override fun onResponse(
+                        call: Call<LoginResponse>,
+                        response: Response<LoginResponse>
+                    ) {
+                        if(response.isSuccessful) {
+                            Log.d("test", response.body().toString())
+
+                            var data = response.body()!!
+
+                            if(data.message=="토큰이 발급되었습니다."){
+                                val token=data.token
+
+                                GlobalApplication.prefs.setString("tokens",token)
+                                val intent = Intent(this@MainActivity, SecondActivity::class.java)
+                                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                                finish()
+                            } else{
+                                editor.putString("email", "")
+                                editor.putString("password", "")
+                                editor.commit()
+                            }
+                        }
+                    }
+
+                    override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                        Log.d("test", "실패$t")
+                    }
+
+                })
+            }
+        }
+
+
         // 로그인 정보 확인
         val keyHash = Utility.getKeyHash(this)//onCreate 안에 입력해주자
         Log.d("Hash", keyHash)

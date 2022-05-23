@@ -42,6 +42,14 @@ interface API {
         @Path("id") projid: Int
     ): Call<FundingResponse>
 
+    @GET("/user/join_detail")
+    fun getMyFunding(
+    ): Call<List<MyFundingModel>>
+
+    @GET("/user/join")
+    fun getMyFundingTitle(
+    ): Call<List<MyFundingTitle>>
+
     @GET("/proj")
     fun getList(
     ): Call<List<ItemGetModel>>

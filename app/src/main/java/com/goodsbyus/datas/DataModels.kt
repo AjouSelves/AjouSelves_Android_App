@@ -53,6 +53,27 @@ data class ItemGetModel(
     var url: String
 ): Parcelable
 
+@Parcelize
+data class MyFundingModel(
+    var projid: Int,
+    var userid: Int,
+    var title: String,
+    var state: Int,
+    var category: String,
+    var min_num: Int,
+    var cur_num: Int,
+    var required: String,
+    var explained: String,
+    var created_at: String,
+    var paylink: String
+): Parcelable
+
+@Parcelize
+data class MyFundingTitle(
+    var projid: Int,
+    var title: String
+): Parcelable
+
 
 data class Posts(
     val userid: Int,

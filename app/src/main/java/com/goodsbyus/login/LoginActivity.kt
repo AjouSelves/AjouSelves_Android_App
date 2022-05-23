@@ -1,8 +1,10 @@
 package com.goodsbyus.login
 
 
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -20,10 +22,20 @@ import retrofit2.Response
 class LoginActivity : AppCompatActivity() {
     val TAG: String = "LoginActivity"
 
+
+    private lateinit var sharedPreferences : SharedPreferences
+    private lateinit var editor : SharedPreferences.Editor
+
+    lateinit var context: Context
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        context=applicationContext
+
+        sharedPreferences = context.getSharedPreferences("loginInfo", MODE_PRIVATE)
+        editor = sharedPreferences.edit()
 
         // 로그인 버튼
         btn_login.setOnClickListener {
@@ -46,7 +58,14 @@ class LoginActivity : AppCompatActivity() {
 
                         var data = response.body()!!
 
-
+                        editor.putString("email", id)
+                        editor.putString("password", pw)
+                        editor.commit()
+                        /*} else {
+                            editor.putString("email", "")
+                            editor.putString("password", "")
+                            editor.commit()
+                        }*/
 
                         if(data.message=="토큰이 발급되었습니다."){
                             val token=data.token
@@ -70,6 +89,8 @@ class LoginActivity : AppCompatActivity() {
                 }
 
             })
+
+
         }
 
         // 회원가입 버튼
@@ -106,4 +127,16 @@ class LoginActivity : AppCompatActivity() {
         dialog.setPositiveButton("확인",dialog_listener)
         dialog.show()
     }
+
+    override fun getSharedPreferences(name: String?, mode: Int): SharedPreferences {
+        return super.getSharedPreferences(name, mode)
+    }
+
+    /*fun saveData(loginEmail :String, password :String){
+        val pref = getSharedPreferences("userEmail", MODE_PRIVATE) //shared key 설정
+        val edit = pref.edit() // 수정모드
+        edit.putString("email", loginEmail) // 값 넣기
+        edit.putString("password", password)
+        edit.apply() // 적용하기
+    }*/
 }
