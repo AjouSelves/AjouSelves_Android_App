@@ -27,7 +27,7 @@ class GoodsInfo : AppCompatActivity() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    fun getExtra(): Int{
+    private fun getExtra(): Int{
         return intent.getIntExtra("projid",0)
     }
 

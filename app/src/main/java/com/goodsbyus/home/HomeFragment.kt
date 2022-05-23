@@ -2,6 +2,7 @@ package com.goodsbyus.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Parcelable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -25,6 +26,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.io.Serializable
 
 class HomeFragment : Fragment() {
 
@@ -49,7 +51,21 @@ class HomeFragment : Fragment() {
         binding.myToolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_search -> {
-                    replaceFragment(SearchFragment())
+                    val intent = Intent(context,SearchProject::class.java)
+
+                    val data: List<ItemGetModel> = getItemList
+
+                    Log.d("test",getItemList.toString())
+
+                    /*intent.apply {
+                        this.putExtra("dataSize",data.size)
+                        Log.d("test",data.size.toString())
+                        for(i in data){
+                            this.putExtra("data$i",i)
+                        }
+                    }*/
+
+                    startActivity(intent)
                     true
                 }
                 R.id.action_plus -> {
@@ -81,7 +97,7 @@ class HomeFragment : Fragment() {
         return view
     }
 
-    fun replaceFragment(fragment: Fragment) {
+    private fun replaceFragment(fragment: Fragment) {
         parentFragmentManager.beginTransaction().add(R.id.body_container, fragment)
             .addToBackStack(null).commit()
     }
@@ -92,28 +108,7 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 
-    private fun listView(){
-        binding.rvList.adapter = ListViewAdapter(getItemList).apply {
-            setItemClickListener(
-                object : ListViewAdapter.ItemClickListener {
-                    override fun onClick(view: View, position: Int) {
-                        val projid = goodsList[position].projid
-
-                        //setFragmentResult("requestKey", bundleOf("projid" to projid))
-
-                        val intent = Intent(context, GoodsInfo::class.java)
-
-                        intent.apply {
-                            this.putExtra("projid", projid) // 데이터 넣기
-                        }
-                        startActivity(intent)
-                        //replaceFragment(GoodsInfoFragment())
-                    }
-                })
-        }
-    }
-
-    fun getData() {
+    private fun getData() {
         RetrofitBuilder.api.getList().enqueue(object :
             Callback<List<ItemGetModel>> {
             override fun onResponse(

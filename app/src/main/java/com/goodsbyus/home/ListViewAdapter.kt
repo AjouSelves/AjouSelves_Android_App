@@ -1,20 +1,25 @@
 package com.goodsbyus.home
 
+
+import android.content.ClipData
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
+
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-
 import com.goodsbyus.R
 import com.goodsbyus.datas.ItemGetModel
-import java.time.format.DateTimeFormatter
 
 
-class ListViewAdapter(val goodsList: List<ItemGetModel>) : RecyclerView.Adapter<ListViewAdapter.ListViewHolder>() {
+class ListViewAdapter internal constructor(val goodsList: List<ItemGetModel>)
+    : RecyclerView.Adapter<ListViewAdapter.ListViewHolder>(), Filterable{
 
+    private var filtering=goodsList
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(_list: ItemGetModel) {
@@ -65,12 +70,43 @@ class ListViewAdapter(val goodsList: List<ItemGetModel>) : RecyclerView.Adapter<
         holder.itemView.requestLayout()*/
     }
 
+    override fun getFilter(): Filter? {
+        return object : Filter() {
+            override fun performFiltering(constraint: CharSequence): FilterResults {
+                val charString = constraint.toString()
+                filtering = if (charString.isEmpty()) {
+                    goodsList
+                } else {
+                    var filteredList = ArrayList<ItemGetModel>()
+                    if (goodsList != null) {
+                        for (name in goodsList) {
+                            if(name.title.toLowerCase().contains(charString.toLowerCase())) {
+                                filteredList.add(name);
+                            }
+                        }
+                    }
+                    filteredList
+                }
+                val filterResults = FilterResults()
+                filterResults.values = filtering
+                return filterResults
+            }
+
+            override fun publishResults(constraint: CharSequence, results: FilterResults) {
+                filtering  = results.values as List<ItemGetModel>
+                notifyDataSetChanged()
+            }
+        }
+    }
+
     interface ItemClickListener{
         fun onClick(view: View,position: Int)
     }
     //를릭 리스너
     private lateinit var itemClickListner: ItemClickListener
+
     fun setItemClickListener(itemClickListener: ItemClickListener) {
         this.itemClickListner = itemClickListener
     }
+
 }
