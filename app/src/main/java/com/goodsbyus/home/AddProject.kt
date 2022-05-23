@@ -16,11 +16,13 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.goodsbyus.*
 import com.goodsbyus.databinding.ActivityAddProjectBinding
 import com.goodsbyus.datas.InitializeResponse
 import com.goodsbyus.datas.Posts
 import com.goodsbyus.retrofit2.RetrofitBuilder
+import kotlinx.android.synthetic.main.activity_second.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -126,6 +128,10 @@ class AddProject : AppCompatActivity() {
                 ) {
                     if (response.isSuccessful) {
                         Toast.makeText(this@AddProject, "등록되었습니다.", Toast.LENGTH_SHORT).show()
+                        //val fragment : HomeFragment = supportFragmentManager.findFragmentById(R.id.home_fragment) as HomeFragment
+                        //fragment.getData()
+                        val intent = Intent(this@AddProject,SecondActivity::class.java)
+                        startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                         finish()
                     }
                 }

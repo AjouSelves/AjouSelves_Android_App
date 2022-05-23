@@ -172,6 +172,9 @@ class GoodsInfo : AppCompatActivity() {
                     } else {
                         Toast.makeText(this@GoodsInfo, "삭제 되었습니다.", Toast.LENGTH_SHORT).show()
                         this@GoodsInfo.onBackPressed()
+                        val intent = Intent(this@GoodsInfo,SecondActivity::class.java)
+                        startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                        finish()
                     }
                 }
             }

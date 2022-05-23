@@ -84,13 +84,13 @@
                 android:layout_margin="10dp"
                 android:text="현재 모금 금액 : 0원/999,999원" />
 
-            <Button
-                android:id="@+id/fundingButton"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="35dp"
-                android:text="펀딩하기" />
-
         </LinearLayout>
     </ScrollView>
+
+    <Button
+        android:id="@+id/fundingButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="펀딩하기"
+        app:layout_constraintBottom_toBottomOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

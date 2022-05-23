@@ -9,18 +9,26 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.*
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.goodsbyus.R
+import com.goodsbyus.SecondActivity
 import com.goodsbyus.databinding.FragmentHomeBinding
 import com.goodsbyus.datas.ItemGetModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import com.goodsbyus.retrofit2.RetrofitBuilder
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class HomeFragment : Fragment() {
+
+
 
     private var _binding: FragmentHomeBinding? = null
     // This property is only valid between onCreateView and
@@ -28,7 +36,6 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private var getItemList = mutableListOf<ItemGetModel>()
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -66,9 +73,8 @@ class HomeFragment : Fragment() {
         getData()
 
         binding.refreshLayout.setOnRefreshListener {
-            binding.refreshLayout.isRefreshing = false
             getData()
-
+            binding.refreshLayout.isRefreshing = false
         }
 
         val view = binding.root
@@ -86,7 +92,28 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 
-    fun getData(){
+    private fun listView(){
+        binding.rvList.adapter = ListViewAdapter(getItemList).apply {
+            setItemClickListener(
+                object : ListViewAdapter.ItemClickListener {
+                    override fun onClick(view: View, position: Int) {
+                        val projid = goodsList[position].projid
+
+                        //setFragmentResult("requestKey", bundleOf("projid" to projid))
+
+                        val intent = Intent(context, GoodsInfo::class.java)
+
+                        intent.apply {
+                            this.putExtra("projid", projid) // 데이터 넣기
+                        }
+                        startActivity(intent)
+                        //replaceFragment(GoodsInfoFragment())
+                    }
+                })
+        }
+    }
+
+    fun getData() {
         RetrofitBuilder.api.getList().enqueue(object :
             Callback<List<ItemGetModel>> {
             override fun onResponse(
@@ -95,33 +122,33 @@ class HomeFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     getItemList.clear()
-                    Log.d("test", response.body().toString())
+                    //Log.d("test", response.body().toString())
                     var data = response.body()!! // GsonConverter를 사용해 데이터매핑
 
-                    for (item in data){
+                    for (item in data) {
                         getItemList.add(item)
                     }
 
 
                     binding.rvList.adapter = ListViewAdapter(data).apply{
-                        setItemClickListener(
-                            object : ListViewAdapter.ItemClickListener {
-                                override fun onClick(view: View, position: Int) {
-                                    val projid=goodsList[position].projid
+                            setItemClickListener(
+                                object : ListViewAdapter.ItemClickListener {
+                                    override fun onClick(view: View, position: Int) {
+                                        val projid=goodsList[position].projid
 
-                                    setFragmentResult("requestKey", bundleOf("projid" to projid))
+                                        //setFragmentResult("requestKey", bundleOf("projid" to projid))
 
-                                    val intent = Intent(context,GoodsInfo::class.java)
+                                        val intent = Intent(context,GoodsInfo::class.java)
 
-                                    intent.apply {
-                                        this.putExtra("projid",projid) // 데이터 넣기
+                                        intent.apply {
+                                            this.putExtra("projid",projid) // 데이터 넣기
+                                        }
+                                        startActivity(intent)
+
+                                        //replaceFragment(GoodsInfoFragment())
                                     }
-                                    startActivity(intent)
-
-                                    //replaceFragment(GoodsInfoFragment())
-                                }
-                            })
-                    }
+                                })
+                        }
 
 
                     Toast.makeText(getActivity(), "업로드 성공!", Toast.LENGTH_SHORT).show()
@@ -135,6 +162,7 @@ class HomeFragment : Fragment() {
 
         })
     }
+
 }
 
 
