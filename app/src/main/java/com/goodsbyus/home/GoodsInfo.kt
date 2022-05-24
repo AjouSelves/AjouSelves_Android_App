@@ -71,6 +71,7 @@ class GoodsInfo : AppCompatActivity() {
 
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)	//왼쪽 버튼 사용설정(기본은 뒤로가기)
         
+        
         val projid=getExtra()
 
 

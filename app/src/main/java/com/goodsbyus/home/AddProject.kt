@@ -13,6 +13,7 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -38,14 +39,26 @@ class AddProject : AppCompatActivity() {
 
     private val binding get() = _binding!!
 
-    val STORAGE = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-    val STORAGE_CODE = 99
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            android.R.id.home -> {
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_project)
 
         _binding = ActivityAddProjectBinding.inflate(layoutInflater)
+
+        setSupportActionBar(binding.toolbar)
+
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.setTitle("굿즈 등록하기")
 
         val view = binding.root
         lateinit var filePath : String
@@ -96,6 +109,7 @@ class AddProject : AppCompatActivity() {
         }
 
         binding.saveButton.setOnClickListener {
+
             val inputTitle = binding.et1.text.toString()
             val inputExplained = binding.et2.text.toString()
             val inputCategory = binding.et3.text.toString()
