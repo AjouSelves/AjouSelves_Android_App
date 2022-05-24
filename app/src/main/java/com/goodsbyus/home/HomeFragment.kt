@@ -109,6 +109,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun getData() {
+        showSampleData(isLoading = true)
         RetrofitBuilder.api.getList().enqueue(object :
             Callback<List<ItemGetModel>> {
             override fun onResponse(
@@ -145,7 +146,7 @@ class HomeFragment : Fragment() {
                                 })
                         }
 
-
+                    showSampleData(isLoading = false)
                     Toast.makeText(getActivity(), "업로드 성공!", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -156,6 +157,17 @@ class HomeFragment : Fragment() {
             }
 
         })
+    }
+    private fun showSampleData(isLoading: Boolean) {
+        if (isLoading) {
+            binding.sflSample.startShimmer()
+            binding.sflSample.visibility = View.VISIBLE
+            binding.rvList.visibility = View.GONE
+        } else {
+            binding.sflSample.stopShimmer()
+            binding.sflSample.visibility = View.GONE
+            binding.rvList.visibility = View.VISIBLE
+        }
     }
 
 }
