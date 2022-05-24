@@ -50,7 +50,7 @@ class HomeFragment : Fragment() {
 
         binding.myToolbar.setOnMenuItemClickListener {
             when (it.itemId) {
-                R.id.action_search -> {
+                /*R.id.action_search -> {
                     val intent = Intent(context,SearchProject::class.java)
 
                     val data: List<ItemGetModel> = getItemList
@@ -67,7 +67,7 @@ class HomeFragment : Fragment() {
 
                     startActivity(intent)
                     true
-                }
+                }*/
                 R.id.action_plus -> {
                     //replaceFragment(PlusFragment())
                     val intent = Intent(context,AddProject::class.java)
@@ -75,11 +75,11 @@ class HomeFragment : Fragment() {
                     startActivity(intent)
                     true
                 }
-                R.id.action_notification -> {
+                /*R.id.action_notification -> {
                     // notification
                     replaceFragment(NotificationFragment())
                     true
-                }
+                }*/
                 else -> false
             }
         }

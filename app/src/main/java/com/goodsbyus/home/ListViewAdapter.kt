@@ -31,13 +31,21 @@ class ListViewAdapter internal constructor(val goodsList: List<ItemGetModel>)
             }
             itemView.findViewById<TextView>(R.id.iv_title).text = _list.title
             itemView.findViewById<TextView>(R.id.iv_category).text = _list.category
+            val state=_list.state
+            if(state==1){
+                itemView.findViewById<TextView>(R.id.iv_state).text = "펀딩 중"
+            } else if(state==2){
+                itemView.findViewById<TextView>(R.id.iv_state).text = "펀딩 완료"
+            } else if(state==3){
+                itemView.findViewById<TextView>(R.id.iv_state).text = "작업 중"
+            }
 
             var progress : Double=0.0
             if(_list.min_num!=0){
                 progress=_list.cur_num.toDouble()/_list.min_num.toDouble()*100
             }
 
-            itemView.findViewById<TextView>(R.id.iv_progressView).text = String.format("%.1f %% 달성 !", progress)
+            itemView.findViewById<TextView>(R.id.iv_progressView).text = String.format("%.1f %% 달성", progress)
 
             val ran=IntRange(0,9)
             itemView.findViewById<TextView>(R.id.iv_created).text = _list.created_at.slice(ran)
