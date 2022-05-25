@@ -49,12 +49,8 @@ class MypageFragment : Fragment() {
                 }
 
             }*/
-            sharedPreferences=LoginActivity().getSharedPreferences("loginInfo", 0);
-            editor = sharedPreferences.edit()
-            editor.putString("email", "")
-            editor.putString("password", "")
-            editor.commit()
-            val intent = Intent(getActivity(), MainActivity::class.java)
+
+            val intent = Intent(getActivity(), BlankActivity::class.java)
             startActivity(intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP))
         }
 
