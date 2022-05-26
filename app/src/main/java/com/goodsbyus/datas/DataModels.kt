@@ -75,6 +75,22 @@ data class MyFundingTitle(
 ): Parcelable
 
 
+data class PostModel(
+    val title: String,
+    val explained: String
+)
+
+data class PostResponse(
+    val fieldCount: Int,
+    val affectedRows: Int,
+    val insertId: Int,
+    val severStatus: Int,
+    val warningCount: Int,
+    val message: String,
+    val protocol41: Boolean,
+    val changeRows: Int
+)
+
 data class Posts(
     val userid: Int,
     val title: String,

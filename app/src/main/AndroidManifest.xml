@@ -19,6 +19,9 @@
         android:theme="@style/Theme.Goodsbyus"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".community.AddPost"
+            android:exported="false" />
+        <activity
             android:name=".mypage.MyGoods"
             android:exported="false" />
         <activity

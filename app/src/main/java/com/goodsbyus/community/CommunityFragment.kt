@@ -66,9 +66,9 @@ class CommunityFragment : Fragment() {
                 }*/
                 R.id.action_plus -> {
                     //replaceFragment(PlusFragment())
-                    //val intent = Intent(context,AddProject::class.java)
+                    val intent = Intent(context,AddPost::class.java)
 
-                    //startActivity(intent)
+                    startActivity(intent)
                     true
                 }
                 /*R.id.action_notification -> {
@@ -107,7 +107,7 @@ class CommunityFragment : Fragment() {
                 response: Response<List<PostList>>
             ) {
                 if (response.isSuccessful) {
-                    //Log.d("test", response.body().toString())
+                    Log.d("test1", response.body().toString())
                     var data = response.body()!! // GsonConverter를 사용해 데이터매핑
 
 

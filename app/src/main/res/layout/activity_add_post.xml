@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context=".mypage.qr.AddQr">
+    tools:context=".community.AddPost">
 
     <com.google.android.material.appbar.AppBarLayout
 
@@ -46,42 +46,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:text="QR 코드 사진 등록" ></TextView>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:textColor="@color/pink"
-                    android:text="*"></TextView>
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/galleryButton"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="+ QR 코드 사진 가져오기" />
-
-            <ImageView
-                android:id="@+id/userImageView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/text_gray"
-                android:layout_marginTop="10dp"
-                android:text="QR 코드 캡쳐본을 업로드 해주세요👆"></TextView>
 
 
 
@@ -96,7 +60,7 @@
                     android:textSize="18sp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:text="URL"></TextView>
+                    android:text="글 제목"></TextView>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -125,7 +89,49 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_gray"
                 android:layout_marginTop="10dp"
-                android:text="생성한 송금 링크를 복사 / 붙여넣기 해주세요👆"></TextView>
+                android:text="글 제목을 입력해 주세요👆"></TextView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:text="내용"></TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:textSize="18sp"
+                    android:textColor="@color/pink"
+                    android:text="*"></TextView>
+
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:outlineAmbientShadowColor="@color/background_gray"
+                android:hint="클릭하고 입력">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_gray"
+                android:layout_marginTop="10dp"
+                android:text="깨끗한 커뮤니티를 만들어 보아요👆"></TextView>
 
 
 
@@ -135,7 +141,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
 
-                android:text="QR 코드 등록하기"
+                android:text="게시글 등록하기"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 tools:layout_editor_absoluteX="20dp" />
