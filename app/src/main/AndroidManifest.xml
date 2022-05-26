@@ -19,9 +19,18 @@
         android:theme="@style/Theme.Goodsbyus"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".firstScreen.FirstScreenActivity"
-            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"
+            android:name=".mypage.MyGoods"
             android:exported="false" />
+        <activity
+            android:name=".mypage.qr.AddQr"
+            android:exported="false" />
+        <activity
+            android:name=".mypage.MyGoodsInfo"
+            android:exported="false" />
+        <activity
+            android:name=".firstScreen.FirstScreenActivity"
+            android:exported="false"
+            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog" />
         <activity
             android:name=".mypage.BlankActivity"
             android:exported="false" />

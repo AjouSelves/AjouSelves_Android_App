@@ -29,3 +29,12 @@ data class UserInfo(
     val account : String,
     val profilelink : String
 ): Parcelable
+
+data class PayLinkModel(
+    val paylink: String
+)
+
+data class PayResponse(
+    val status: String,
+    val text : String
+)

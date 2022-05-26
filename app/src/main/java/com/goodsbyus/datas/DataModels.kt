@@ -129,3 +129,7 @@ data class LoginInfo(
     val email : String,
     val password : String
 )
+
+data class StateModel(
+    val state: Int
+)

@@ -32,6 +32,13 @@ interface API {
     @POST("/auth/login") //로그인
     fun loginRequest(@Body initializeRequest: LoginInfo): Call<LoginResponse>
 
+    @POST("/proj/pay/qrcode/add/{id}")
+    fun postPayLink(
+        @Path("id") projid: Int,
+        @Body initializeRequest : PayLinkModel
+    ): Call<PayResponse>
+
+
     @GET("/proj/{id}")
     fun getRequest(
         @Path("id") projid: Int
@@ -50,6 +57,10 @@ interface API {
     fun getMyFundingTitle(
     ): Call<List<MyFundingTitle>>
 
+    @GET("/user/create")
+    fun getMyGoodsTitle(
+    ): Call<List<MyFundingTitle>>
+
     @GET("/proj")
     fun getList(
     ): Call<List<ItemGetModel>>
@@ -65,6 +76,12 @@ interface API {
     fun deleteProject(
         @Path("id") projid: Int
     ): Call<FundingResponse>
+
+    @PUT("/edit_state'{id}")
+    fun putState(
+        @Path("id") projid: Int,
+        @Body initializeRequest: StateModel
+    ): Call<PayResponse>
 
 
 }

@@ -13,6 +13,7 @@ import com.goodsbyus.SecondActivity
 import com.goodsbyus.databinding.ActivityMyGoodsInfoBinding
 import com.goodsbyus.datas.DetailModel
 import com.goodsbyus.datas.FundingResponse
+import com.goodsbyus.mypage.qr.AddQr
 import com.goodsbyus.retrofit2.RetrofitBuilder
 import com.goodsbyus.viewPager.ViewPagerAdapter
 import retrofit2.Call
@@ -55,7 +56,7 @@ class MyGoodsInfo : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_goods_info)
+        setContentView(R.layout.activity_my_goods_info)
 
         _binding = ActivityMyGoodsInfoBinding.inflate(layoutInflater)
 
@@ -68,39 +69,15 @@ class MyGoodsInfo : AppCompatActivity() {
 
 
         binding.fundingButton.setOnClickListener {
-            Log.d("test", "버튼")
-            Log.d("test", "$projid")
-            RetrofitBuilder.api.getFunding(projid).enqueue(object :
-                Callback<FundingResponse> {
-                override fun onResponse(
-                    call: Call<FundingResponse>,
-                    response: Response<FundingResponse>
-                ) {
-                    if (response.isSuccessful) {
-                        Log.d("test", response.body().toString())
-                        var data = response.body()!! // GsonConverter를 사용해 데이터매핑
+            val intent = Intent(this@MyGoodsInfo, AddQr::class.java)
 
-                        if (data.status == "fail") {
-                            //if (data.text == "already joined") {
-                            Toast.makeText(
-                                this@MyGoodsInfo,
-                                "이미 참여한 펀딩입니다",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                            //}
-                        } else {
-                            Toast.makeText(this@MyGoodsInfo, "펀딩 성공!", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-                }
-
-                override fun onFailure(call: Call<FundingResponse>, t: Throwable) {
-                    Log.d("test", "실패$t")
-                    Toast.makeText(this@MyGoodsInfo, "업로드 실패 ..", Toast.LENGTH_SHORT).show()
-                }
-
-            })
+            intent.apply {
+                this.putExtra("projid",projid) // 데이터 넣기
+            }
+            startActivity(intent)
         }
+
+        Log.d("test", "$projid")
 
         RetrofitBuilder.api.getRequest(projid).enqueue(object :
             Callback<List<DetailModel>> {
@@ -174,8 +151,7 @@ class MyGoodsInfo : AppCompatActivity() {
                         }
                     } else {
                         Toast.makeText(this@MyGoodsInfo, "삭제 되었습니다.", Toast.LENGTH_SHORT).show()
-                        this@MyGoodsInfo.onBackPressed()
-                        val intent = Intent(this@MyGoodsInfo, SecondActivity::class.java)
+                        val intent = Intent(this@MyGoodsInfo, MyGoods::class.java)
                         startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                         finish()
                     }

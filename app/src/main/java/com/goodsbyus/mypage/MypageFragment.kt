@@ -59,6 +59,11 @@ class MypageFragment : Fragment() {
             startActivity(intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP))
         }
 
+        binding.myProjButton.setOnClickListener {
+            val intent = Intent(getActivity(), MyGoods::class.java)
+            startActivity(intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP))
+        }
+
         binding.myInfoButton.setOnClickListener {
             val intent = Intent(getActivity(), MyInfo::class.java)
             startActivity(intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP))
