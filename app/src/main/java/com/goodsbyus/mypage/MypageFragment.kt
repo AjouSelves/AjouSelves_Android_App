@@ -7,6 +7,7 @@ import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,8 +17,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.goodsbyus.MainActivity
 import com.goodsbyus.SecondActivity
 import com.goodsbyus.databinding.FragmentMypageBinding
+import com.goodsbyus.datas.UserInfo
 import com.goodsbyus.login.LoginActivity
+import com.goodsbyus.retrofit2.RetrofitBuilder
 import com.kakao.sdk.user.UserApiClient
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class MypageFragment : Fragment() {
@@ -37,6 +43,46 @@ class MypageFragment : Fragment() {
         _binding = FragmentMypageBinding.inflate(inflater, container, false)
 
         //val kakao_logout_button = findViewById<Button>(R.id.kakao_logout_button) //로그아웃 버튼
+
+        RetrofitBuilder.api.getUserInfo().enqueue(object :
+            Callback<List<UserInfo>> {
+            override fun onResponse(
+                call: Call<List<UserInfo>>,
+                response: Response<List<UserInfo>>
+            ) {
+                if (response.isSuccessful) {
+                    Log.d("test", response.body().toString())
+                    val data = response.body()!! // GsonConverter를 사용해 데이터매핑
+                    val email = data[0].email
+                    val name = data[0].name
+                    val phone = data[0].phonenumber
+                    val nickname = data[0].nickname
+                    val status = data[0].status
+                    val birth = data[0].birth
+                    val address = data[0].address
+                    val account = data[0].account
+                    val profile = data[0].profilelink
+
+                    binding.emailView.text = email
+                    binding.nameView.text = name
+                    /*binding.phoneView.text = phone
+                    binding.nicknameView.text = nickname
+                    binding.statusView.text = status
+                    binding.birthView.text = birth
+                    binding.addressView.text = address
+                    binding.accountView.text = account
+                    binding.profileView.text = profile*/
+
+                    Toast.makeText(activity, "업로드 성공!", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<List<UserInfo>>, t: Throwable) {
+                Log.d("test", "실패$t")
+                Toast.makeText(activity, "업로드 실패 ..", Toast.LENGTH_SHORT).show()
+            }
+
+        })
 
 
 

@@ -84,12 +84,15 @@ data class Posts(
     val required: String
 )
 
-
+@Parcelize
 data class PostList(
-    val id: Int,
     val title: String,
+    val explained: String,
+    val created_at: String,
+    val userid: Int,
+    val nickname: String,
     val url: String
-)
+): Parcelable
 
 data class InitializeResponse(
     var status: String

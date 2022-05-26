@@ -38,6 +38,9 @@ interface API {
         @Body initializeRequest : PayLinkModel
     ): Call<PayResponse>
 
+    @GET("/post/all")
+    fun getPost(
+    ): Call<List<PostList>>
 
     @GET("/proj/{id}")
     fun getRequest(

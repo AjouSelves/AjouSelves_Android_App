@@ -36,14 +36,15 @@
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/activity_search_project.xml" value="0.36083796494228304" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/activity_second.xml" value="0.33" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/file_paths.xml" value="0.15729166666666666" />
+        <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/fragment_community.xml" value="0.22" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/fragment_dashboard.xml" value="0.18020833333333333" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/fragment_first_image.xml" value="0.20478837109876016" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/fragment_funding.xml" value="0.1984375" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/fragment_goods_info.xml" value="0.33" />
-        <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/fragment_home.xml" value="0.33" />
+        <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/fragment_home.xml" value="0.2827502034174125" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/fragment_home2.xml" value="0.1984375" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/fragment_menu.xml" value="0.1947463768115942" />
-        <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/fragment_mypage.xml" value="0.264" />
+        <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/fragment_mypage.xml" value="0.25" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/fragment_notification.xml" value="0.1947463768115942" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/fragment_notifications.xml" value="0.18020833333333333" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/fragment_plus.xml" value="0.33" />
@@ -54,6 +55,7 @@
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/idol_list_item.xml" value="0.39791666666666664" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/layout_listview.xml" value="0.39791666666666664" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/list_item.xml" value="0.264" />
+        <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/post_item.xml" value="0.33" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/row_item.xml" value="0.1984375" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/view_holder.xml" value="0.5" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/view_holder_shimmer.xml" value="0.36083796494228304" />
