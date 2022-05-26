@@ -32,25 +32,9 @@ class GoodsInfo : AppCompatActivity() {
         return intent.getIntExtra("projid",0)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.item_menu, menu)
-        return true
-    }
-
     //액션버튼 클릭 했을 때
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId){
-            R.id.action_delete -> {
-                //삭제 버튼 눌렀을 때
-                Toast.makeText(this@GoodsInfo, "삭제 이벤트 실행", Toast.LENGTH_LONG).show()
-                deleteProj()
-                true
-            }
-            R.id.action_rewrite -> {
-                //수정 버튼 눌렀을 때
-                Toast.makeText(this@GoodsInfo, "수정 이벤트 실행", Toast.LENGTH_LONG).show()
-                true
-            }
             android.R.id.home -> {
                 finish()
                 true

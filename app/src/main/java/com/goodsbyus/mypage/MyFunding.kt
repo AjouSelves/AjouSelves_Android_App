@@ -57,7 +57,7 @@ class MyFunding : AppCompatActivity() {
                                 override fun onClick(view: View, position: Int) {
                                     val projid=goodsList[position].projid
 
-                                    val intent = Intent(this@MyFunding, GoodsInfo::class.java)
+                                    val intent = Intent(this@MyFunding, MyGoodsInfo::class.java)
 
                                     intent.apply {
                                         this.putExtra("projid",projid) // 데이터 넣기
