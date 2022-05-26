@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import com.goodsbyus.*
+import com.goodsbyus.databinding.ActivityLoginBinding
 import com.goodsbyus.datas.LoginInfo
 import com.goodsbyus.datas.LoginResponse
 import com.goodsbyus.retrofit2.RetrofitBuilder
@@ -22,6 +23,11 @@ import retrofit2.Response
 class LoginActivity : AppCompatActivity() {
     val TAG: String = "LoginActivity"
 
+    private var _binding: ActivityLoginBinding? = null
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
+
 
     private lateinit var sharedPreferences : SharedPreferences
     private lateinit var editor : SharedPreferences.Editor
@@ -32,13 +38,15 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        _binding = ActivityLoginBinding.inflate(layoutInflater)
+
         context=applicationContext
 
         sharedPreferences = context.getSharedPreferences("loginInfo", MODE_PRIVATE)
         editor = sharedPreferences.edit()
 
         // 로그인 버튼
-        btn_login.setOnClickListener {
+        binding.btnLogin.setOnClickListener {
 
             //editText로부터 입력된 값을 받아온다
             val id = edit_id.text.toString()
@@ -94,10 +102,13 @@ class LoginActivity : AppCompatActivity() {
         }
 
         // 회원가입 버튼
-        btn_register.setOnClickListener {
+        binding.btnRegister.setOnClickListener {
             val intent = Intent(this, Register::class.java)
             startActivity(intent)
         }
+
+        val view = binding.root
+        setContentView(view)
 
     }
 

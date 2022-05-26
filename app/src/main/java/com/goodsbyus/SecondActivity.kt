@@ -1,6 +1,7 @@
 package com.goodsbyus
 
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
@@ -10,6 +11,7 @@ import com.goodsbyus.home.HomeFragment
 import com.goodsbyus.mypage.MypageFragment
 import com.goodsbyus.setting.SettingFragment
 import com.goodsbyus.community.CommunityFragment
+import com.goodsbyus.firstScreen.FirstScreenActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class SecondActivity : AppCompatActivity() {
@@ -24,6 +26,9 @@ class SecondActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
+
+        val intent = Intent(this, FirstScreenActivity::class.java)
+        startActivity(intent)
 
         // 애플리케이션 실행 후 첫 화면 설정
         supportFragmentManager.beginTransaction().add(frame.id, HomeFragment()).commit()

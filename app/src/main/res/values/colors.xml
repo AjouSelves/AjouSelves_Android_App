@@ -11,4 +11,6 @@
     <color name="gray">#19000000</color>
     <color name="pink">#F46868</color>
     <color name="text_gray">#414141</color>
+    <color name="background_gray">#E5E5E5</color>
+    <color name="text_button">#6F6C90</color>
 </resources>
