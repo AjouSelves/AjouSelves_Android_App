@@ -11,18 +11,18 @@ interface API {
     // x-www-urlencoded
     // Json
 
-    @POST("/post/add") // Call<InitializeResponse> 데이터를 받을 data class
+    @POST("post/add") // Call<InitializeResponse> 데이터를 받을 data class
     fun postRequest(
         @Body initializeRequest: PostModel
     ): Call<PostResponse> // InitializeRequest 요청을 보낼 Json Data Class
 
-    @POST("/proj/add") // Call<InitializeResponse> 데이터를 받을 data class
+    @POST("proj/add") // Call<InitializeResponse> 데이터를 받을 data class
     fun initRequest(
         @Body initializeRequest: Posts
     ): Call<InitializeResponse> // InitializeRequest 요청을 보낼 Json Data Class
 
     @Multipart
-    @POST("/proj/add/single") // Call<InitializeResponse> 데이터를 받을 data class
+    @POST("proj/add_photo") // Call<InitializeResponse> 데이터를 받을 data class
     fun initPicRequest(
         @Part photo : MultipartBody.Part?,
         @Part ("userid") userid: RequestBody,
@@ -32,61 +32,67 @@ interface API {
         @Part ("min_num") minnum: RequestBody
     ): Call<InitializeResponse>
 
-    @POST("/auth/register") //회원가입
+    @POST("auth/register") //회원가입
     fun registerRequest(@Body initializeRequest: RegisterInfo): Call<InitializeResponse>
 
-    @POST("/auth/login") //로그인
+    @POST("auth/login") //로그인
     fun loginRequest(@Body initializeRequest: LoginInfo): Call<LoginResponse>
 
-    @POST("/proj/pay/qrcode/add/{id}")
+    @Multipart
+    @POST("proj/pay/qr/add/{id}")
     fun postPayLink(
         @Path("id") projid: Int,
-        @Body initializeRequest : PayLinkModel
+        @Part ("paylink") paylink: RequestBody,
+        @Part photo : MultipartBody.Part?
     ): Call<PayResponse>
 
-    @GET("/post/all")
+    @GET("post/all")
     fun getPost(
     ): Call<List<PostList>>
 
-    @GET("/proj/{id}")
+    @GET("proj/{id}")
     fun getRequest(
         @Path("id") projid: Int
     ): Call<List<DetailModel>>
 
-    @GET("/proj/join/{id}")
+    @GET("proj/join/{id}")
     fun getFunding(
         @Path("id") projid: Int
     ): Call<FundingResponse>
 
-    @GET("/user/join_detail")
+    @GET("user/join-detail")
     fun getMyFunding(
-    ): Call<List<MyFundingModel>>
+    ): Call<List<GoodsGetModel>>
 
-    @GET("/user/join")
+    @GET("user/join")
     fun getMyFundingTitle(
     ): Call<List<MyFundingTitle>>
 
-    @GET("/user/create")
+    @GET("user/create")
     fun getMyGoodsTitle(
     ): Call<List<MyFundingTitle>>
 
-    @GET("/proj")
+    @GET("user/create-detail")
+    fun getMyGoods(
+    ): Call<List<GoodsGetModel>>
+
+    @GET("proj")
     fun getList(
     ): Call<List<ItemGetModel>>
 
-    @GET("/user")
+    @GET("user")
     fun getUserInfo(
     ): Call<List<UserInfo>>
 
-    @POST("/auth/email")
+    @POST("auth/email")
     fun checkRequest(@Body initializeRequest: MailCheck): Call<InitializeResponse>
 
-    @DELETE("/proj/delete/{id}")
+    @DELETE("proj/delete/{id}")
     fun deleteProject(
         @Path("id") projid: Int
     ): Call<FundingResponse>
 
-    @PUT("/edit_state'{id}")
+    @PUT("proj/edit_state/{id}")
     fun putState(
         @Path("id") projid: Int,
         @Body initializeRequest: StateModel

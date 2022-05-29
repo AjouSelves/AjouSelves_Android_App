@@ -54,6 +54,21 @@ data class ItemGetModel(
 ): Parcelable
 
 @Parcelize
+data class GoodsGetModel(
+    var projid: Int,
+    var title: String,
+    var state: Int,
+    var category: String,
+    var min_num: Int,
+    var cur_num: Int,
+    var explained: String,
+    var nickname: String,
+    var userid: Int,
+    var profilelink: String,
+    var url: String
+): Parcelable
+
+@Parcelize
 data class MyFundingModel(
     var projid: Int,
     var userid: Int,
@@ -116,7 +131,9 @@ data class InitializeResponse(
 
 data class LoginResponse(
     var code : Int,
+    @SerializedName("text")
     var message : String,
+    var exp : String,
     var token : String
 )
 
@@ -148,6 +165,7 @@ data class LoginInfo(
     val email : String,
     val password : String
 )
+
 
 data class StateModel(
     val state: Int

@@ -24,7 +24,7 @@ class ListViewAdapter internal constructor(val goodsList: List<ItemGetModel>)
         fun bind(_list: ItemGetModel) {
             val imageView: ImageView = itemView.findViewById<ImageView>(R.id.iv_image)
             if(_list.url!=null) {
-                val newUrl = "http://52.206.105.200:3000" + _list.url
+                val newUrl = "http://goodsbyus.com" + _list.url
                 Glide.with(itemView).load(newUrl).placeholder(R.drawable.ic_launcher_foreground)
                     .override(150, 150).into(imageView)
             }
@@ -34,7 +34,7 @@ class ListViewAdapter internal constructor(val goodsList: List<ItemGetModel>)
             if(state==1){
                 itemView.findViewById<TextView>(R.id.iv_state).text = "펀딩 중"
             } else if(state==2){
-                itemView.findViewById<TextView>(R.id.iv_state).text = "펀딩 완료"
+                itemView.findViewById<TextView>(R.id.iv_state).text = "결제 중"
             } else if(state==3){
                 itemView.findViewById<TextView>(R.id.iv_state).text = "작업 중"
             }
@@ -47,7 +47,7 @@ class ListViewAdapter internal constructor(val goodsList: List<ItemGetModel>)
             itemView.findViewById<TextView>(R.id.iv_progressView).text = String.format("%.1f %% 달성", progress)
 
             val ran=IntRange(0,9)
-            itemView.findViewById<TextView>(R.id.iv_created).text = _list.created_at.slice(ran)
+            //itemView.findViewById<TextView>(R.id.iv_created).text = _list.created_at.slice(ran)
         }
     }
     override fun getItemCount(): Int = goodsList.size

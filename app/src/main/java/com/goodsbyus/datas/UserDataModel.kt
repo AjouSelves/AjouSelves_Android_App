@@ -34,7 +34,8 @@ data class PayLinkModel(
     val paylink: String
 )
 
+@Parcelize
 data class PayResponse(
     val status: String,
     val text : String
-)
+): Parcelable

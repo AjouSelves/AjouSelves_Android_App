@@ -11,6 +11,7 @@ import androidx.fragment.app.setFragmentResult
 import com.goodsbyus.R
 import com.goodsbyus.databinding.ActivityMyFundingBinding
 import com.goodsbyus.databinding.ActivityMyGoodsBinding
+import com.goodsbyus.datas.GoodsGetModel
 import com.goodsbyus.datas.ItemGetModel
 import com.goodsbyus.datas.MyFundingModel
 import com.goodsbyus.datas.MyFundingTitle
@@ -41,11 +42,11 @@ class MyGoods : AppCompatActivity() {
     }
 
     private fun getData(){
-        RetrofitBuilder.api.getMyGoodsTitle().enqueue(object :
-            Callback<List<MyFundingTitle>> {
+        RetrofitBuilder.api.getMyGoods().enqueue(object :
+            Callback<List<GoodsGetModel>> {
             override fun onResponse(
-                call: Call<List<MyFundingTitle>>,
-                response: Response<List<MyFundingTitle>>
+                call: Call<List<GoodsGetModel>>,
+                response: Response<List<GoodsGetModel>>
             ) {
                 if (response.isSuccessful) {
                     Log.d("test", response.body().toString())
@@ -73,7 +74,7 @@ class MyGoods : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<List<MyFundingTitle>>, t: Throwable) {
+            override fun onFailure(call: Call<List<GoodsGetModel>>, t: Throwable) {
                 Log.d("test", "실패$t")
                 Toast.makeText(this@MyGoods, "업로드 실패 ..", Toast.LENGTH_SHORT).show()
             }

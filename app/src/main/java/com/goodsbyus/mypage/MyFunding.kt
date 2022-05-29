@@ -4,12 +4,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import com.goodsbyus.R
 import com.goodsbyus.databinding.ActivityMyFundingBinding
+import com.goodsbyus.datas.GoodsGetModel
 import com.goodsbyus.datas.ItemGetModel
 import com.goodsbyus.datas.MyFundingModel
 import com.goodsbyus.datas.MyFundingTitle
@@ -27,11 +29,25 @@ class MyFunding : AppCompatActivity() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            android.R.id.home -> {
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_funding)
 
         _binding = ActivityMyFundingBinding.inflate(layoutInflater)
+
 
         getData()
 
@@ -40,11 +56,11 @@ class MyFunding : AppCompatActivity() {
     }
 
     private fun getData(){
-        RetrofitBuilder.api.getMyFundingTitle().enqueue(object :
-            Callback<List<MyFundingTitle>> {
+        RetrofitBuilder.api.getMyFunding().enqueue(object :
+            Callback<List<GoodsGetModel>> {
             override fun onResponse(
-                call: Call<List<MyFundingTitle>>,
-                response: Response<List<MyFundingTitle>>
+                call: Call<List<GoodsGetModel>>,
+                response: Response<List<GoodsGetModel>>
             ) {
                 if (response.isSuccessful) {
                     Log.d("test", response.body().toString())
@@ -72,7 +88,7 @@ class MyFunding : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<List<MyFundingTitle>>, t: Throwable) {
+            override fun onFailure(call: Call<List<GoodsGetModel>>, t: Throwable) {
                 Log.d("test", "실패$t")
                 Toast.makeText(this@MyFunding, "업로드 실패 ..", Toast.LENGTH_SHORT).show()
             }
