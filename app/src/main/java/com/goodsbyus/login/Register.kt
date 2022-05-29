@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.goodsbyus.*
+import com.goodsbyus.datas.EmailResponse
 import com.goodsbyus.datas.InitializeResponse
 import com.goodsbyus.datas.MailCheck
 import com.goodsbyus.datas.RegisterInfo
@@ -23,6 +24,8 @@ class Register : AppCompatActivity() {
     var isExistBlank = false
     var isPWSame = false
     var emailCheck=false
+    var emailCheckFinal=false
+    var tempNumber = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,21 +34,22 @@ class Register : AppCompatActivity() {
 
 
         checkButton.setOnClickListener{
-            val email = editTextTextEmailAddress.text.toString()
+            val email = editEmailAddress.text.toString()
             val initializeRequest= MailCheck(
                 email=email)
 
             RetrofitBuilder.api.checkRequest(initializeRequest).enqueue(object :
-                Callback<InitializeResponse> {
+                Callback<EmailResponse> {
                 override fun onResponse(
-                    call: Call<InitializeResponse>,
-                    response: Response<InitializeResponse>
+                    call: Call<EmailResponse>,
+                    response: Response<EmailResponse>
                 ) {
                     if(response.isSuccessful) {
                         Log.d("test", response.body().toString())
 
-                        if(response.body()?.status=="success") {
+                        if(response.body()?.number!=null) {
                             emailCheck=true
+                            tempNumber=response.body()!!.number
                             Toast.makeText(this@Register, "사용 가능한 email 입니다", Toast.LENGTH_SHORT).show()
                         }
                         else{
@@ -57,7 +61,7 @@ class Register : AppCompatActivity() {
                     }
                 }
 
-                override fun onFailure(call: Call<InitializeResponse>, t: Throwable) {
+                override fun onFailure(call: Call<EmailResponse>, t: Throwable) {
                     Log.d("test", "실패$t")
                     //Toast.makeText(this, "업로드 실패 ..", Toast.LENGTH_SHORT).show()
                 }
@@ -65,18 +69,31 @@ class Register : AppCompatActivity() {
             })
         }
 
-        button.setOnClickListener {
+        checkNumButton.setOnClickListener {
+            val checkNumber=editCheckNum.text.toString().toInt()
+            checkText.text="이메일 인증이 완료되었습니다."
+            if(checkNumber==tempNumber){
+                emailCheckFinal=true;
+
+            } else{
+                false
+            }
+        }
+
+
+
+        saveButton.setOnClickListener {
             Log.d(TAG, "회원가입 버튼 클릭")
 
-            val email = editTextTextEmailAddress.text.toString()
-            val pw = editTextTextPassword.text.toString()
-            val pw_re = editTextTextPasswordCheck.text.toString()
-            val name=editTextTextPersonName.text.toString()
-            val phone= editTextPhone.text.toString()
-            val nickname=editTextTextNickname.text.toString()
-            val birth=editTextDate.text.toString()
-            val address=editTextTextPostalAddress.text.toString()
-            val account=editTextNumber.text.toString()
+            val email = editEmailAddress.text.toString()
+            val pw = editPassword.text.toString()
+            val pw_re = editPasswordCheck.text.toString()
+            val name=editPersonName.text.toString()
+            val phone= editPhone.text.toString()
+            val nickname=editNickname.text.toString()
+            val birth=editDate.text.toString()
+            val address=editPostalAddress.text.toString()
+            val account=editNumber.text.toString()
 
             // 유저가 항목을 다 채우지 않았을 경우
             if(email.isEmpty() || pw.isEmpty() || pw_re.isEmpty()){
@@ -132,7 +149,7 @@ class Register : AppCompatActivity() {
                 else if(!isPWSame){ // 입력한 비밀번호가 다를 경우
                     dialog("not same")
                 }
-                else if(!emailCheck){
+                else if(!emailCheckFinal){
                     dialog("not checked")
                 }
             }

@@ -90,7 +90,7 @@ interface API {
     ): Call<GetPay>
 
     @POST("auth/email")
-    fun checkRequest(@Body initializeRequest: MailCheck): Call<InitializeResponse>
+    fun checkRequest(@Body initializeRequest: MailCheck): Call<EmailResponse>
 
     @DELETE("proj/delete/{id}")
     fun deleteProject(

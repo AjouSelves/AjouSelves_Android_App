@@ -135,6 +135,13 @@ data class InitializeResponse(
     var status: String
 )
 
+data class EmailResponse(
+    val number: Int,
+    val status: String,
+    val text: String,
+    val error: String
+)
+
 data class LoginResponse(
     var code : Int,
     @SerializedName("text")
