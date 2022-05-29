@@ -74,7 +74,7 @@ interface API {
 
     @GET("user/create-detail")
     fun getMyGoods(
-    ): Call<List<GoodsGetModel>>
+    ): Call<MyGoods>
 
     @GET("proj")
     fun getList(

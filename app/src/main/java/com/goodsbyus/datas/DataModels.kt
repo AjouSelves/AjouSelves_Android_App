@@ -53,6 +53,12 @@ data class ItemGetModel(
     var url: String
 ): Parcelable
 
+
+data class MyGoods(
+    val status: String,
+    val data: List<GoodsGetModel>
+)
+
 @Parcelize
 data class GoodsGetModel(
     var projid: Int,

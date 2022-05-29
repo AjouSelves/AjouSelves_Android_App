@@ -30,7 +30,7 @@ class MyFundingAdapter(val goodsList: List<GoodsGetModel>) : RecyclerView.Adapte
             if(state==1){
                 itemView.findViewById<TextView>(R.id.iv_state).text = "펀딩 중"
             } else if(state==2){
-                itemView.findViewById<TextView>(R.id.iv_state).text = "펀딩 완료"
+                itemView.findViewById<TextView>(R.id.iv_state).text = "결제 중"
             } else if(state==3){
                 itemView.findViewById<TextView>(R.id.iv_state).text = "작업 중"
             }

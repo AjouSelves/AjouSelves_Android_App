@@ -11,11 +11,10 @@ import androidx.fragment.app.setFragmentResult
 import com.goodsbyus.R
 import com.goodsbyus.databinding.ActivityMyFundingBinding
 import com.goodsbyus.databinding.ActivityMyGoodsBinding
-import com.goodsbyus.datas.GoodsGetModel
+import com.goodsbyus.datas.MyGoods
 import com.goodsbyus.datas.ItemGetModel
 import com.goodsbyus.datas.MyFundingModel
 import com.goodsbyus.datas.MyFundingTitle
-import com.goodsbyus.home.GoodsInfo
 import com.goodsbyus.home.ListViewAdapter
 import com.goodsbyus.mypage.adapter.MyFundingAdapter
 import com.goodsbyus.retrofit2.RetrofitBuilder
@@ -43,17 +42,17 @@ class MyGoods : AppCompatActivity() {
 
     private fun getData(){
         RetrofitBuilder.api.getMyGoods().enqueue(object :
-            Callback<List<GoodsGetModel>> {
+            Callback<MyGoods> {
             override fun onResponse(
-                call: Call<List<GoodsGetModel>>,
-                response: Response<List<GoodsGetModel>>
+                call: Call<MyGoods>,
+                response: Response<MyGoods>
             ) {
                 if (response.isSuccessful) {
                     Log.d("test", response.body().toString())
                     var data = response.body()!! // GsonConverter를 사용해 데이터매핑
 
 
-                    binding.rvList.adapter = MyFundingAdapter(data).apply{
+                    binding.rvList.adapter = MyFundingAdapter(data.data).apply{
                         setItemClickListener(
                             object : MyFundingAdapter.ItemClickListener {
                                 override fun onClick(view: View, position: Int) {
@@ -74,7 +73,7 @@ class MyGoods : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<List<GoodsGetModel>>, t: Throwable) {
+            override fun onFailure(call: Call<MyGoods>, t: Throwable) {
                 Log.d("test", "실패$t")
                 Toast.makeText(this@MyGoods, "업로드 실패 ..", Toast.LENGTH_SHORT).show()
             }
