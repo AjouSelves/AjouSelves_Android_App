@@ -15,15 +15,14 @@ import com.goodsbyus.R
 import com.goodsbyus.datas.PostList
 
 
-class PostListAdapter internal constructor(val postList: List<PostList>)
-    : RecyclerView.Adapter<PostListAdapter.ListViewHolder>(), Filterable{
+class PostListAdapter(val postList: List<PostList>) : RecyclerView.Adapter<PostListAdapter.ListViewHolder>(){
 
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(_list: PostList) {
 
             itemView.findViewById<TextView>(R.id.iv_title).text = _list.title
-            itemView.findViewById<TextView>(R.id.iv_explained).text= _list.title
+            itemView.findViewById<TextView>(R.id.iv_explained).text= _list.explained
 
 
             val ran=IntRange(0,9)
@@ -40,7 +39,7 @@ class PostListAdapter internal constructor(val postList: List<PostList>)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         return ListViewHolder(
             // 새로운 뷰를 생성해 뷰홀더에 인자로 넣어준다.
-            LayoutInflater.from(parent.context).inflate(R.layout.view_holder, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.post_item, parent, false)
         )
     }
 
@@ -67,10 +66,5 @@ class PostListAdapter internal constructor(val postList: List<PostList>)
     fun setItemClickListener(itemClickListener: ItemClickListener) {
         this.itemClickListner = itemClickListener
     }
-
-    override fun getFilter(): Filter {
-        TODO("Not yet implemented")
-    }
-
 
 }

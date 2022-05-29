@@ -82,7 +82,7 @@ interface API {
 
     @GET("user")
     fun getUserInfo(
-    ): Call<List<UserInfo>>
+    ): Call<UserInfo>
 
     @POST("auth/email")
     fun checkRequest(@Body initializeRequest: MailCheck): Call<InitializeResponse>

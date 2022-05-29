@@ -45,23 +45,23 @@ class MypageFragment : Fragment() {
         //val kakao_logout_button = findViewById<Button>(R.id.kakao_logout_button) //로그아웃 버튼
 
         RetrofitBuilder.api.getUserInfo().enqueue(object :
-            Callback<List<UserInfo>> {
+            Callback<UserInfo> {
             override fun onResponse(
-                call: Call<List<UserInfo>>,
-                response: Response<List<UserInfo>>
+                call: Call<UserInfo>,
+                response: Response<UserInfo>
             ) {
                 if (response.isSuccessful) {
                     Log.d("test", response.body().toString())
                     val data = response.body()!! // GsonConverter를 사용해 데이터매핑
-                    val email = data[0].email
-                    val name = data[0].name
-                    val phone = data[0].phonenumber
-                    val nickname = data[0].nickname
-                    val status = data[0].status
-                    val birth = data[0].birth
-                    val address = data[0].address
-                    val account = data[0].account
-                    val profile = data[0].profilelink
+                    val email = data.data[0].email
+                    val name = data.data[0].name
+                    val phone = data.data[0].phonenumber
+                    val nickname = data.data[0].nickname
+                    val status = data.data[0].status
+                    val birth = data.data[0].birth
+                    val address = data.data[0].address
+                    val account = data.data[0].account
+                    val profile = data.data[0].profilelink
 
                     binding.emailView.text = email
                     binding.nameView.text = name
@@ -77,7 +77,7 @@ class MypageFragment : Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<List<UserInfo>>, t: Throwable) {
+            override fun onFailure(call: Call<UserInfo>, t: Throwable) {
                 Log.d("test", "실패$t")
                 Toast.makeText(activity, "업로드 실패 ..", Toast.LENGTH_SHORT).show()
             }

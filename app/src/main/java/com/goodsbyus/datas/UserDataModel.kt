@@ -17,8 +17,15 @@ data class UserRegister(
     val profilelink : String
 )
 
-@Parcelize
+
+
 data class UserInfo(
+    val status: String,
+    val data: List<UserData>
+)
+
+@Parcelize
+data class UserData(
     val email : String,
     val name : String,
     val phonenumber : String,

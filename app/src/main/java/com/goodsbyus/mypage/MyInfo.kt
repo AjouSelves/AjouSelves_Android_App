@@ -55,7 +55,7 @@ class MyInfo : AppCompatActivity() {
 
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)	//왼쪽 버튼 사용설정(기본은 뒤로가기)
 
-        RetrofitBuilder.api.getUserInfo().enqueue(object :
+        /*RetrofitBuilder.api.getUserInfo().enqueue(object :
             Callback<List<UserInfo>> {
             override fun onResponse(
                 call: Call<List<UserInfo>>,
@@ -93,7 +93,7 @@ class MyInfo : AppCompatActivity() {
                 Toast.makeText(this@MyInfo, "업로드 실패 ..", Toast.LENGTH_SHORT).show()
             }
 
-        })
+        })*/
 
         val view = binding.root
         setContentView(view)
