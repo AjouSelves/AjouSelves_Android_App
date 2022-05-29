@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.core.os.bundleOf
@@ -27,12 +28,28 @@ class MyGoods : AppCompatActivity() {
     private var _binding: ActivityMyGoodsBinding? = null
     // This property is only valid between onCreateView and
     // onDestroyView.
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            android.R.id.home -> {
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
     private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_funding)
 
         _binding = ActivityMyGoodsBinding.inflate(layoutInflater)
+
+        setSupportActionBar(binding.toolbar)
+
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)	//왼쪽 버튼 사용설정(기본은 뒤로가기)
+        supportActionBar!!.setTitle("내가 생성한 프로젝트")
 
         getData()
 

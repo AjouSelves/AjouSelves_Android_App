@@ -19,6 +19,12 @@
         android:theme="@style/Theme.Goodsbyus"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".mypage.MyFundingInfo"
+            android:exported="false" />
+        <activity
+            android:name=".mypage.qr.PayQr"
+            android:exported="false" />
+        <activity
             android:name=".community.AddPost"
             android:exported="false" />
         <activity

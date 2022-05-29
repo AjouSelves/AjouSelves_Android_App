@@ -62,7 +62,7 @@ interface API {
 
     @GET("user/join-detail")
     fun getMyFunding(
-    ): Call<List<GoodsGetModel>>
+    ): Call<MyGoods>
 
     @GET("user/join")
     fun getMyFundingTitle(
@@ -83,6 +83,11 @@ interface API {
     @GET("user")
     fun getUserInfo(
     ): Call<UserInfo>
+
+    @GET("proj/pay/qr/{id}")
+    fun getPayLink(
+        @Path("id") projid: Int
+    ): Call<GetPay>
 
     @POST("auth/email")
     fun checkRequest(@Body initializeRequest: MailCheck): Call<InitializeResponse>

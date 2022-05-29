@@ -11,12 +11,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import com.goodsbyus.R
 import com.goodsbyus.databinding.ActivityMyFundingBinding
-import com.goodsbyus.datas.GoodsGetModel
-import com.goodsbyus.datas.ItemGetModel
-import com.goodsbyus.datas.MyFundingModel
-import com.goodsbyus.datas.MyFundingTitle
-import com.goodsbyus.home.GoodsInfo
-import com.goodsbyus.home.ListViewAdapter
+import com.goodsbyus.datas.MyGoods
 import com.goodsbyus.mypage.adapter.MyFundingAdapter
 import com.goodsbyus.retrofit2.RetrofitBuilder
 import retrofit2.Call
@@ -48,6 +43,11 @@ class MyFunding : AppCompatActivity() {
 
         _binding = ActivityMyFundingBinding.inflate(layoutInflater)
 
+        setSupportActionBar(binding.toolbar)
+
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)	//왼쪽 버튼 사용설정(기본은 뒤로가기)
+        supportActionBar!!.setTitle("내가 펀딩한 프로젝트")
+
 
         getData()
 
@@ -57,23 +57,23 @@ class MyFunding : AppCompatActivity() {
 
     private fun getData(){
         RetrofitBuilder.api.getMyFunding().enqueue(object :
-            Callback<List<GoodsGetModel>> {
+            Callback<MyGoods> {
             override fun onResponse(
-                call: Call<List<GoodsGetModel>>,
-                response: Response<List<GoodsGetModel>>
+                call: Call<MyGoods>,
+                response: Response<MyGoods>
             ) {
                 if (response.isSuccessful) {
                     Log.d("test", response.body().toString())
                     var data = response.body()!! // GsonConverter를 사용해 데이터매핑
 
 
-                    binding.rvList.adapter = MyFundingAdapter(data).apply{
+                    binding.rvList.adapter = MyFundingAdapter(data.data).apply{
                         setItemClickListener(
                             object : MyFundingAdapter.ItemClickListener {
                                 override fun onClick(view: View, position: Int) {
                                     val projid=goodsList[position].projid
 
-                                    val intent = Intent(this@MyFunding, MyGoodsInfo::class.java)
+                                    val intent = Intent(this@MyFunding, MyFundingInfo::class.java)
 
                                     intent.apply {
                                         this.putExtra("projid",projid) // 데이터 넣기
@@ -88,7 +88,7 @@ class MyFunding : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<List<GoodsGetModel>>, t: Throwable) {
+            override fun onFailure(call: Call<MyGoods>, t: Throwable) {
                 Log.d("test", "실패$t")
                 Toast.makeText(this@MyFunding, "업로드 실패 ..", Toast.LENGTH_SHORT).show()
             }

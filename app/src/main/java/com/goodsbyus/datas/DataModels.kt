@@ -176,3 +176,10 @@ data class LoginInfo(
 data class StateModel(
     val state: Int
 )
+
+data class GetPay(
+    val status: String,
+    val text: String,
+    val paylink: String,
+    val qr_url: String
+)
