@@ -178,7 +178,7 @@ class AddQr : AppCompatActivity() {
 
         }
     }
-
+    //Todo : response 형식 다름
     private fun putState(projid: Int){
         val initializeRequest=StateModel(state=2)
 

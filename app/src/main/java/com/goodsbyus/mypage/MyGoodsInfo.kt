@@ -63,6 +63,7 @@ class MyGoodsInfo : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
 
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)	//왼쪽 버튼 사용설정(기본은 뒤로가기)
+        binding.fundingButton.isEnabled=false
 
 
         val projid=getExtra()
@@ -93,6 +94,7 @@ class MyGoodsInfo : AppCompatActivity() {
                     val curNum = data[0].cur_num
                     val category = data[0].category
                     val explained = data[0].explained
+                    val state=data[0].state
 
                     supportActionBar!!.setTitle(title)//타이틀설정 - 툴바
 
@@ -100,6 +102,10 @@ class MyGoodsInfo : AppCompatActivity() {
                     binding.categoryView.text = category
                     binding.explainedView.text = explained
                     binding.minnumView.text= minNum.toString()
+
+                    if(state==1){
+                        binding.fundingButton.isEnabled=true
+                    }
 
                     var progress : Double=0.0
                     if(minNum!=0){

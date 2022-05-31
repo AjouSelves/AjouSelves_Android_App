@@ -47,7 +47,8 @@ class PostInfo : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)    //왼쪽 버튼 사용설정(기본은 뒤로가기)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.setTitle("커뮤니티")//타이틀설정 - 툴바//왼쪽 버튼 사용설정(기본은 뒤로가기)
 
 
         getData()
@@ -69,7 +70,7 @@ class PostInfo : AppCompatActivity() {
                         var data = response.body()!! // GsonConverter를 사용해 데이터매핑
 
                         if(data.status=="success"){
-                            //getData()
+                            getData()
                         }
                     }
                 }
@@ -103,7 +104,7 @@ class PostInfo : AppCompatActivity() {
                     val created_at = data.data[0].created_at
                     val nickname = data.data[0].nickname
                     val explained = data.data[0].explained
-                    supportActionBar!!.setTitle(title)//타이틀설정 - 툴바
+
 
                     binding.titleView.text = title
 

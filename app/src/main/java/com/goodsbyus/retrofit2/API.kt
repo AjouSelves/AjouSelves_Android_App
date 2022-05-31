@@ -46,7 +46,7 @@ interface API {
         @Part photo : MultipartBody.Part?
     ): Call<PayResponse>
 
-    @POST("comment/add")
+    @POST("comment")
     fun addComment(
         @Body initializeRequest: PostComment
     ): Call<InitializeResponse>
