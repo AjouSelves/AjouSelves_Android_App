@@ -82,6 +82,8 @@ class GoodsInfo : AppCompatActivity() {
                                 //}
                             } else {
                                 Toast.makeText(this@GoodsInfo, "펀딩 성공!", Toast.LENGTH_SHORT).show()
+                                binding.fundingButton.isEnabled=false
+                                binding.fundingButton.setText("펀딩 완료")
                             }
                         }
                     }

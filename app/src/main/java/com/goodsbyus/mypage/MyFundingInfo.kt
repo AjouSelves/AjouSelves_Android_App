@@ -91,7 +91,7 @@ class MyFundingInfo : AppCompatActivity() {
                     binding.minnumView.text= minNum.toString()
 
                     if(state!=2){
-                        binding.information.text="지금은 결제할 수 없습니다."
+                        binding.fundingButton.isEnabled=false
                     } else{
                         binding.information.text=""
                     }

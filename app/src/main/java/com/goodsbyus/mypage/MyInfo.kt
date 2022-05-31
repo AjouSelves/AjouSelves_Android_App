@@ -54,46 +54,47 @@ class MyInfo : AppCompatActivity() {
         setSupportActionBar(binding.myToolbar)
 
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)	//왼쪽 버튼 사용설정(기본은 뒤로가기)
+        supportActionBar!!.setTitle("내 정보")
 
-        /*RetrofitBuilder.api.getUserInfo().enqueue(object :
-            Callback<List<UserInfo>> {
+        RetrofitBuilder.api.getUserInfo().enqueue(object :
+            Callback<UserInfo> {
             override fun onResponse(
-                call: Call<List<UserInfo>>,
-                response: Response<List<UserInfo>>
+                call: Call<UserInfo>,
+                response: Response<UserInfo>
             ) {
                 if (response.isSuccessful) {
                     Log.d("test", response.body().toString())
                     val data = response.body()!! // GsonConverter를 사용해 데이터매핑
-                    val email = data[0].email
-                    val name = data[0].name
-                    val phone = data[0].phonenumber
-                    val nickname = data[0].nickname
-                    val status = data[0].status
-                    val birth = data[0].birth
-                    val address = data[0].address
-                    val account = data[0].account
-                    val profile = data[0].profilelink
+                    val email = data.data[0].email
+                    val name = data.data[0].name
+                    val phone = data.data[0].phonenumber
+                    val nickname = data.data[0].nickname
+                    val status = data.data[0].status
+                    val birth = data.data[0].birth
+                    val address = data.data[0].address
+                    val account = data.data[0].account
+                    val profile = data.data[0].profilelink
+
+                    val ran=IntRange(0,9)
 
                     binding.emailView.text = email
                     binding.nameView.text = name
-                    binding.phoneView.text = phone
-                    binding.nicknameView.text = nickname
-                    binding.statusView.text = status
-                    binding.birthView.text = birth
-                    binding.addressView.text = address
-                    binding.accountView.text = account
-                    binding.profileView.text = profile
+                    binding.editPhone.setText(phone)
+                    binding.editNickname.setText(nickname)
+                    binding.editDate.setText(birth.slice(ran))
+                    binding.editPostalAddress.setText(address)
+                    binding.editNumber.setText(account)
 
                     Toast.makeText(this@MyInfo, "업로드 성공!", Toast.LENGTH_SHORT).show()
                 }
             }
 
-            override fun onFailure(call: Call<List<UserInfo>>, t: Throwable) {
+            override fun onFailure(call: Call<UserInfo>, t: Throwable) {
                 Log.d("test", "실패$t")
                 Toast.makeText(this@MyInfo, "업로드 실패 ..", Toast.LENGTH_SHORT).show()
             }
 
-        })*/
+        })
 
         val view = binding.root
         setContentView(view)

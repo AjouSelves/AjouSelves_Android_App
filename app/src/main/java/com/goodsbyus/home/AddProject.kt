@@ -59,6 +59,7 @@ class AddProject : AppCompatActivity() {
 
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setTitle("굿즈 등록하기")
+        binding.saveButton.isEnabled=false
 
         val view = binding.root
         lateinit var filePath : String
@@ -91,6 +92,7 @@ class AddProject : AppCompatActivity() {
                 inputStream = null
                 bitmap?.let {
                     binding.userImageView.setImageBitmap(bitmap)
+                    binding.saveButton.isEnabled=true
                 } ?: let {
                     Log.d("kkang", "bitmap null")
                 }
