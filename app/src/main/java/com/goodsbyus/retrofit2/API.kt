@@ -48,7 +48,7 @@ interface API {
 
     @GET("post") //커뮤니티 게시글 불러오기
     fun getPost(
-    ): Call<List<PostList>>
+    ): Call<PostGetModel>
 
     @GET("proj/{id}") //굿즈 상세정보
     fun getRequest(

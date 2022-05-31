@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.goodsbyus.R
 
 import com.goodsbyus.databinding.FragmentCommunityBinding
+import com.goodsbyus.datas.PostGetModel
 
 import com.goodsbyus.datas.PostList
 
@@ -101,17 +102,17 @@ class CommunityFragment : Fragment() {
     private fun getData() {
         showSampleData(isLoading = true)
         RetrofitBuilder.api.getPost().enqueue(object :
-            Callback<List<PostList>> {
+            Callback<PostGetModel> {
             override fun onResponse(
-                call: Call<List<PostList>>,
-                response: Response<List<PostList>>
+                call: Call<PostGetModel>,
+                response: Response<PostGetModel>
             ) {
                 if (response.isSuccessful) {
                     Log.d("test1", response.body().toString())
                     var data = response.body()!! // GsonConverter를 사용해 데이터매핑
 
 
-                    binding.rvList.adapter = PostListAdapter(data).apply{
+                    binding.rvList.adapter = PostListAdapter(data.data).apply{
                         setItemClickListener(
                             object : PostListAdapter.ItemClickListener {
                                 override fun onClick(view: View, position: Int) {
@@ -136,7 +137,7 @@ class CommunityFragment : Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<List<PostList>>, t: Throwable) {
+            override fun onFailure(call: Call<PostGetModel>, t: Throwable) {
                 Log.d("test", "실패$t")
                 Toast.makeText(getActivity(), "업로드 실패 ..", Toast.LENGTH_SHORT).show()
             }

@@ -121,8 +121,14 @@ data class Posts(
     val required: String
 )
 
+data class PostGetModel(
+    val status: String,
+    val data: List<PostList>
+)
+
 @Parcelize
 data class PostList(
+    val postid: Int,
     val title: String,
     val explained: String,
     val created_at: String,

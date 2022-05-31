@@ -72,18 +72,16 @@ class GoodsInfo : AppCompatActivity() {
                             Log.d("test", response.body().toString())
                             var data = response.body()!! // GsonConverter를 사용해 데이터매핑
 
-                            if (data.status == "fail") {
+                            if (data.status == "success") {
                                 //if (data.text == "already joined") {
-                                    Toast.makeText(
-                                        this@GoodsInfo,
-                                        "이미 참여한 펀딩입니다",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                //}
-                            } else {
                                 Toast.makeText(this@GoodsInfo, "펀딩 성공!", Toast.LENGTH_SHORT).show()
                                 binding.fundingButton.isEnabled=false
                                 binding.fundingButton.setText("펀딩 완료")
+                                //}
+                            } else {
+                                binding.fundingButton.isEnabled=false
+                                binding.fundingButton.setText("이미 참여한 펀딩입니다")
+
                             }
                         }
                     }
