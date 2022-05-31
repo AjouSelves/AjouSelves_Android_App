@@ -51,6 +51,7 @@ class MyFundingInfo : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
 
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)	//왼쪽 버튼 사용설정(기본은 뒤로가기)
+        binding.fundingButton.isEnabled=false //버튼 비활성화
 
 
         val projid=getExtra()
@@ -90,10 +91,8 @@ class MyFundingInfo : AppCompatActivity() {
                     binding.explainedView.text = explained
                     binding.minnumView.text= minNum.toString()
 
-                    if(state!=2){
-                        binding.fundingButton.isEnabled=false
-                    } else{
-                        binding.information.text=""
+                    if(state==2){
+                        binding.fundingButton.isEnabled=true
                     }
 
                     var progress : Double=0.0

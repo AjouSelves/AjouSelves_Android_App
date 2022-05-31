@@ -2,15 +2,12 @@ package com.goodsbyus.community
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Parcelable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.fragment.app.*
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 
@@ -18,8 +15,6 @@ import com.goodsbyus.R
 
 import com.goodsbyus.databinding.FragmentCommunityBinding
 import com.goodsbyus.datas.PostGetModel
-
-import com.goodsbyus.datas.PostList
 
 import retrofit2.Call
 import retrofit2.Callback
@@ -116,16 +111,17 @@ class CommunityFragment : Fragment() {
                         setItemClickListener(
                             object : PostListAdapter.ItemClickListener {
                                 override fun onClick(view: View, position: Int) {
-                                    //val projid=postList[position]
+                                    val postid=postList[position].postid
+
 
                                     //setFragmentResult("requestKey", bundleOf("projid" to projid))
 
-                                    /*val intent = Intent(context,GoodsInfo::class.java)
+                                   val intent = Intent(context,PostInfo::class.java)
 
                                     intent.apply {
-                                        this.putExtra("projid",projid) // 데이터 넣기
+                                        this.putExtra("postid",postid) // 데이터 넣기
                                     }
-                                    startActivity(intent)*/
+                                    startActivity(intent)
 
                                     //replaceFragment(GoodsInfoFragment())
                                 }

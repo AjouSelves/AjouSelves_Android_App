@@ -146,16 +146,6 @@
         </LinearLayout>
     </ScrollView>
 
-    <TextView
-        android:id="@+id/information"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textColor="@color/text_gray"
-        android:text="로딩중.."
-
-        app:layout_constraintBottom_toBottomOf="@+id/scrollView2" />
-
     <Button
         android:id="@+id/fundingButton"
         android:layout_width="match_parent"

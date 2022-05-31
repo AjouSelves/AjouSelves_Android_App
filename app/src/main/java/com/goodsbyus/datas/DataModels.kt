@@ -137,6 +137,29 @@ data class PostList(
     val url: String
 ): Parcelable
 
+data class PostDetailModel(
+    val status: String,
+    @SerializedName("post")
+    val data: List<PostDetail>
+)
+
+@Parcelize
+data class PostDetail(
+    val postid: Int,
+    val nickname: String?,
+    val title: String?,
+    val explained: String?,
+    val created_at: String,
+    val photos: List<String>?,
+    val userid: Int?,
+    val comments: String?
+): Parcelable
+
+data class PostComment(
+    val postid: Int,
+    val comment: String
+)
+
 data class InitializeResponse(
     var status: String
 )

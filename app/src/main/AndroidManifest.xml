@@ -19,6 +19,9 @@
         android:theme="@style/Theme.Goodsbyus"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".community.PostInfo"
+            android:exported="false" />
+        <activity
             android:name=".mypage.MyFundingInfo"
             android:exported="false" />
         <activity

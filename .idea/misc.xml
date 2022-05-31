@@ -12,6 +12,7 @@
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/drawable/ic_baseline_people_24.xml" value="0.1865" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/drawable/ic_baseline_person_pin_24.xml" value="0.136" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.1865" />
+        <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/drawable/ic_baseline_send_24.xml" value="0.2205" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.136" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.1205" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.1205" />
@@ -35,6 +36,7 @@
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/activity_my_goods_info.xml" value="0.20478837109876016" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/activity_my_info.xml" value="0.33" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/activity_pay_qr.xml" value="0.2" />
+        <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/activity_post_info.xml" value="0.25" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/activity_register.xml" value="0.33" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/activity_search_project.xml" value="0.36083796494228304" />
         <entry key="..\:/Users/white/AndroidStudioProjects/goodsbyus/app/src/main/res/layout/activity_second.xml" value="0.33" />

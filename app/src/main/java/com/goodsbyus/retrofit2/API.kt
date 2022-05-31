@@ -46,6 +46,11 @@ interface API {
         @Part photo : MultipartBody.Part?
     ): Call<PayResponse>
 
+    @POST("comment/add")
+    fun addComment(
+        @Body initializeRequest: PostComment
+    ): Call<InitializeResponse>
+
     @GET("post") //커뮤니티 게시글 불러오기
     fun getPost(
     ): Call<PostGetModel>
@@ -54,6 +59,11 @@ interface API {
     fun getRequest(
         @Path("id") projid: Int
     ): Call<List<DetailModel>>
+
+    @GET("post/{id}")
+    fun getPostInfo(
+        @Path("id") postid: Int
+    ): Call<PostDetailModel>
 
     @GET("proj/join/{id}") //펀딩하기
     fun getFunding(
