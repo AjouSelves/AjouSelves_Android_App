@@ -70,6 +70,7 @@ class PostInfo : AppCompatActivity() {
                         var data = response.body()!! // GsonConverter를 사용해 데이터매핑
 
                         if(data.status=="success"){
+                            binding.commentEdit.setText("")
                             getData()
                         }
                     }

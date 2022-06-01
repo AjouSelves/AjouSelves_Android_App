@@ -74,18 +74,30 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
                 android:text="굿즈 상세 설명" />
 
-            <View
-                android:id="@+id/divider"
+
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/text_gray"
+                android:textSize="12sp"
+                android:text="댓글" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:background="?android:attr/listDivider"
-                 />
+                android:background="@color/text_gray"
+                />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_list"
@@ -93,7 +105,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="60dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/post_item"/>
+                tools:listitem="@layout/comment_item"/>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

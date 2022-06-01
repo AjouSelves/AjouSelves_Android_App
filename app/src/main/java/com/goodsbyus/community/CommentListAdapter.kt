@@ -32,7 +32,7 @@ class CommentListAdapter(private val commentsList: List<PostDetail>) : RecyclerV
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         return ListViewHolder(
             // 새로운 뷰를 생성해 뷰홀더에 인자로 넣어준다.
-            LayoutInflater.from(parent.context).inflate(R.layout.post_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.comment_item, parent, false)
         )
     }
 
