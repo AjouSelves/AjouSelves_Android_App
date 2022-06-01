@@ -112,9 +112,9 @@ class AddProject : AppCompatActivity() {
 
         binding.saveButton.setOnClickListener {
 
-            val inputTitle = binding.et1.text.toString()
-            val inputExplained = binding.et2.text.toString()
-            val inputCategory = binding.et3.text.toString()
+            val inputTitle = binding.et1.text.toString().replace("'","""\'""")
+            val inputExplained = binding.et2.text.toString().replace("'","""\'""")
+            val inputCategory = binding.et3.text.toString().replace("'","""\'""")
             val inputMinnum = binding.et4.text.toString()
 
             val useridRequest = RequestBody.create(MediaType.parse("text/plain"), "1");

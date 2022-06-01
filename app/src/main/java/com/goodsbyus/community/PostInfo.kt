@@ -55,7 +55,7 @@ class PostInfo : AppCompatActivity() {
 
 
         binding.commentButton.setOnClickListener {
-            val input = binding.commentEdit.text.toString()
+            val input = binding.commentEdit.text.toString().replace("'","""\'""")
             val postid=getExtra()
 
             val initializeRequest = PostComment(postid=postid, comment=input)
