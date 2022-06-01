@@ -76,8 +76,6 @@ class CommunityFragment : Fragment() {
             }
         }
 
-        binding.rvList.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
-
         getData()
 
         binding.refreshLayout.setOnRefreshListener {

@@ -23,7 +23,7 @@ class PostListAdapter(val postList: List<PostList>) : RecyclerView.Adapter<PostL
         fun bind(_list: PostList) {
 
             itemView.findViewById<TextView>(R.id.iv_title).text = _list.title
-            itemView.findViewById<TextView>(R.id.iv_explained).text= _list.explained
+            itemView.findViewById<TextView>(R.id.iv_nickname).text= _list.nickname
 
 
             val ran=IntRange(0,9)

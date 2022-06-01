@@ -69,8 +69,10 @@ class AddPost : AppCompatActivity() {
             val inputTitle = binding.et1.text.toString()
             val inputExplain = binding.et2.text.toString()
 
-
             val initializeRequest = PostModel(title=inputTitle, explained = inputExplain)
+
+            Log.d("test",initializeRequest.toString())
+            Log.d("test","아니 \'이거 왜 안되나고\'")
 
             RetrofitBuilder.api.postRequest(initializeRequest).enqueue(object :
                 Callback<PostResponse> {

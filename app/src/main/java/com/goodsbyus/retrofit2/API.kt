@@ -11,7 +11,7 @@ interface API {
     // x-www-urlencoded
     // Json
 
-    @POST("post/add") // Call<InitializeResponse> 데이터를 받을 data class
+    @POST("post") // Call<InitializeResponse> 데이터를 받을 data class
     fun postRequest(
         @Body initializeRequest: PostModel
     ): Call<PostResponse> // InitializeRequest 요청을 보낼 Json Data Class
