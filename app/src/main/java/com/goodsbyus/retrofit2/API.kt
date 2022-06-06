@@ -112,6 +112,9 @@ interface API {
         @Path("id") projid: Int
     ): Call<FundingResponse>
 
+    @DELETE("user")
+    fun deleteUser(): Call<FundingResponse>
+
     @PUT("state/{id}") //프로젝트 상태 변경
     fun putState(
         @Path("id") projid: Int,

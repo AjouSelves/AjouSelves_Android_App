@@ -1,10 +1,8 @@
 package com.goodsbyus.mypage
 
-import android.content.Context
+import android.content.*
 import android.content.Context.MODE_PRIVATE
-import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.util.Log
@@ -13,10 +11,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.goodsbyus.MainActivity
 import com.goodsbyus.SecondActivity
 import com.goodsbyus.databinding.FragmentMypageBinding
+import com.goodsbyus.datas.FundingResponse
 import com.goodsbyus.datas.UserInfo
 import com.goodsbyus.login.LoginActivity
 import com.goodsbyus.retrofit2.RetrofitBuilder
@@ -101,6 +101,10 @@ class MypageFragment : Fragment() {
             startActivity(intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP))
         }
 
+        binding.deleteUserButton.setOnClickListener {
+            dialog("delete")
+        }
+
         /*val arr = arrayOf("test1","test2")
 
         listAdapter = ListAdapter(arr)
@@ -113,5 +117,63 @@ class MypageFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun deleteAccount(){
+        RetrofitBuilder.api.deleteUser().enqueue(object :
+            Callback<FundingResponse> {
+            override fun onResponse(
+                call: Call<FundingResponse>,
+                response: Response<FundingResponse>
+            ) {
+                if (response.isSuccessful) {
+                    Log.d("test", response.body().toString())
+                    var data = response.body()!! // GsonConverter를 사용해 데이터매핑
+
+                    if (data.status == "fail") {
+                            Toast.makeText(
+                                activity,
+                                data.text,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                    } else {
+                        Toast.makeText(activity, "삭제 되었습니다.", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(activity, MainActivity::class.java)
+                        startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                        activity!!.finish()
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<FundingResponse>, t: Throwable) {
+                Log.d("test", "실패$t")
+                Toast.makeText(activity, "업로드 실패 ..", Toast.LENGTH_SHORT).show()
+            }
+
+        })
+    }
+
+    private fun dialog(type: String){
+        var dialog = AlertDialog.Builder(requireActivity())
+
+        if(type.equals("delete")){
+            dialog.setTitle("회원 탈퇴")
+            dialog.setMessage("회원 탈퇴를 진행합니다. (삭제된 데이터는 복구할 수 없습니다.)")
+        }
+
+        var dialog_listener = object: DialogInterface.OnClickListener{
+            override fun onClick(dialog: DialogInterface?, which: Int) {
+                when(which){
+                    DialogInterface.BUTTON_POSITIVE ->
+                        deleteAccount()
+                    DialogInterface.BUTTON_NEGATIVE ->
+                        Log.d(ContentValues.TAG, "")
+                }
+            }
+        }
+
+        dialog.setPositiveButton("확인",dialog_listener)
+        dialog.setNegativeButton("아니오",dialog_listener)
+        dialog.show()
     }
 }
