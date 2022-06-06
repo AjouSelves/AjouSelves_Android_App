@@ -8,4 +8,5 @@
     <string name="ongoing">진행중</string>
     <string name="some_id">회원가입</string>
     <string name="baseurl">http://52.206.105.200:3000</string>
+    <string name="version">0.9.0 (Beta)</string>
 </resources>
