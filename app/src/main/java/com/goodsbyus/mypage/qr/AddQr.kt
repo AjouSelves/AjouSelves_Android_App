@@ -18,6 +18,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import com.goodsbyus.R
 import com.goodsbyus.databinding.ActivityAddQrBinding
+import com.goodsbyus.datas.FundingResponse
 
 import com.goodsbyus.datas.PayLinkModel
 import com.goodsbyus.datas.PayResponse
@@ -202,22 +203,22 @@ class AddQr : AppCompatActivity() {
 
         RetrofitBuilder.api.putState(
             projid,initializeRequest
-        ).enqueue(object : Callback<PayResponse> {
+        ).enqueue(object : Callback<FundingResponse> {
             override fun onResponse(
-                call: Call<PayResponse>,
-                response: Response<PayResponse>
+                call: Call<FundingResponse>,
+                response: Response<FundingResponse>
             ) {
                 if (response.isSuccessful) {
                     Log.d("test", response.body().toString())
-                    Toast.makeText(this@AddQr, "등록되었습니다.2", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this@AddQr, "등록되었습니다.2", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this@AddQr, MyGoods::class.java)
                     startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                     finish()
                 }
             }
 
-            override fun onFailure(call: Call<PayResponse>, t: Throwable) {
-                Toast.makeText(this@AddQr, "실패했습니다.2", Toast.LENGTH_SHORT).show()
+            override fun onFailure(call: Call<FundingResponse>, t: Throwable) {
+                //Toast.makeText(this@AddQr, "실패했습니다.2", Toast.LENGTH_SHORT).show()
                 Log.d("test", "실패$t")
                 finish()
             }

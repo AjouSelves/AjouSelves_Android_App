@@ -78,7 +78,7 @@ class PostInfo : AppCompatActivity() {
 
                 override fun onFailure(call: Call<InitializeResponse>, t: Throwable) {
                     Log.d("test", "실패$t")
-                    Toast.makeText(this@PostInfo, "업로드 실패 ..", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this@PostInfo, "업로드 실패 ..", Toast.LENGTH_SHORT).show()
                 }
 
             })
@@ -124,13 +124,13 @@ class PostInfo : AppCompatActivity() {
 
                     binding.rvList.adapter = CommentListAdapter(newComments)
 
-                    Toast.makeText(this@PostInfo, "업로드 성공!", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this@PostInfo, "업로드 성공!", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<PostDetailModel>, t: Throwable) {
                 Log.d("test", "실패$t")
-                Toast.makeText(this@PostInfo, "업로드 실패 ..", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this@PostInfo, "업로드 실패 ..", Toast.LENGTH_SHORT).show()
             }
 
         })

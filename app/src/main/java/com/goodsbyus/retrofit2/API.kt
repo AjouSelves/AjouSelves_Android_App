@@ -29,7 +29,8 @@ interface API {
         @Part ("title") title: RequestBody,
         @Part ("explained") explained: RequestBody,
         @Part ("category") category: RequestBody,
-        @Part ("min_num") minnum: RequestBody
+        @Part ("min_num") minnum: RequestBody,
+        @Part ("amount") amount: RequestBody
     ): Call<InitializeResponse>
 
     @POST("auth/register") //회원가입
@@ -115,11 +116,11 @@ interface API {
     @DELETE("user")
     fun deleteUser(): Call<FundingResponse>
 
-    @PUT("state/{id}") //프로젝트 상태 변경
+    @PUT("proj/state/{id}") //프로젝트 상태 변경
     fun putState(
         @Path("id") projid: Int,
         @Body initializeRequest: StateModel
-    ): Call<PayResponse>
+    ): Call<FundingResponse>
 
     @PUT("user")
     fun putUserInfo(

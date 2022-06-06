@@ -72,7 +72,6 @@ class AddPost : AppCompatActivity() {
             val initializeRequest = PostModel(title=inputTitle.replace("'","""\'"""), explained = inputExplain.replace("'","""\'"""))
 
             Log.d("test",initializeRequest.toString())
-            Log.d("test","아니 \'이거 왜 안되나고\'")
 
             RetrofitBuilder.api.postRequest(initializeRequest).enqueue(object :
                 Callback<PostResponse> {
@@ -83,7 +82,7 @@ class AddPost : AppCompatActivity() {
                     if (response.isSuccessful) {
                         Log.d("test1", response.body().toString())
                         var data = response.body() // GsonConverter를 사용해 데이터매핑
-                        Toast.makeText(this@AddPost, "업로드 성공!", Toast.LENGTH_SHORT).show()
+                        //Toast.makeText(this@AddPost, "업로드 성공!", Toast.LENGTH_SHORT).show()
                         val intent = Intent(this@AddPost,SecondActivity::class.java)
                         startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                         finish()
@@ -93,7 +92,7 @@ class AddPost : AppCompatActivity() {
 
                 override fun onFailure(call: Call<PostResponse>, t: Throwable) {
                     Log.d("test", "실패$t")
-                    Toast.makeText(this@AddPost, "업로드 실패 ..", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this@AddPost, "업로드 실패 ..", Toast.LENGTH_SHORT).show()
                 }
 
             })

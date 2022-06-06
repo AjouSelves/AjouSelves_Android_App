@@ -88,7 +88,7 @@ class GoodsInfo : AppCompatActivity() {
 
                 override fun onFailure(call: Call<FundingResponse>, t: Throwable) {
                     Log.d("test", "실패$t")
-                    Toast.makeText(this@GoodsInfo, "업로드 실패 ..", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this@GoodsInfo, "업로드 실패 ..", Toast.LENGTH_SHORT).show()
                 }
 
             })
@@ -137,13 +137,13 @@ class GoodsInfo : AppCompatActivity() {
                         binding.fundingButton.setText("이미 참여한 펀딩입니다")
                     }
 
-                    Toast.makeText(this@GoodsInfo, "업로드 성공!", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this@GoodsInfo, "업로드 성공!", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<List<DetailModel>>, t: Throwable) {
                 Log.d("test", "실패$t")
-                Toast.makeText(this@GoodsInfo, "업로드 실패 ..", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this@GoodsInfo, "업로드 실패 ..", Toast.LENGTH_SHORT).show()
             }
 
         })

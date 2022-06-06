@@ -135,6 +135,7 @@ class AddProject : AppCompatActivity() {
             val inputExplained = binding.et2.text.toString().replace("'","""\'""")
             val inputCategory = binding.et3.text.toString().replace("'","""\'""")
             val inputMinnum = binding.et4.text.toString()
+            val inputAmount = binding.et5.text.toString()
 
             val useridRequest = RequestBody.create(MediaType.parse("text/plain"), "1");
             val titleRequest = RequestBody.create(MediaType.parse("text/plain"), inputTitle);
@@ -142,6 +143,7 @@ class AddProject : AppCompatActivity() {
                 RequestBody.create(MediaType.parse("text/plain"), inputExplained);
             val categoryRequest = RequestBody.create(MediaType.parse("text/plain"), inputCategory);
             val minRequest = RequestBody.create(MediaType.parse("text/plain"), inputMinnum);
+            val amountRequest = RequestBody.create(MediaType.parse("text/plain"), inputAmount);
 
 
             /*val initializeRequest = Posts(
@@ -155,7 +157,7 @@ class AddProject : AppCompatActivity() {
 
             RetrofitBuilder.api.initPicRequest(
                 body, useridRequest, titleRequest, explainedRequest,
-                categoryRequest, minRequest
+                categoryRequest, minRequest, amountRequest
             ).enqueue(object : Callback<InitializeResponse> {
                 override fun onResponse(
                     call: Call<InitializeResponse>,
@@ -163,11 +165,14 @@ class AddProject : AppCompatActivity() {
                 ) {
                     if (response.isSuccessful) {
                         Toast.makeText(this@AddProject, "등록되었습니다.", Toast.LENGTH_SHORT).show()
-                        //val fragment : HomeFragment = supportFragmentManager.findFragmentById(R.id.home_fragment) as HomeFragment
-                        //fragment.getData()
                         val intent = Intent(this@AddProject,SecondActivity::class.java)
                         startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                         finish()
+                    }
+                    else {
+                        when (response.code()) {
+                            400 -> Log.d("test", response.body()!!.toString())
+                        }
                     }
                 }
 
