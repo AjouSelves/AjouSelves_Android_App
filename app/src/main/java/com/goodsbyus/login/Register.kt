@@ -2,11 +2,12 @@ package com.goodsbyus.login
 
 import android.content.DialogInterface
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.goodsbyus.*
 import com.goodsbyus.datas.EmailResponse
 import com.goodsbyus.datas.InitializeResponse
@@ -18,6 +19,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+
+
 class Register : AppCompatActivity() {
 
     val TAG: String = "Register"
@@ -27,13 +30,14 @@ class Register : AppCompatActivity() {
     var emailCheckFinal=false
     var tempNumber = 0
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
 
 
-        checkButton.setOnClickListener{
+        emailCheckButton.setEndIconOnClickListener{
             val email = editEmailAddress.text.toString()
             val initializeRequest= MailCheck(
                 email=email)
@@ -51,6 +55,7 @@ class Register : AppCompatActivity() {
                             emailCheck=true
                             tempNumber=response.body()!!.number
                             Toast.makeText(this@Register, "사용 가능한 email 입니다", Toast.LENGTH_SHORT).show()
+                            checkText.text="인증번호가 전송 되었습니다."
                         }
                         else{
                             emailCheck=false
@@ -69,7 +74,7 @@ class Register : AppCompatActivity() {
             })
         }
 
-        checkNumButton.setOnClickListener {
+        numberCheckButton.setEndIconOnClickListener {
             val checkNumber=editCheckNum.text.toString().toInt()
             checkText.text="이메일 인증이 완료되었습니다."
             if(checkNumber==tempNumber){
@@ -96,7 +101,8 @@ class Register : AppCompatActivity() {
             val account=editNumber.text.toString()
 
             // 유저가 항목을 다 채우지 않았을 경우
-            if(email.isEmpty() || pw.isEmpty() || pw_re.isEmpty()){
+            if(email.isEmpty() || pw.isEmpty() || pw_re.isEmpty() || phone.isEmpty() ||
+                    name.isEmpty() || nickname.isEmpty()){
                 isExistBlank = true
             }
             else{
