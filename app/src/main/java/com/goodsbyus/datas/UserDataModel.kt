@@ -54,7 +54,6 @@ data class UserPutData(
     val nickname: String,
     val address: String,
     val account: String,
-    val birth: String
 )
 
 data class UserResponse(

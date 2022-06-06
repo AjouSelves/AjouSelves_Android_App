@@ -75,6 +75,7 @@ data class GoodsGetModel(
     var explained: String,
     var nickname: String,
     var userid: Int,
+    var amount: Int,
     var profilelink: String,
     var url: String
 ): Parcelable

@@ -55,8 +55,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18sp"
+        android:textColor="@color/black"
         android:text="- 원"
-        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/iv_progressView"
         app:layout_constraintEnd_toEndOf="parent"
 

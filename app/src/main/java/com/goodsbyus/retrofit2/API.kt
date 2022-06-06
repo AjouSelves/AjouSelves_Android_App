@@ -99,6 +99,11 @@ interface API {
         @Path("id") projid: Int
     ): Call<GetPay>
 
+    @GET("proj/leave/{id}")
+    fun getLeaveJoin(
+        @Path("id") projid: Int
+    ): Call<FundingResponse>
+
     @POST("auth/email") //email 인증
     fun checkRequest(@Body initializeRequest: MailCheck): Call<EmailResponse>
 

@@ -68,21 +68,22 @@ class MyGoods : AppCompatActivity() {
                     Log.d("test", response.body().toString())
                     var data = response.body()!! // GsonConverter를 사용해 데이터매핑
 
+                    if(data.status=="success") {
+                        binding.rvList.adapter = MyFundingAdapter(data.data).apply {
+                            setItemClickListener(
+                                object : MyFundingAdapter.ItemClickListener {
+                                    override fun onClick(view: View, position: Int) {
+                                        val projid = goodsList[position].projid
 
-                    binding.rvList.adapter = MyFundingAdapter(data.data).apply{
-                        setItemClickListener(
-                            object : MyFundingAdapter.ItemClickListener {
-                                override fun onClick(view: View, position: Int) {
-                                    val projid=goodsList[position].projid
+                                        val intent = Intent(this@MyGoods, MyGoodsInfo::class.java)
 
-                                    val intent = Intent(this@MyGoods, MyGoodsInfo::class.java)
-
-                                    intent.apply {
-                                        this.putExtra("projid",projid) // 데이터 넣기
+                                        intent.apply {
+                                            this.putExtra("projid", projid) // 데이터 넣기
+                                        }
+                                        startActivity(intent)
                                     }
-                                    startActivity(intent)
-                                }
-                            })
+                                })
+                        }
                     }
 
 

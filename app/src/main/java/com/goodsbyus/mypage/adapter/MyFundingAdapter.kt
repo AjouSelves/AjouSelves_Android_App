@@ -43,6 +43,8 @@ class MyFundingAdapter(val goodsList: List<GoodsGetModel>) : RecyclerView.Adapte
 
             itemView.findViewById<TextView>(R.id.iv_progressView).text = String.format("%.0f %% 달성", progress)
 
+            itemView.findViewById<TextView>(R.id.iv_amount).text = String.format("%d 원", _list.amount)
+
             val ran=IntRange(0,9)
             //itemView.findViewById<TextView>(R.id.iv_created).text = _list.created_at.slice(ran)
         }

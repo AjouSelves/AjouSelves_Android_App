@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
 
 import android.widget.Toast
@@ -11,6 +12,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.goodsbyus.R
 import com.goodsbyus.databinding.ActivityMyFundingInfoBinding
 import com.goodsbyus.datas.DetailModel
+import com.goodsbyus.datas.FundingResponse
 
 import com.goodsbyus.mypage.qr.PayQr
 import com.goodsbyus.retrofit2.RetrofitBuilder
@@ -29,9 +31,20 @@ class MyFundingInfo : AppCompatActivity() {
         return intent.getIntExtra("projid",0)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.item_menu, menu)
+        return true
+    }
+
     //액션버튼 클릭 했을 때
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId){
+            R.id.action_delete -> {
+                //삭제 버튼 눌렀을 때
+                Toast.makeText(this@MyFundingInfo, "펀딩이 취소 되었습니다.", Toast.LENGTH_LONG).show()
+                leaveProj()
+                true
+            }
             android.R.id.home -> {
                 finish()
                 true
@@ -121,5 +134,31 @@ class MyFundingInfo : AppCompatActivity() {
 
         val view = binding.root
         setContentView(view)
+    }
+    private fun leaveProj(){
+        val projid=getExtra()
+        RetrofitBuilder.api.getLeaveJoin(projid).enqueue(object :
+            Callback<FundingResponse> {
+            override fun onResponse(
+                call: Call<FundingResponse>,
+                response: Response<FundingResponse>
+            ) {
+                if (response.isSuccessful) {
+                    Log.d("test", response.body().toString())
+                    var data = response.body()!! // GsonConverter를 사용해 데이터매핑
+
+                    Toast.makeText(this@MyFundingInfo, "펀딩이 취소 되었습니다..", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this@MyFundingInfo, MyFunding::class.java)
+                    startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                    finish()
+                }
+            }
+
+            override fun onFailure(call: Call<FundingResponse>, t: Throwable) {
+                Log.d("test", "실패$t")
+                Toast.makeText(this@MyFundingInfo, "업로드 실패 ..", Toast.LENGTH_SHORT).show()
+            }
+
+        })
     }
 }
