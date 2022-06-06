@@ -3,6 +3,7 @@ package com.goodsbyus.home
 
 import android.Manifest
 import android.content.ContentResolver
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -12,10 +13,12 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.provider.Settings
 import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.goodsbyus.*
@@ -49,6 +52,12 @@ class AddProject : AppCompatActivity() {
         }
     }
 
+    companion object {
+        const val PERMISSION_REQUEST_CODE = 1001
+    }
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_project)
@@ -60,6 +69,16 @@ class AddProject : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setTitle("굿즈 등록하기")
         binding.saveButton.isEnabled=false
+
+        if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) //permission check
+            == PackageManager.PERMISSION_GRANTED) {
+        } else {
+            requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), // 1
+                PERMISSION_REQUEST_CODE) // 2
+            showDialog("Permission granted")
+        }
+
+
 
         val view = binding.root
         lateinit var filePath : String
@@ -187,6 +206,12 @@ class AddProject : AppCompatActivity() {
         }
     }
 
+    private fun showDialog(s: String) {
+        if(s == "Permission granted"){
+            showDialogToGetPermission()
+        }
+    }
+
     fun calculateInSampleSize(fileUri: Uri, reqWidth: Int, reqHeight: Int): Int {
         // Raw height and width of image
         val resolver: ContentResolver
@@ -230,5 +255,26 @@ class AddProject : AppCompatActivity() {
             columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
         }
         return cursor.getString(columnIndex)
+    }
+
+
+    private fun showDialogToGetPermission() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("권한 요청")
+            .setMessage("사진을 업로드하기 위해 권한이 필요합니다." +
+                    "설정에서 파일에 접근 요청을 허용해 주세요.")
+
+        builder.setPositiveButton("네") { dialogInterface, i ->
+            val intent = Intent(
+                Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                Uri.fromParts("package", packageName, null))
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)   // 6
+        }
+        builder.setNegativeButton("나중에") { dialogInterface, i ->
+            // ignore
+        }
+        val dialog = builder.create()
+        dialog.show()
     }
 }

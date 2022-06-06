@@ -95,7 +95,7 @@ class MyGoodsInfo : AppCompatActivity() {
                     val category = data[0].category
                     val explained = data[0].explained
                     val amount = data[0].amount
-                    val is_joined = data[2].is_joined
+                    val state = data[0].state
 
                     supportActionBar!!.setTitle(title)//타이틀설정 - 툴바
 
@@ -117,14 +117,9 @@ class MyGoodsInfo : AppCompatActivity() {
                         data[0].photos?.let { ViewPagerAdapter(it) } // 어댑터 생성
                     binding.viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
-                    if(is_joined==1){
-                        binding.fundingButton.isEnabled = false
-                        binding.fundingButton.setText("이미 참여한 펀딩입니다")
+                    if(state==1){
+                        binding.fundingButton.isEnabled=true
                     }
-
-                    Toast.makeText(this@MyGoodsInfo, "업로드 성공!", Toast.LENGTH_SHORT).show()
-
-
 
                     Toast.makeText(this@MyGoodsInfo, "업로드 성공!", Toast.LENGTH_SHORT).show()
                 }
