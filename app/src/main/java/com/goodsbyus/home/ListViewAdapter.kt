@@ -29,7 +29,8 @@ class ListViewAdapter internal constructor(val goodsList: List<ItemGetModel>)
                     .override(150, 150).into(imageView)
             }
             itemView.findViewById<TextView>(R.id.iv_title).text = _list.title
-            itemView.findViewById<TextView>(R.id.iv_category).text = _list.category
+            //itemView.findViewById<TextView>(R.id.iv_category).text = _list.category
+            itemView.findViewById<TextView>(R.id.iv_nickname).text = _list.nickname
             val state=_list.state
             if(state==1){
                 itemView.findViewById<TextView>(R.id.iv_state).text = "펀딩 중"
@@ -45,6 +46,8 @@ class ListViewAdapter internal constructor(val goodsList: List<ItemGetModel>)
             }
 
             itemView.findViewById<TextView>(R.id.iv_progressView).text = String.format("%.0f %% 달성", progress)
+
+            itemView.findViewById<TextView>(R.id.iv_amount).text = String.format("%d 원", _list.amount)
 
             val ran=IntRange(0,9)
             //itemView.findViewById<TextView>(R.id.iv_created).text = _list.created_at.slice(ran)

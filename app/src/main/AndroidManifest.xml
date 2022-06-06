@@ -21,64 +21,83 @@
         <activity
             android:name=".community.PostInfo"
             android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".mypage.MyFundingInfo"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".mypage.qr.PayQr"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".community.AddPost"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".mypage.MyGoods"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".mypage.qr.AddQr"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".mypage.MyGoodsInfo"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".firstScreen.FirstScreenActivity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@android:style/Theme.DeviceDefault.Light.Dialog" />
         <activity
             android:name=".mypage.BlankActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".home.SearchProject"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".mypage.MyFunding"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".mypage.MyInfo"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".home.AddProject"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".home.GoodsInfo"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/AnimTheme" />
         <activity
             android:name=".login.Register"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".login.LoginActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".SecondActivity"
+            android:screenOrientation="portrait"
             android:exported="true"
             android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

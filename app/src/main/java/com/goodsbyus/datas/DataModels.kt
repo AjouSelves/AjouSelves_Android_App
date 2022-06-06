@@ -28,7 +28,10 @@ data class DetailModel(
     var nickname: String,
     var userid: String,
     var profilelink: String,
-    var photos: List<String>?
+    var photos: List<String>?,
+    var amount: Int,
+    var is_poster: Int,
+    var is_joined: Int
 ): Parcelable
 
 @Parcelize
@@ -48,6 +51,7 @@ data class ItemGetModel(
     var explained: String,
     var created_at: String,
     var nickname: String,
+    val amount: Int,
     var userid: String,
     var profilelink: String,
     var url: String
@@ -67,6 +71,7 @@ data class GoodsGetModel(
     var category: String,
     var min_num: Int,
     var cur_num: Int,
+    var created_at: String,
     var explained: String,
     var nickname: String,
     var userid: Int,

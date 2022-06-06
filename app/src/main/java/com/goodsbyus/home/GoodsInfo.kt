@@ -97,6 +97,7 @@ class GoodsInfo : AppCompatActivity() {
         RetrofitBuilder.api.getRequest(projid).enqueue(object :
             Callback<List<DetailModel>> {
             override fun onResponse(
+
                 call: Call<List<DetailModel>>,
                 response: Response<List<DetailModel>>
             ) {
@@ -108,6 +109,8 @@ class GoodsInfo : AppCompatActivity() {
                     val curNum = data[0].cur_num
                     val category = data[0].category
                     val explained = data[0].explained
+                    val amount = data[0].amount
+                    val is_joined = data[2].is_joined
 
                     supportActionBar!!.setTitle(title)//타이틀설정 - 툴바
 
@@ -115,19 +118,24 @@ class GoodsInfo : AppCompatActivity() {
                     binding.categoryView.text = category
                     binding.explainedView.text = explained
                     binding.minnumView.text = minNum.toString()
+                    binding.curnumView.text= curNum.toString()
+                    binding.amountView.text = amount.toString()
 
                     var progress: Double = 0.0
                     if (minNum != 0) {
                         progress = curNum.toDouble() / minNum.toDouble() * 100
                     }
 
-                    binding.progressView.text = String.format("%.1f%% 달성", progress)
+                    binding.progressView.text = String.format("%.0f%% 달성", progress)
 
                     binding.viewPager.adapter =
                         data[0].photos?.let { ViewPagerAdapter(it) } // 어댑터 생성
                     binding.viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
-
+                    if(is_joined==1){
+                        binding.fundingButton.isEnabled = false
+                        binding.fundingButton.setText("이미 참여한 펀딩입니다")
+                    }
 
                     Toast.makeText(this@GoodsInfo, "업로드 성공!", Toast.LENGTH_SHORT).show()
                 }

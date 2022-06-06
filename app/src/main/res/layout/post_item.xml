@@ -7,9 +7,10 @@
 
     <TextView
         android:id="@+id/iv_title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:layout_marginTop="20dp"
         android:text="제목"
         android:textColor="@color/black"
