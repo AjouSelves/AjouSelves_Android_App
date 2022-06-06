@@ -37,6 +37,7 @@ data class UserData(
     val profilelink : String
 ): Parcelable
 
+
 data class PayLinkModel(
     val paylink: String
 )
@@ -46,3 +47,18 @@ data class PayResponse(
     val status: String,
     val text : String
 ): Parcelable
+
+data class UserPutData(
+    val phonenumber: String,
+    val password: String,
+    val nickname: String,
+    val address: String,
+    val account: String,
+    val birth: String
+)
+
+data class UserResponse(
+    val status: String,
+    val text: String,
+    var error: Error
+)

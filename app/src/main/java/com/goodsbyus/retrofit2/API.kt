@@ -113,5 +113,10 @@ interface API {
         @Body initializeRequest: StateModel
     ): Call<PayResponse>
 
+    @PUT("user")
+    fun putUserInfo(
+        @Body initializeRequest: UserPutData
+    ): Call<UserResponse>
+
 
 }

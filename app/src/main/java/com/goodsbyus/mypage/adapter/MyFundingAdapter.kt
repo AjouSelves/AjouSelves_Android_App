@@ -20,12 +20,13 @@ class MyFundingAdapter(val goodsList: List<GoodsGetModel>) : RecyclerView.Adapte
         fun bind(_list: GoodsGetModel) {
             val imageView: ImageView = itemView.findViewById<ImageView>(R.id.iv_image)
             if(_list.url!=null) {
-                val newUrl = "http://52.206.105.200:3000" + _list.url
+                val newUrl = "http://goodsbyus.com" + _list.url
                 Glide.with(itemView).load(newUrl).placeholder(R.drawable.ic_launcher_foreground)
                     .override(150, 150).into(imageView)
             }
             itemView.findViewById<TextView>(R.id.iv_title).text = _list.title
-            itemView.findViewById<TextView>(R.id.iv_category).text = _list.category
+            //itemView.findViewById<TextView>(R.id.iv_category).text = _list.category
+            itemView.findViewById<TextView>(R.id.iv_nickname).text = _list.nickname
             val state=_list.state
             if(state==1){
                 itemView.findViewById<TextView>(R.id.iv_state).text = "펀딩 중"
@@ -40,7 +41,7 @@ class MyFundingAdapter(val goodsList: List<GoodsGetModel>) : RecyclerView.Adapte
                 progress=_list.cur_num.toDouble()/_list.min_num.toDouble()*100
             }
 
-            itemView.findViewById<TextView>(R.id.iv_progressView).text = String.format("%.1f %% 달성", progress)
+            itemView.findViewById<TextView>(R.id.iv_progressView).text = String.format("%.0f %% 달성", progress)
 
             val ran=IntRange(0,9)
             //itemView.findViewById<TextView>(R.id.iv_created).text = _list.created_at.slice(ran)
