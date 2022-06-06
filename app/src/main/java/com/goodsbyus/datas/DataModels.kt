@@ -178,7 +178,7 @@ data class EmailResponse(
 )
 
 data class LoginResponse(
-    var code : Int,
+    var status: String,
     @SerializedName("text")
     var message : String,
     var exp : String,

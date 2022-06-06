@@ -66,18 +66,13 @@ class LoginActivity : AppCompatActivity() {
 
                         var data = response.body()!!
 
-                        editor.putString("email", id)
-                        editor.putString("password", pw)
-                        editor.commit()
-                        /*} else {
-                            editor.putString("email", "")
-                            editor.putString("password", "")
-                            editor.commit()
-                        }*/
 
-                        if(data.message=="토큰이 발급되었습니다."){
+                        if(data.status=="success"){
                             val token=data.token
 
+                            editor.putString("email", id)
+                            editor.putString("password", pw)
+                            editor.commit()
                             GlobalApplication.prefs.setString("tokens",token)
                             dialog("success")
                         }
@@ -86,6 +81,11 @@ class LoginActivity : AppCompatActivity() {
                         }
 
                         //Toast.makeText(context, "업로드 성공!", Toast.LENGTH_SHORT).show()
+                    }
+                    else {
+                        when (response.code()) {
+                            400 -> dialog("fail")
+                        }
                     }
                 }
 
