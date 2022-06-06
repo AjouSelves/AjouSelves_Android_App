@@ -41,7 +41,6 @@ class MyFundingInfo : AppCompatActivity() {
         return when(item.itemId){
             R.id.action_delete -> {
                 //삭제 버튼 눌렀을 때
-                Toast.makeText(this@MyFundingInfo, "펀딩이 취소 되었습니다.", Toast.LENGTH_LONG).show()
                 leaveProj()
                 true
             }
@@ -123,13 +122,13 @@ class MyFundingInfo : AppCompatActivity() {
                     }
 
 
-                    Toast.makeText(this@MyFundingInfo, "업로드 성공!", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this@MyFundingInfo, "업로드 성공!", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<List<DetailModel>>, t: Throwable) {
                 Log.d("test", "실패$t")
-                Toast.makeText(this@MyFundingInfo, "업로드 실패 ..", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this@MyFundingInfo, "업로드 실패 ..", Toast.LENGTH_SHORT).show()
             }
 
         })
@@ -158,7 +157,7 @@ class MyFundingInfo : AppCompatActivity() {
 
             override fun onFailure(call: Call<FundingResponse>, t: Throwable) {
                 Log.d("test", "실패$t")
-                Toast.makeText(this@MyFundingInfo, "업로드 실패 ..", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this@MyFundingInfo, "업로드 실패 ..", Toast.LENGTH_SHORT).show()
             }
 
         })

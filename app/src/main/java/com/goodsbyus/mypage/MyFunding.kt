@@ -86,13 +86,13 @@ class MyFunding : AppCompatActivity() {
                     }
 
 
-                    Toast.makeText(this@MyFunding, "업로드 성공!", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this@MyFunding, "업로드 성공!", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<MyGoods>, t: Throwable) {
                 Log.d("test", "실패$t")
-                Toast.makeText(this@MyFunding, "업로드 실패 ..", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this@MyFunding, "업로드 실패 ..", Toast.LENGTH_SHORT).show()
             }
 
         })

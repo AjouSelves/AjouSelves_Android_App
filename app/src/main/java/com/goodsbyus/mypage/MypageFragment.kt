@@ -59,13 +59,13 @@ class MypageFragment : Fragment() {
                     binding.emailView.text = email
                     binding.nameView.text = name
 
-                    Toast.makeText(activity, "업로드 성공!", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(activity, "업로드 성공!", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<UserInfo>, t: Throwable) {
                 Log.d("test", "실패$t")
-                Toast.makeText(activity, "업로드 실패 ..", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(activity, "업로드 실패 ..", Toast.LENGTH_SHORT).show()
             }
 
         })
@@ -137,7 +137,7 @@ class MypageFragment : Fragment() {
                                 Toast.LENGTH_SHORT
                             ).show()
                     } else {
-                        Toast.makeText(activity, "삭제 되었습니다.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(activity, "회원 탈퇴 완료", Toast.LENGTH_SHORT).show()
                         val intent = Intent(activity, MainActivity::class.java)
                         startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                         activity!!.finish()
@@ -147,7 +147,7 @@ class MypageFragment : Fragment() {
 
             override fun onFailure(call: Call<FundingResponse>, t: Throwable) {
                 Log.d("test", "실패$t")
-                Toast.makeText(activity, "업로드 실패 ..", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(activity, "업로드 실패 ..", Toast.LENGTH_SHORT).show()
             }
 
         })
