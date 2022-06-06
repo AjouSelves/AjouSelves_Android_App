@@ -55,23 +55,9 @@ class MypageFragment : Fragment() {
                     val data = response.body()!! // GsonConverter를 사용해 데이터매핑
                     val email = data.data[0].email
                     val name = data.data[0].name
-                    val phone = data.data[0].phonenumber
-                    val nickname = data.data[0].nickname
-                    val status = data.data[0].status
-                    val birth = data.data[0].birth
-                    val address = data.data[0].address
-                    val account = data.data[0].account
-                    val profile = data.data[0].profilelink
 
                     binding.emailView.text = email
                     binding.nameView.text = name
-                    /*binding.phoneView.text = phone
-                    binding.nicknameView.text = nickname
-                    binding.statusView.text = status
-                    binding.birthView.text = birth
-                    binding.addressView.text = address
-                    binding.accountView.text = account
-                    binding.profileView.text = profile*/
 
                     Toast.makeText(activity, "업로드 성공!", Toast.LENGTH_SHORT).show()
                 }
