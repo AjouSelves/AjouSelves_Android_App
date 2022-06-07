@@ -84,7 +84,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        binding.rvList.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
+        //binding.rvList.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
 
         getData()
 
