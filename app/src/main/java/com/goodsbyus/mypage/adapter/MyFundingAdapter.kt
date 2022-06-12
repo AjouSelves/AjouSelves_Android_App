@@ -20,7 +20,7 @@ class MyFundingAdapter(val goodsList: List<GoodsGetModel>) : RecyclerView.Adapte
         fun bind(_list: GoodsGetModel) {
             val imageView: ImageView = itemView.findViewById<ImageView>(R.id.iv_image)
             if(_list.url!=null) {
-                val newUrl = "http://goodsbyus.com" + _list.url
+                val newUrl = "https://goodsbyus.com" + _list.url
                 Glide.with(itemView).load(newUrl).placeholder(R.drawable.ic_launcher_foreground)
                     .override(150, 150).into(imageView)
             }

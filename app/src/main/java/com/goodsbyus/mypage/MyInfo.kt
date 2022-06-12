@@ -131,7 +131,7 @@ class MyInfo : AppCompatActivity() {
         else {
             val initializeRequest = UserPutData(
                 password = password, phonenumber = phone, nickname = nickname,
-                address = address, account = number
+                address = address, account = number, status = "재학생"
             )
 
             RetrofitBuilder.api.putUserInfo(initializeRequest).enqueue(object :

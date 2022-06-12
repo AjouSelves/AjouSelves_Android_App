@@ -17,7 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory
                 .build()
 
             val retrofit = Retrofit.Builder()
-                .baseUrl("http://goodsbyus.com/api/")
+                .baseUrl("https://goodsbyus.com/api/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build()
